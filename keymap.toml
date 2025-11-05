@@ -1,0 +1,18 @@
+[mgr]
+prepend_keymap = [
+  { on = ["e", "c"], run = 'shell -- code "$@"', desc = "Open in VSCode" },
+  { on = ["e", "m"], run = 'shell -- micro "$@" --block', desc = "Open in Micro" },
+  { on = ["e", "n"], run = 'shell -- nano "$@" --block', desc = "Open in Nano" },
+  { on = ["e", "v"], run = 'shell -- vim "$@" --block', desc = "Open in Vim" },
+  { on = "<C-c>", run = "plugin system-clipboard" },
+  { on = "<C-v>", run = "shell 'cb paste' --block", desc = "Paste from clipboard" },
+  { on = "b", run = "plugin bunny" },
+  { on = "<Enter>", run = "plugin smart-enter" },
+  { on = "T", run = "plugin toggle-pane max-preview" },
+  { on = ["s", "s" ], run = "search --via=fd", desc = "Search" },
+  { on = ["s", "d" ], run = "search --via=fd --args='-t d'", desc = "Search directories" },
+  { on = ["s", "f" ], run = "search --via=fd --args='-t f'", desc = "Search files" },
+  { on = "H", run = "plugin duckdb -1", desc = "Scroll one column to the left" },
+  { on = "L", run = "plugin duckdb +1", desc = "Scroll one column to the right" },
+  { on = "E", run = "plugin eza-preview", desc = "Toggle tree/list dir preview" },
+]

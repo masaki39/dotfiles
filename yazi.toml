@@ -1,0 +1,43 @@
+[mgr]
+linemode = "size"
+show_hidden = true
+ratio = [1, 2, 5]
+
+[preview]
+max_width  = 1920
+max_height = 1920
+
+[opener]
+edit = [
+  { run = 'micro "$@"', block = true, for = "unix" },
+]
+excel = [
+   { run = 'open -a "Microsoft Excel" "$@"', block = true, for = "unix" },
+]
+
+
+[open]
+prepend_rules = [
+  { name = "*.csv", use = "excel" },
+]
+
+[plugin]
+prepend_previewers = [
+  { mime = "image/tiff", run = "magick" },
+  { name = "*.csv", run = "duckdb" },  
+  { name = "*.tsv", run = "duckdb" },  
+  { name = "*.parquet", run = "duckdb" },  
+  { name = "*.txt", run = "duckdb" },  
+  { name = "*.xlsx", run = "duckdb" },  
+  { name = "*.db", run = "duckdb" },
+  { name = "*.duckdb", run = "duckdb" },
+  { name = "*/", run = "eza-preview" },
+]
+
+prepend_preloaders = [  
+  { name = "*.csv", run = "duckdb", multi = false },  
+  { name = "*.tsv", run = "duckdb", multi = false },  
+  { name = "*.parquet", run = "duckdb", multi = false },
+  { name = "*.txt", run = "duckdb", multi = false },  
+  { name = "*.xlsx", run = "duckdb", multi = false },
+]
