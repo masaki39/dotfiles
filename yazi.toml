@@ -1,5 +1,4 @@
 [mgr]
-linemode = "size"
 show_hidden = true
 ratio = [1, 2, 5]
 
@@ -14,11 +13,15 @@ edit = [
 excel = [
    { run = 'open -a "Microsoft Excel" "$@"', block = true, for = "unix" },
 ]
+ppt = [
+   { run = 'open -a "Microsoft PowerPoint" "$@"', block = true, for = "unix" },
+]
 
 
 [open]
 prepend_rules = [
   { name = "*.csv", use = "excel" },
+  { name = "*.pptx", use = "ppt" },
 ]
 
 [plugin]
