@@ -14,7 +14,10 @@ excel = [
    { run = 'open -a "Microsoft Excel" "$@"', block = true, for = "unix" },
 ]
 ppt = [
-   { run = 'open -a "Microsoft PowerPoint" "$@"', block = true, for = "unix" },
+  { run = 'open -a "Microsoft PowerPoint" "$@"', block = true, for = "unix" },
+]
+open = [
+  { run = 'open "$@"', block = true, for = "unix" },
 ]
 
 
@@ -22,6 +25,7 @@ ppt = [
 prepend_rules = [
   { name = "*.csv", use = "excel" },
   { name = "*.pptx", use = "ppt" },
+  { name = "*.html", use = "open" },
 ]
 
 [plugin]
