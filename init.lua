@@ -1,4 +1,3 @@
-require("full-border"):setup()
 require("bunny"):setup({
     hops = {
         { key = "h", path = "~", desc = "Home directory" },
