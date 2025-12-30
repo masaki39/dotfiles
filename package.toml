@@ -23,10 +23,5 @@ use = "wylie102/duckdb"
 rev = "3f8c863"
 hash = "87b9233a74325e95011670ed20bbd0d4"
 
-[[plugin.deps]]
-use = "yazi-rs/plugins:no-status"
-rev = "8f1d971"
-hash = "3e023d31f29201efdac2a6ae35fedb78"
-
 [flavor]
 deps = []
