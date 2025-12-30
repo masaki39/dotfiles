@@ -22,6 +22,7 @@ prepend_rules = [
   { name = "*.pptx", use = "default" },
   { name = "*.html", use = "default" },
   { name = "*.MP4", use = "default" },
+  { name = "*.mp4", use = "default" },
 ]
 
 [plugin]
