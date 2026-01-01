@@ -9,16 +9,13 @@ max_height = 1920
 edit = [
   { run = 'micro "$@"', block = true, for = "unix" },
 ]
-code = [
-   { run = 'code "$@"', block = false, for = "unix" },
-]
 default = [
   { run = 'open "$@"', block = false, for = "unix" },
 ]
 
 [open]
 prepend_rules = [
-  { name = "*.csv", use = "code" },
+  { name = "*.csv", use = "default" },
   { name = "*.pptx", use = "default" },
   { name = "*.html", use = "default" },
   { name = "*.MP4", use = "default" },
