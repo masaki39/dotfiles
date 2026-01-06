@@ -5,6 +5,7 @@ require("bunny"):setup({
         { key = "v", path = "~/dev", desc = "dev" },
         { key = "d", path = "~/Downloads", desc = "Downloads" },
         { key = "o", path = "~/Documents/masaki39-core", desc = "Obsidian" },
+        { key = "i", path = "/Users/masaki/Library/Mobile Documents/iCloud~md~obsidian/Documents", desc = "iCloud Obsidian" },        
         { key = "p", path = "~/pCloud Drive", desc = "pCloud Drive" }, 
         { key = "w", path = "~/pCloud Drive/Work", desc = "Work" }, 
         { key = "a", path = "~/dev/analysis", desc = "analysis" }, 
