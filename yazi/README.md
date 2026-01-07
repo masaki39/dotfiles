@@ -8,10 +8,9 @@ brew install git yazi micro clipboard jq poppler ffmpeg resvg imagemagick sevenz
 brew install --cask ghostty
 ```
 
-## Clone
+## Install
 
 ```bash
-git clone https://github.com/masaki39/yazi.git ~/.config/yazi
 ya pkg install
 ```
 
