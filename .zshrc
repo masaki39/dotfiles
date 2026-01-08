@@ -1,6 +1,7 @@
 # alias
 alias ze="micro ~/.zshrc"
 alias zs="source ~/.zshrc"
+alias home="cd ~"
 alias down="cd ~/Downloads"
 alias ccc="cd ~/Documents/masaki39-core/.obsidian/plugins/obsidian-crystal"
 alias css="cd ~/Documents/masaki39-core/.obsidian/snippets"
