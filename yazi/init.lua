@@ -1,3 +1,4 @@
+require("git"):setup()
 require("bunny"):setup({
     hops = {
         { key = "h", path = "~", desc = "Home directory" },

@@ -29,3 +29,13 @@ prepend_previewers = [
 append_previewers = [
   { name = "*.jsonl", run = "json" },
 ]
+
+[[plugin.prepend_fetchers]]
+id  = "git"
+url = "*"
+run = "git"
+
+[[plugin.prepend_fetchers]]
+id  = "git"
+url = "*/"
+run = "git"
