@@ -8,7 +8,7 @@ prepend_keymap = [
   { on = ["s", "s" ], run = "search --via=fd", desc = "Search" },
   { on = ["s", "d" ], run = "search --via=fd --args='-t d'", desc = "Search directories" },
   { on = ["s", "f" ], run = "search --via=fd --args='-t f'", desc = "Search files" },
-  { on = ["x", "x"], run = "shell 'claude' --block", desc = "Claude code" },
-  { on = ["x", "z"], run = "shell 'lazygit' --block", desc = "Lazygit" },
-  { on = ["x", "c"], run = 'shell -- code "$@"', desc = "Open in VSCode" },
+  { on = ["u", "u"], run = "shell 'claude' --block", desc = "Claude code" },
+  { on = ["u", "g"], run = "shell 'lazygit' --block", desc = "Lazygit" },
+  { on = ["u", "c"], run = 'shell -- code "$@"', desc = "Open in VSCode" },
 ]
