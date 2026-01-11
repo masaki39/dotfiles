@@ -8,7 +8,7 @@ max_height = 1920
 
 [opener]
 edit = [
-  { run = 'micro "$@"', block = true, for = "unix" },
+  { run = 'nvim "$@"', block = true, for = "unix" },
 ]
 default = [
   { run = 'open "$@"', block = false, for = "unix" },
