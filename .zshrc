@@ -1,5 +1,5 @@
 # alias
-alias ze="micro ~/.zshrc"
+alias ze="nvim ~/.zshrc"
 alias zs="source ~/.zshrc"
 alias home="cd ~"
 alias down="cd ~/Downloads"
