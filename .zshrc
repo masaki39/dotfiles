@@ -10,7 +10,6 @@ alias obsidian="cd ~/Documents/masaki39-core"
 
 ## uv系
 alias main='uv run python main.py'
-alias ppget="uvx ppget"
 
 # starship
 eval "$(starship init zsh)"
