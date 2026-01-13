@@ -1,18 +1,14 @@
 [mgr]
 show_hidden = true
-ratio = [1,2,5]
+ratio = [1, 2, 5]
 
 [preview]
-max_width  = 1920
+max_width = 1920
 max_height = 1920
 
 [opener]
-edit = [
-  { run = 'nvim "$@"', block = true, for = "unix" },
-]
-default = [
-  { run = 'open "$@"', block = false, for = "unix" },
-]
+edit = [{ run = 'nvim "$@"', block = true, for = "unix" }]
+default = [{ run = 'open "$@"', block = false, for = "unix" }]
 
 [open]
 prepend_rules = [
@@ -21,22 +17,19 @@ prepend_rules = [
   { name = "*.html", use = "default" },
   { name = "*.MP4", use = "default" },
   { name = "*.mp4", use = "default" },
+  { name = "*.rds", use = "default" },
 ]
 
 [plugin]
-prepend_previewers = [
-  { mime = "image/tiff", run = "magick" },
-]
-append_previewers = [
-  { name = "*.jsonl", run = "json" },
-]
+prepend_previewers = [{ mime = "image/tiff", run = "magick" }]
+append_previewers = [{ name = "*.jsonl", run = "json" }]
 
 [[plugin.prepend_fetchers]]
-id  = "git"
+id = "git"
 url = "*"
 run = "git"
 
 [[plugin.prepend_fetchers]]
-id  = "git"
+id = "git"
 url = "*/"
 run = "git"
