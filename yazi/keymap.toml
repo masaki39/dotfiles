@@ -1,17 +1,60 @@
-[mgr]
-prepend_keymap = [
-  { on = "<Enter>", run = "plugin smart-enter" },
-  { on = "<C-y>", run = "plugin system-clipboard" },
-  { on = "<C-p>", run = "shell 'cb paste' --block", desc = "Paste from clipboard" },
-  { on = "b", run = "plugin bunny" },
-  { on = "T", run = "plugin toggle-pane max-preview" },
-  { on = ["s", "s" ], run = "search --via=fd", desc = "Search" },
-  { on = ["s", "d" ], run = "search --via=fd --args='-t d'", desc = "Search directories" },
-  { on = ["s", "f" ], run = "search --via=fd --args='-t f'", desc = "Search files" },
-  { on = ["/", "/"], run = "find", desc = "Find next" },
-  { on = ["/", "c"], run = "shell 'claude' --block", desc = "Claude code" },
-  { on = ["/", "g"], run = "shell 'lazygit' --block", desc = "Lazygit" },
-  { on = ["/", "r"], run = 'shell -- ya emit cd "$(git rev-parse --show-toplevel)"', desc = "Go to git root" },
-  { on = ["/", "n"], run = 'shell --block -- nvim "$@"', desc = "Open in Neovim" },
-  { on = ["/", "v"], run = 'shell -- code "$@"', desc = "Open in VSCode" },
-]
+[[mgr.prepend_keymap]]
+on = "<Enter>"
+run = "plugin smart-enter"
+
+[[mgr.prepend_keymap]]
+on = "<C-y>"
+run = "plugin system-clipboard"
+
+[[mgr.prepend_keymap]]
+on = "<C-p>"
+run = "shell 'cb paste' --block"
+desc = "Paste from clipboard"
+
+[[mgr.prepend_keymap]]
+on = "b"
+run = "plugin bunny"
+
+[[mgr.prepend_keymap]]
+on = "T"
+run = "plugin toggle-pane max-preview"
+
+[[mgr.prepend_keymap]]
+on = ["s", "s"]
+run = "search --via=fd"
+desc = "Search"
+
+[[mgr.prepend_keymap]]
+on = ["s", "d"]
+run = "search --via=fd --args='-t d'"
+desc = "Search directories"
+
+[[mgr.prepend_keymap]]
+on = ["s", "f"]
+run = "search --via=fd --args='-t f'"
+desc = "Search files"
+
+[[mgr.prepend_keymap]]
+on = ["*", "c"]
+run = "shell 'claude' --block"
+desc = "Claude code"
+
+[[mgr.prepend_keymap]]
+on = ["*", "g"]
+run = "shell 'lazygit' --block"
+desc = "Lazygit"
+
+[[mgr.prepend_keymap]]
+on = ["*", "r"]
+run = 'shell -- ya emit cd "$(git rev-parse --show-toplevel)"'
+desc = "Go to git root"
+
+[[mgr.prepend_keymap]]
+on = ["*", "n"]
+run = 'shell --block -- nvim "$@"'
+desc = "Open in Neovim"
+
+[[mgr.prepend_keymap]]
+on = ["*", "v"]
+run = 'shell -- code "$@"'
+desc = "Open in VSCode"
