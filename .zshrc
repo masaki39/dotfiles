@@ -1,3 +1,6 @@
+# PATH
+export PATH="/opt/homebrew/bin:$PATH"
+
 # alias
 alias ze="nvim ~/.zshrc"
 alias zs="source ~/.zshrc"
