@@ -5,6 +5,16 @@ layout {
     // 空文字列にすると、zellij起動時のカレントディレクトリを使用
     cwd ""
 
+    default_tab_template {
+        pane size=1 borderless=true {
+            plugin location="zellij:tab-bar"
+        }
+        children
+        pane size=2 borderless=true {
+            plugin location="zellij:status-bar"
+        }
+    }
+
     pane split_direction="vertical" {
         // 左: Yazi ファイラー (50%)
         pane size="50%" {
