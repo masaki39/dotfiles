@@ -18,7 +18,7 @@ layout {
     tab {
         pane split_direction="vertical" {
             // 左: Yazi ファイラー (50%)
-            pane size="50%" {
+            pane size="50%" focus=true {
                 command "yazi"
                 args "."
             }
@@ -26,7 +26,7 @@ layout {
             pane size="50%" split_direction="horizontal" {
                 // 右上: Claude Code (60%)
                 // focus=true で起動時にこのペインにフォーカス
-                pane size="60%" focus=true {
+                pane size="60%" {
                     command "claude"
                 }
                 // 右下: Lazygit (40%)
