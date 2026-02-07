@@ -1,3 +1,5 @@
 keybind = global:alt+space=toggle_quick_terminal
 quick-terminal-size=450px,1200px
 theme = TokyoNight
+custom-shader = ~/dotfiles/ghostty/shader/WIP.glsl
+custom-shader-animation = always
