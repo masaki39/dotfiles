@@ -10,7 +10,6 @@ alias ccc="cd ~/Documents/masaki39-core/.obsidian/plugins/obsidian-crystal"
 alias css="cd ~/Documents/masaki39-core/.obsidian/snippets"
 alias ooo="cd ~/Documents/masaki39-core && claude"
 alias obsidian="cd ~/Documents/masaki39-core"
-alias zz="zellij --layout dev"
 
 ## uv系
 alias main='uv run python main.py'
