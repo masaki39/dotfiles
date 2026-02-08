@@ -34,3 +34,8 @@ desc = "Search files"
 on = ["g", "g"]
 run = "shell 'lazygit' --block"
 desc = "Lazygit"
+
+[[mgr.prepend_keymap]]
+on = ["g", "r"]
+run = 'shell -- ya emit cd "$(git rev-parse --show-toplevel)"'
+desc = "Git Root"
