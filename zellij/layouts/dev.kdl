@@ -1,10 +1,6 @@
 // 開発用レイアウト
 // 使い方: cd ~/project/xxx && zellij --layout dev
 layout {
-    // cwd を起動時のディレクトリに設定
-    // 空文字列にすると、zellij起動時のカレントディレクトリを使用
-    cwd ""
-
     default_tab_template {
         pane size=1 borderless=true {
             plugin location="zellij:tab-bar"
@@ -20,7 +16,6 @@ layout {
             // 左: Yazi ファイラー (50%)
             pane size="50%" focus=true {
                 command "yazi"
-                args "."
             }
             // 右: Claude Code + Lazygit (50%)
             pane size="50%" split_direction="horizontal" {
