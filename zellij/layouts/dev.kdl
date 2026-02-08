@@ -29,8 +29,10 @@ layout {
                 pane size="60%" {
                     command "claude"
                 }
-                // 右下: Lazygit (40%)
+                // 右下: ターミナル (40%)
                 pane size="40%" {
+                    command "gh"
+                    args "issue" "list"
                 }
             }
         }
