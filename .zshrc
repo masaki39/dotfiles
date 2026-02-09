@@ -7,6 +7,7 @@ alias zs="source ~/.zshrc"
 alias dot='cd ~/dotfiles'
 alias home="cd ~"
 alias down="cd ~/Downloads"
+alias desk="cd ~/Desktop"
 alias ccc="cd ~/Documents/masaki39-core/.obsidian/plugins/obsidian-crystal"
 alias css="cd ~/Documents/masaki39-core/.obsidian/snippets"
 alias ooo="cd ~/Documents/masaki39-core && claude"
