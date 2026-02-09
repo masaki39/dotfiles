@@ -3,6 +3,11 @@ on = "<Enter>"
 run = "plugin smart-enter"
 
 [[mgr.prepend_keymap]]
+on = "e"
+run = 'shell "nvim \"$@\"" --block'
+desc = "Edit with editor"
+
+[[mgr.prepend_keymap]]
 on = "<C-y>"
 run = "plugin system-clipboard"
 
