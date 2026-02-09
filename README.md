@@ -2,7 +2,18 @@
 
 My personal settings.
 
-## Settings
+## Setup
+
+```zsh
+bash setup.sh
+```
+
+This will:
+- Install Homebrew packages
+- Create symbolic links
+- Install yazi plugins
+
+## Manual setup (if needed)
 
 ### Homebrew
 
@@ -10,13 +21,19 @@ My personal settings.
 brew bundle
 ```
 
-## Symbolic link
+### Symbolic link
 
 ```zsh
-ln -s ~/dotfiles/.zshrc ~/.zshrc
-ln -s ~/dotfiles/ssh/config ~/.ssh/config
-ln -s ~/dotfiles/yazi ~/.config/yazi
-ln -s ~/dotfiles/ghostty ~/.config/ghostty
-ln -s ~/dotfiles/zellij ~/.config/zellij
-ln -s ~/dotfiles/nvim ~/.config/nvim
+ln -sf ~/dotfiles/.zshrc ~/.zshrc
+ln -sf ~/dotfiles/ssh/config ~/.ssh/config
+ln -sf ~/dotfiles/yazi ~/.config/yazi
+ln -sf ~/dotfiles/ghostty ~/.config/ghostty
+ln -sf ~/dotfiles/zellij ~/.config/zellij
+ln -sf ~/dotfiles/nvim ~/.config/nvim
+```
+
+### Yazi plugins
+
+```zsh
+bash yazi/install.sh
 ```
