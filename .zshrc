@@ -23,6 +23,7 @@ alias home="cd ~"
 alias down="cd ~/Downloads"
 alias desk="cd ~/Desktop"
 alias dot='cd ~/dotfiles'
+alias dev='cd ~/dev'
 alias obsidian="cd $OBSIDIAN_DIR"
 alias ccc="cd $OBSIDIAN_DIR/.obsidian/plugins/obsidian-crystal"
 alias css="cd $OBSIDIAN_DIR/.obsidian/snippets"
