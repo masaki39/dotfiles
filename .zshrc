@@ -33,6 +33,7 @@ alias gg="lazygit"
 alias dstop='docker stop $(docker ps -q)'
 alias drm='docker rm $(docker ps -aq)'
 alias zz='cd "$(git rev-parse --show-toplevel 2>/dev/null || pwd)" && zellij --layout dev'
+alias zc='cd "$(git rev-parse --show-toplevel 2>/dev/null || pwd)" && zellij --layout code'
 alias p='nvim "/tmp/prompt_$(date +%Y%m%d%H%M%S).md" -c startinsert -c "autocmd VimLeave * silent! %y +"'
 
 # devcontainer

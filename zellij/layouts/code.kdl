@@ -1,0 +1,40 @@
+// VSCode風レイアウト - nvim主体
+// 使い方: cd ~/project/xxx && zellij --layout code
+layout {
+    default_tab_template {
+        pane size=1 borderless=true {
+            plugin location="zellij:tab-bar"
+        }
+        children
+        pane size=2 borderless=true {
+            plugin location="zellij:status-bar"
+        }
+    }
+
+    tab name="CODE" {
+        pane split_direction="vertical" {
+            // 左側: nvim + terminal (70%)
+            pane size="70%" split_direction="horizontal" {
+                // 上: nvim (70%)
+                pane size="70%" focus=true {
+                    name "Neovim"
+                    command "nvim"
+                    args "."
+                }
+                // 下: terminal 2つ (30%)
+                pane size="30%" split_direction="vertical" {
+                    pane {
+                        name "Terminal 1"
+                    }
+                    pane {
+                        name "Terminal 2"
+                    }
+                }
+            }
+            // 右: Claude Code (30%)
+            pane size="30%" {
+                command "claude"
+            }
+        }
+    }
+}
