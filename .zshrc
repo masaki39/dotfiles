@@ -29,8 +29,28 @@ alias css="cd $OBSIDIAN_DIR/.obsidian/snippets"
 alias ooo="cd $OBSIDIAN_DIR && claude"
 alias gr='cd "$(git rev-parse --show-toplevel)"'
 alias gg="lazygit"
+alias dstop='docker stop $(docker ps -q)'
+alias drm='docker rm $(docker ps -aq)'
 alias zz='cd "$(git rev-parse --show-toplevel 2>/dev/null || pwd)" && zellij --layout dev'
 alias p='nvim "/tmp/prompt_$(date +%Y%m%d%H%M%S).md" -c startinsert -c "autocmd VimLeave * silent! %y +"'
+
+# devcontainer
+function dvc() {
+	# Docker Desktopが起動しているか確認
+	if ! docker info >/dev/null 2>&1; then
+		echo "Docker Desktop is not running. Starting..."
+		open -a Docker
+		# Docker Desktopが起動するまで待機
+		while ! docker info >/dev/null 2>&1; do
+			sleep 1
+		done
+		echo "Docker Desktop started."
+	fi
+
+	# devcontainer up してから exec
+	devcontainer up --workspace-folder . && \
+	devcontainer exec --workspace-folder . /bin/bash
+}
 
 # yazi
 function y() {
