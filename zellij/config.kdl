@@ -160,13 +160,13 @@ keybinds clear-defaults=true {
         bind "Alt m" { SwitchToMode "move"; }
     }
     shared_except "locked" "session" {
-        bind "Alt s" { SwitchToMode "session"; }
+        bind "Alt o" { SwitchToMode "session"; }
     }
     shared_except "locked" "scroll" "search" "tmux" {
         bind "Ctrl b" { SwitchToMode "tmux"; }
     }
     shared_except "locked" "scroll" "search" {
-        bind "Alt f" { SwitchToMode "scroll"; }
+        bind "Alt s" { SwitchToMode "scroll"; }
     }
     shared_except "locked" "tab" {
         bind "Alt t" { SwitchToMode "tab"; }
