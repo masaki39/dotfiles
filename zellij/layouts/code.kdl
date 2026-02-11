@@ -16,7 +16,7 @@ layout {
             // 左側: yazi + terminal (70%)
             pane size="70%" split_direction="horizontal" {
                 // 上: yazi (70%)
-                pane size="70%" focus=true {
+                pane size="70%" {
                     command "bash"
                     args "-c" "exec yazi"
                 }
@@ -31,7 +31,7 @@ layout {
                 }
             }
             // 右: Claude Code (30%)
-            pane size="30%" {
+            pane size="30%" focus=true {
                 command "claude"
             }
         }
