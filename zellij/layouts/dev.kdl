@@ -21,7 +21,7 @@ layout {
             // 右: Claude Code + Terminal (50%)
             pane size="50%" split_direction="horizontal" {
                 // 右上: Claude Code (60%)
-                pane size="60%" focus=true {
+                pane size="60%" {
                     command "claude"
                 }
                 // 右下: Terminal (40%)

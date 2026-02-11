@@ -31,7 +31,7 @@ layout {
                 }
             }
             // 右: Claude Code (30%)
-            pane size="30%" focus=true {
+            pane size="30%" {
                 command "claude"
             }
         }

@@ -32,6 +32,7 @@ alias gr='cd "$(git_root)"'
 alias gg="lazygit"
 alias dstop='docker stop $(docker ps -q)'
 alias drm='docker rm $(docker ps -aq)'
+alias zx='cd "$(git_root)" && zellij --layout welcome'
 alias zz='cd "$(git_root)" && zellij --layout dev'
 alias zc='cd "$(git_root)" && zellij --layout code'
 alias p='nvim "/tmp/prompt_$(date +%Y%m%d%H%M%S).md" -c startinsert -c "autocmd VimLeave * silent! %y +"'
