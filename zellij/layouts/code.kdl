@@ -1,4 +1,4 @@
-// VSCode風レイアウト - nvim主体
+// VSCode風レイアウト
 // 使い方: cd ~/project/xxx && zellij --layout code
 layout {
     default_tab_template {
@@ -13,9 +13,9 @@ layout {
 
     tab name="CODE" {
         pane split_direction="vertical" {
-            // 左側: nvim + terminal (70%)
+            // 左側: yazi + terminal (70%)
             pane size="70%" split_direction="horizontal" {
-                // 上: nvim (70%)
+                // 上: yazi (70%)
                 pane size="70%" focus=true {
                     command "bash"
                     args "-c" "exec yazi"
