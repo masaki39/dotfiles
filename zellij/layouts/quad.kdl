@@ -1,4 +1,4 @@
-// 4分割レイアウト（3 Claude + 1 Terminal）
+// 4分割レイアウト
 // 使い方: cd ~/project/xxx && zellij --layout quad
 layout {
     default_tab_template {
@@ -13,8 +13,8 @@ layout {
 
     tab name="QUAD" {
         pane split_direction="horizontal" {
-            // 上段: Claude 1 + Claude 2 (60%)
-            pane size="60%" split_direction="vertical" {
+            // 上段: Claude 1 + Claude 2 (50%)
+            pane size="50%" split_direction="vertical" {
                 pane size="50%" {
                     command "claude"
                 }
@@ -22,13 +22,13 @@ layout {
                     command "claude"
                 }
             }
-            // 下段: Claude 3 + Terminal (40%)
-            pane size="40%" split_direction="vertical" {
+            // 下段: Claude 3 + Claude 4 (50%)
+            pane size="50%" split_direction="vertical" {
                 pane size="50%" {
                     command "claude"
                 }
                 pane size="50%" {
-                    name "Terminal"
+                    command "claude"
                 }
             }
         }
