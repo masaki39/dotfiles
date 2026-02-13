@@ -41,7 +41,7 @@ alias p='nvim "/tmp/prompt_$(date +%Y%m%d%H%M%S).md" -c startinsert -c "autocmd 
 
 # git_root: get git root directory, fallback to current directory if not in a git repo
 function git_root() {
-    git rev-parse --show-toplevel 2>/dev/null || pwd
+  git rev-parse --show-toplevel 2>/dev/null || pwd
 }
 
 # zellij attach template
