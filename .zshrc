@@ -33,15 +33,23 @@ alias gg="lazygit"
 alias dstop='docker stop $(docker ps -q)'
 alias drm='docker rm $(docker ps -aq)'
 alias za='zellij --layout welcome attach --create welcome'
-alias zz='cd "$(git_root)" && zellij --layout dev'
-alias zx='cd "$(git_root)" && zellij --layout quad'
-alias zc='cd "$(git_root)" && zellij --layout code'
-alias zv='cd "$(git_root)" && zellij --layout vertical'
+alias zz='_zellij_attach dev'
+alias zx='_zellij_attach quad'
+alias zc='_zellij_attach code'
+alias zv='_zellij_attach vertical'
 alias p='nvim "/tmp/prompt_$(date +%Y%m%d%H%M%S).md" -c startinsert -c "autocmd VimLeave * silent! %y +"'
 
 # git_root: get git root directory, fallback to current directory if not in a git repo
 function git_root() {
     git rev-parse --show-toplevel 2>/dev/null || pwd
+}
+
+# zellij attach template
+function _zellij_attach() {
+  cd "$(git_root)"
+  local session_name=$(basename "$(pwd)")
+  zellij delete-session "$session_name" 2>/dev/null
+  zellij --layout "$1" attach --create "$session_name"
 }
 
 # devcontainer
