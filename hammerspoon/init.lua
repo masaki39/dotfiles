@@ -30,6 +30,7 @@ spoon.SpoonInstall:andUse("ImeControl", {
 		appRules = {
 			["com.apple.Terminal"] = "eng",
 			["com.mitchellh.ghostty"] = "eng",
+			["com.cmuxterm.app"] = "eng",
 			["md.obsidian"] = "eng",
 			["net.ankiweb.dtop"] = "eng",
 		},
