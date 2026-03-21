@@ -40,9 +40,3 @@ source ~/.config/zsh/env.zsh
 
 # zsh-syntax-highlighting (must be last)
 source "$BREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-
-# startup
-if [ -z "$ZELLIJ" ]; then
-  fastfetch
-  typewriter 'Welcome to underground...'
-fi
