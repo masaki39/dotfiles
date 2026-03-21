@@ -7,3 +7,6 @@ vim.opt.spelllang = "en,cjk"
 
 -- マークダウンの記号を隠さない（```や**などを全て表示）
 vim.opt.conceallevel = 0
+
+-- 行頭・行末で左右矢印キーが前後の行に移動できるようにする
+vim.opt.whichwrap:append("<,>,[,]")
