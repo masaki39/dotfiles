@@ -14,6 +14,7 @@ spoon.SpoonInstall:andUse("Ryoiki", {
 	hotkeys = { showChooser = { { "ctrl", "alt" }, "m" } },
 })
 
+-- ImeControl
 spoon.SpoonInstall.repos.imecontrol = {
 	url = "https://github.com/masaki39/hammerspoon-ime-control",
 	desc = "ImeControl Spoon repository",
@@ -27,13 +28,7 @@ spoon.SpoonInstall:andUse("ImeControl", {
 		debug = { { "shift" }, "f11" },
 	},
 	config = {
-		appRules = {
-			["com.apple.Terminal"] = "eng",
-			["com.mitchellh.ghostty"] = "eng",
-			["com.cmuxterm.app"] = "eng",
-			["md.obsidian"] = "eng",
-			["net.ankiweb.dtop"] = "eng",
-		},
+		defaultIME = "eng",
 	},
 })
 
