@@ -17,7 +17,7 @@ allowed-tools: Bash(git status), Bash(git diff), Bash(git log), Bash(git add), B
 
 Based on the above:
 
-1. Stage all modified/new files relevant to the changes (prefer specific file names over `git add .` to avoid including secrets or large binaries — but if the changes are clearly safe and broad, `git add -A` is fine)
+1. Stage all modified/new files relevant to the changes (prefer specific file names over `git add .` to avoid including secrets or large binaries — but if the changes are clearly safe and broad, `git add -A` is fine). **Important:** paths containing `[` or `]` (e.g. `src/app/[locale]/`) must be single-quoted to prevent zsh glob expansion: `git add 'src/app/[locale]/layout.tsx'`
 2. Write a concise commit message following the style of recent commits (e.g. `feat:`, `fix:`, `chore:`)
 3. Commit using a HEREDOC so the message formats correctly:
    ```
