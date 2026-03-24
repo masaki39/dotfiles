@@ -20,8 +20,8 @@ hash = "953a577b4674469160d342ea325f5a48"
 
 [[plugin.deps]]
 use = "Rolv-Apneseth/starship"
-rev = "eca1861"
-hash = "e519d894e94ded741e06aae4d4775981"
+rev = "a837101"
+hash = "635b0feb9215772d22020eb0abf0bb34"
 
 [[plugin.deps]]
 use = "masaki39/confirm-quit"
@@ -30,8 +30,8 @@ hash = "95a05280a6e553fd7259519eaff0f773"
 
 [[plugin.deps]]
 use = "masaki39/git-time-machine"
-rev = "823f0fa"
-hash = "108f9b8d193ad27ef4c5d30cf5d7534a"
+rev = "3740a9e"
+hash = "e1750a93725e27d877430690628ebaff"
 
 [[plugin.deps]]
 use = "masaki39/git"
