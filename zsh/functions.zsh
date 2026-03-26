@@ -46,6 +46,21 @@ function dvcc() {
 	devcontainer exec --workspace-folder . claude --permission-mode plan --allow-dangerously-skip-permissions
 }
 
+# dev layout (yazi + claude + lazygit)
+function dev() {
+  osascript << 'EOF'
+tell application "Ghostty"
+  set mainTerm to focused terminal of selected tab of front window
+  set cmdTerm to split mainTerm direction right
+  set gitTerm to split cmdTerm direction down
+  input text "yazi\n" to mainTerm
+  input text "claude\n" to cmdTerm
+  input text "lazygit\n" to gitTerm
+  tell mainTerm to focus
+end tell
+EOF
+}
+
 # yazi
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
