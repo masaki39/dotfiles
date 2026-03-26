@@ -18,30 +18,6 @@ function gb() {
   [ -n "$selected" ] && gh repo view -w "$selected"
 }
 
-# zellij attach template (session name = git root dir)
-function _zellij_attach() {
-  cd "$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
-  local session_name=$(basename "$(pwd)")
-  zellij delete-session "$session_name" 2>/dev/null # delete-session command doesn't delete active session
-  zellij --layout "$1" attach --create "$session_name"
-}
-
-# zellij fzf layout launcher
-function zz() {
-  local layout_dir="${ZELLIJ_CONFIG_DIR:-$HOME/.config/zellij}/layouts"
-  local selected=$(ls "$layout_dir" | sed 's/\.kdl$//' | { cat; echo "welcome"; } | fzf \
-    --prompt="zellij layout: " \
-    --preview "[ '{}' = 'welcome' ] && echo 'Zellij Welcome Session' || bat --color=always --style=plain --language=toml '$layout_dir/{}.kdl' 2>/dev/null" \
-    --preview-window=right:60%)
-  [ -z "$selected" ] && return
-  if [ "$selected" = "welcome" ]; then
-    zellij delete-session welcome 2>/dev/null
-    zellij --layout welcome attach --create welcome
-  else
-    _zellij_attach "$selected"
-  fi
-}
-
 # devcontainer
 function dvc() {
 	if ! docker info >/dev/null 2>&1; then

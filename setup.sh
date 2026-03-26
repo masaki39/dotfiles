@@ -22,7 +22,6 @@ ln -sf "$DOTFILES/.zshenv" ~/.zshenv
 ln -sf "$DOTFILES/ssh/config" ~/.ssh/config
 ln -sf "$DOTFILES/yazi" ~/.config/yazi
 ln -sf "$DOTFILES/ghostty" ~/.config/ghostty
-ln -sf "$DOTFILES/zellij" ~/.config/zellij
 ln -sf "$DOTFILES/nvim" ~/.config/nvim
 ln -sf "$DOTFILES/hammerspoon" ~/.hammerspoon
 ln -sf "$DOTFILES/zsh" ~/.config/zsh
