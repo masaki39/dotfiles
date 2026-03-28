@@ -28,8 +28,13 @@ function dvc() {
 		done
 		echo "Docker Desktop started."
 	fi
-	devcontainer up --workspace-folder . && \
-	devcontainer exec --workspace-folder . /bin/bash
+	local config_args=""
+	if [[ ! -f ".devcontainer/devcontainer.json" && ! -f ".devcontainer.json" ]]; then
+		echo "No local devcontainer config found. Using global config."
+		config_args="--config $HOME/ghq/github.com/masaki39/dotfiles/claude/.devcontainer/devcontainer.json"
+	fi
+	devcontainer up --workspace-folder . $config_args && \
+	devcontainer exec --workspace-folder . $config_args
 }
 
 # devcontainer + claude
@@ -42,8 +47,13 @@ function dvcc() {
 		done
 		echo "Docker Desktop started."
 	fi
-	devcontainer up --workspace-folder . && \
-	devcontainer exec --workspace-folder . claude --permission-mode plan --allow-dangerously-skip-permissions
+	local config_args=""
+	if [[ ! -f ".devcontainer/devcontainer.json" && ! -f ".devcontainer.json" ]]; then
+		echo "No local devcontainer config found. Using global config."
+		config_args="--config $HOME/ghq/github.com/masaki39/dotfiles/claude/.devcontainer/devcontainer.json"
+	fi
+	devcontainer up --workspace-folder . $config_args && \
+	devcontainer exec --workspace-folder . $config_args claude --permission-mode plan --allow-dangerously-skip-permissions
 }
 
 # dev layout (yazi + claude + lazygit)

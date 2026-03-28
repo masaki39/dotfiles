@@ -4,3 +4,5 @@
 !statusline.sh
 !skills/
 !skills/**
+!.devcontainer/
+!.devcontainer/*
