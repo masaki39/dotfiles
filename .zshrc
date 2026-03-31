@@ -29,7 +29,7 @@ bindkey '^[[B' down-line-or-beginning-search
 # plugins
 source <(fzf --zsh)
 export FZF_DEFAULT_COMMAND='fd --type f'
-eval "$(zoxide init zsh --cmd cd)"
+eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
 source "$BREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
