@@ -27,6 +27,7 @@ ln -sf "$DOTFILES/hammerspoon" ~/.hammerspoon
 ln -sf "$DOTFILES/zsh" ~/.config/zsh
 ln -sf "$DOTFILES/lazygit" ~/.config/lazygit
 ln -sf "$DOTFILES/pnpm" ~/.config/pnpm
+ln -sf "$DOTFILES/uv" ~/.config/uv
 ln -sf "$DOTFILES/claude" ~/.claude
 
 # Install yazi plugins
