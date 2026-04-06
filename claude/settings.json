@@ -58,6 +58,7 @@
     "pdf-extract@masaki39-agent-skills": true,
     "marp@marp-mcp": true
   },
+  "autoMemoryEnabled": false,
   "extraKnownMarketplaces": {
     "masaki39-agent-skills": {
       "source": {
