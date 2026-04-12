@@ -1,6 +1,10 @@
+# https://ghostty.org/docs/config/reference
 keybind = global:alt+space=toggle_quick_terminal
 quick-terminal-position=center
 quick-terminal-animation-duration=0
+quick-terminal-size=90%,90%
+quick-terminal-screen=macos-menu-bar
+quick-terminal-autohide=false
 theme = TokyoNight
 custom-shader = ~/ghq/github.com/masaki39/dotfiles/ghostty/shader/cursor-trail.glsl
 macos-option-as-alt = true
