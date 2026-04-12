@@ -53,7 +53,7 @@ spoon.SpoonInstall:andUse("Jinrai", {
 					prefixOverrides = {
 						{
 							match = { bundleID = "com.google.Chrome" },
-							prefix = "C",
+							prefix = "B",
 						},
 						{
 							match = { bundleID = "com.cmuxterm.app" },
@@ -68,10 +68,6 @@ spoon.SpoonInstall:andUse("Jinrai", {
 						down = "j",
 						up = "k",
 						right = "l",
-						upLeft = "y",
-						upRight = "u",
-						downLeft = "b",
-						downRight = "n",
 					},
 					directHotkeys = {
 						modifiers = { "ctrl", "alt", "shift", "cmd" },
