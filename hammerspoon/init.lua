@@ -15,13 +15,13 @@ spoon.SpoonInstall:andUse("Ryoiki", {
 })
 
 -- ImeControl
-spoon.SpoonInstall.repos.imecontrol = {
-	url = "https://github.com/masaki39/hammerspoon-ime-control",
-	desc = "ImeControl Spoon repository",
+spoon.SpoonInstall.repos.hanten = {
+	url = "https://github.com/masaki39/hanten",
+	desc = "Hanten Spoon repository",
 	branch = "main",
 }
-spoon.SpoonInstall:andUse("ImeControl", {
-	repo = "imecontrol",
+spoon.SpoonInstall:andUse("Hanten", {
+	repo = "hanten",
 	start = true,
 	hotkeys = {
 		toggle = { { "shift" }, "f12" },
@@ -54,10 +54,6 @@ spoon.SpoonInstall:andUse("Jinrai", {
 						{
 							match = { bundleID = "com.google.Chrome" },
 							prefix = "B",
-						},
-						{
-							match = { bundleID = "com.cmuxterm.app" },
-							prefix = "M",
 						},
 					},
 				},
