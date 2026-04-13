@@ -11,10 +11,11 @@ spoon.SpoonInstall.repos.ryoiki = {
 spoon.SpoonInstall:andUse("Ryoiki", {
 	repo = "ryoiki",
 	start = true,
+	config = { centerCursor = true },
 	hotkeys = { showChooser = { { "ctrl", "alt" }, "m" } },
 })
 
--- ImeControl
+-- Hanten
 spoon.SpoonInstall.repos.hanten = {
 	url = "https://github.com/masaki39/hanten",
 	desc = "Hanten Spoon repository",
