@@ -78,6 +78,7 @@ spoon.SpoonInstall:andUse("Jinrai", {
 				},
 				behavior = {
 					centerCursor = true,
+					includeActiveWindow = true,
 				},
 			},
 			focus_back = {
