@@ -60,21 +60,21 @@ run = "plugin git-time-machine"
 desc = "Git time machine (restore file from history)"
 
 [[mgr.prepend_keymap]]
+on = ["g", "f"]
+run = "shell 'lazygit -f %h' --block"
+desc = "Lazygit file history"
+
+[[mgr.prepend_keymap]]
 on = ["c", "r"]
 run = "shell --confirm 'git_root=$(git rev-parse --show-toplevel 2>/dev/null) && [ -n \"$git_root\" ] && printf \"%s\" \"$0\" | sed \"s|^$git_root/||\" | cb copy'"
 desc = "Copy git-relative path"
 
 [[mgr.prepend_keymap]]
 on = ["o", "o"]
-run = 'shell -- open "$0"'
+run = 'shell -- open %h'
 desc = "Open with default app"
 
 [[mgr.prepend_keymap]]
 on = ["o", "n"]
-run = 'shell -- nvim "$0"'
+run = 'shell -- nvim %h'
 desc = "Open with nvim"
-
-[[mgr.prepend_keymap]]
-on = ["o", "m"]
-run = 'shell -- cmux markdown open "$0"'
-desc = "cmux markdown open"
