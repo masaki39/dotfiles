@@ -59,35 +59,34 @@ spoon.SpoonInstall:andUse("Jinrai", {
 					},
 				},
 				navigation = {
-					focusBackKey = "tab",
-					directionKeys = {
-						left = "h",
-						down = "j",
-						up = "k",
-						right = "l",
+					focusBack = {
+						key = "tab",
 					},
-					directHotkeys = {
-						modifiers = { "ctrl", "alt", "shift", "cmd" },
-						keys = {
-							left = "left",
-							down = "down",
-							up = "up",
-							right = "right",
+					direction = {
+						hints = {
+							keys = {
+								left = "h",
+								down = "j",
+								up = "k",
+								right = "l",
+							},
+						},
+						direct = {
+							modifiers = { "ctrl", "alt", "shift", "cmd" },
+							keys = {
+								left = "left",
+								down = "down",
+								up = "up",
+								right = "right",
+							},
 						},
 					},
-				},
-				behavior = {
-					centerCursor = true,
-					includeActiveWindow = true,
 				},
 			},
 			focus_back = {
 				hotkey = {
 					modifiers = { "option", "shift", "cmd", "ctrl" },
 					key = "tab",
-				},
-				behavior = {
-					centerCursor = true,
 				},
 				stateSync = {
 					interval = 0.15,

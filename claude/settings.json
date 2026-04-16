@@ -56,9 +56,9 @@
     "code-simplifier@claude-plugins-official": true,
     "claude-md-management@claude-plugins-official": true,
     "pdf-extract@masaki39-agent-skills": true,
-    "marp@marp-mcp": true
+    "marp@marp-mcp": true,
+    "lua-lsp@claude-plugins-official": true
   },
-  "autoMemoryEnabled": false,
   "extraKnownMarketplaces": {
     "masaki39-agent-skills": {
       "source": {
@@ -67,5 +67,6 @@
       },
       "autoUpdate": true
     }
-  }
+  },
+  "autoMemoryEnabled": false
 }
