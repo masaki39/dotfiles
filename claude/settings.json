@@ -68,5 +68,7 @@
       "autoUpdate": true
     }
   },
-  "autoMemoryEnabled": false
+  "effortLevel": "high",
+  "autoMemoryEnabled": false,
+  "tui": "fullscreen"
 }
