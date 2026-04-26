@@ -18,6 +18,8 @@ keybind = super+alt+w=close_tab:other
 keybind = super+shift+w=close_tab
 keybind = super+alt+right=next_tab
 keybind = super+alt+left=previous_tab
+keybind = super+alt+l=next_tab
+keybind = super+alt+h=previous_tab
 keybind = super+ctrl+down=goto_split:down
 keybind = super+ctrl+left=goto_split:left
 keybind = super+ctrl+right=goto_split:right
@@ -30,3 +32,7 @@ keybind = super+ctrl+shift+down=resize_split:down,10
 keybind = super+ctrl+shift+left=resize_split:left,10
 keybind = super+ctrl+shift+right=resize_split:right,10
 keybind = super+ctrl+shift+up=resize_split:up,10
+keybind = super+ctrl+shift+j=resize_split:down,10
+keybind = super+ctrl+shift+h=resize_split:left,10
+keybind = super+ctrl+shift+l=resize_split:right,10
+keybind = super+ctrl+shift+k=resize_split:up,10
