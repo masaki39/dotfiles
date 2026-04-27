@@ -9,9 +9,13 @@ max_height = 1920
 [opener]
 edit = [{ run = 'nvim "$@"', block = true, for = "unix" }]
 csvlens = [{ run = 'csvlens "$@"', block = true, for = "unix" }]
+db-browser = [{ run = 'open -a "DB Browser for SQLite" "$@"', for = "unix" }]
 
 [open]
-prepend_rules = [{ mime = "text/csv", use = "csvlens" }]
+prepend_rules = [
+  { mime = "text/csv", use = "csvlens" },
+  { name = "*.db", use = "db-browser" },
+]
 
 [plugin]
 prepend_previewers = [{ mime = "application/dicom", run = "magick" }]
