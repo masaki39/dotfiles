@@ -1,14 +1,5 @@
 hs.loadSpoon("SpoonInstall")
 
--- Ctrl+hjkl -> arrow keys
-local function arrow(key)
-    return function() hs.eventtap.keyStroke({}, key, 0) end
-end
-hs.hotkey.bind({"ctrl"}, "h", arrow("left"),  nil, arrow("left"))
-hs.hotkey.bind({"ctrl"}, "j", arrow("down"),  nil, arrow("down"))
-hs.hotkey.bind({"ctrl"}, "k", arrow("up"),    nil, arrow("up"))
-hs.hotkey.bind({"ctrl"}, "l", arrow("right"), nil, arrow("right"))
-
 spoon.SpoonInstall:andUse("ReloadConfiguration", { start = true })
 
 -- Ryoiki: window layout manager

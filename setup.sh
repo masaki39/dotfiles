@@ -29,6 +29,7 @@ ln -sf "$DOTFILES/lazygit" ~/.config/lazygit
 ln -sf "$DOTFILES/pnpm" ~/.config/pnpm
 ln -sf "$DOTFILES/uv" ~/.config/uv
 ln -sf "$DOTFILES/claude" ~/.claude
+ln -sf "$DOTFILES/karabiner/karabiner.json" ~/.config/karabiner/karabiner.json
 
 # Install yazi plugins
 bash "$DOTFILES/yazi/install.sh"
