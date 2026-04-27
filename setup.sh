@@ -38,6 +38,7 @@ defaults write com.google.Chrome NSUserKeyEquivalents '{
     "他のタブをすべて閉じる" = "@~w";
     "前のタブを選択" = "@~h";
     "次のタブを選択" = "@~l";
+    "EJDB" = "@$k";
 }'
 
 echo "✓ Setup complete!"
