@@ -9,15 +9,96 @@
       "complex_modifications": {
         "rules": [
           {
-            "description": "矢印キー: Ctrl+hjkl → ←↓↑→",
+            "description": "英数レイヤーキー (長押し=数字/矢印レイヤー, 単押し=英数)",
             "manipulators": [
               {
                 "type": "basic",
                 "from": {
+                  "key_code": "japanese_eisuu",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "set_variable": {
+                      "name": "eisuu_layer",
+                      "value": 1
+                    }
+                  }
+                ],
+                "to_after_key_up": [
+                  {
+                    "set_variable": {
+                      "name": "eisuu_layer",
+                      "value": 0
+                    }
+                  }
+                ],
+                "to_if_alone": [
+                  {
+                    "key_code": "japanese_eisuu"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "description": "かなレイヤーキー (長押し=記号レイヤー, 単押し=かな)",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "japanese_kana",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "set_variable": {
+                      "name": "kana_layer",
+                      "value": 1
+                    }
+                  }
+                ],
+                "to_after_key_up": [
+                  {
+                    "set_variable": {
+                      "name": "kana_layer",
+                      "value": 0
+                    }
+                  }
+                ],
+                "to_if_alone": [
+                  {
+                    "key_code": "japanese_kana"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "description": "矢印キー: 英数+hjkl → ←↓↑→",
+            "manipulators": [
+              {
+                "type": "basic",
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "eisuu_layer",
+                    "value": 1
+                  }
+                ],
+                "from": {
                   "key_code": "h",
                   "modifiers": {
-                    "mandatory": [
-                      "control"
+                    "optional": [
+                      "any"
                     ]
                   }
                 },
@@ -29,11 +110,18 @@
               },
               {
                 "type": "basic",
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "eisuu_layer",
+                    "value": 1
+                  }
+                ],
                 "from": {
                   "key_code": "j",
                   "modifiers": {
-                    "mandatory": [
-                      "control"
+                    "optional": [
+                      "any"
                     ]
                   }
                 },
@@ -45,11 +133,18 @@
               },
               {
                 "type": "basic",
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "eisuu_layer",
+                    "value": 1
+                  }
+                ],
                 "from": {
                   "key_code": "k",
                   "modifiers": {
-                    "mandatory": [
-                      "control"
+                    "optional": [
+                      "any"
                     ]
                   }
                 },
@@ -61,11 +156,18 @@
               },
               {
                 "type": "basic",
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "eisuu_layer",
+                    "value": 1
+                  }
+                ],
                 "from": {
                   "key_code": "l",
                   "modifiers": {
-                    "mandatory": [
-                      "control"
+                    "optional": [
+                      "any"
                     ]
                   }
                 },
@@ -78,16 +180,22 @@
             ]
           },
           {
-            "description": "数字レイヤー: Ctrl+Shift+numpad → 0-9 / -",
+            "description": "数字レイヤー: 英数+numpad → 0-9",
             "manipulators": [
               {
                 "type": "basic",
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "eisuu_layer",
+                    "value": 1
+                  }
+                ],
                 "from": {
                   "key_code": "right_command",
                   "modifiers": {
-                    "mandatory": [
-                      "control",
-                      "shift"
+                    "optional": [
+                      "any"
                     ]
                   }
                 },
@@ -99,12 +207,18 @@
               },
               {
                 "type": "basic",
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "eisuu_layer",
+                    "value": 1
+                  }
+                ],
                 "from": {
                   "key_code": "period",
                   "modifiers": {
-                    "mandatory": [
-                      "control",
-                      "shift"
+                    "optional": [
+                      "any"
                     ]
                   }
                 },
@@ -116,12 +230,18 @@
               },
               {
                 "type": "basic",
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "eisuu_layer",
+                    "value": 1
+                  }
+                ],
                 "from": {
                   "key_code": "slash",
                   "modifiers": {
-                    "mandatory": [
-                      "control",
-                      "shift"
+                    "optional": [
+                      "any"
                     ]
                   }
                 },
@@ -133,12 +253,18 @@
               },
               {
                 "type": "basic",
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "eisuu_layer",
+                    "value": 1
+                  }
+                ],
                 "from": {
                   "key_code": "international1",
                   "modifiers": {
-                    "mandatory": [
-                      "control",
-                      "shift"
+                    "optional": [
+                      "any"
                     ]
                   }
                 },
@@ -150,12 +276,18 @@
               },
               {
                 "type": "basic",
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "eisuu_layer",
+                    "value": 1
+                  }
+                ],
                 "from": {
                   "key_code": "semicolon",
                   "modifiers": {
-                    "mandatory": [
-                      "control",
-                      "shift"
+                    "optional": [
+                      "any"
                     ]
                   }
                 },
@@ -167,12 +299,18 @@
               },
               {
                 "type": "basic",
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "eisuu_layer",
+                    "value": 1
+                  }
+                ],
                 "from": {
                   "key_code": "quote",
                   "modifiers": {
-                    "mandatory": [
-                      "control",
-                      "shift"
+                    "optional": [
+                      "any"
                     ]
                   }
                 },
@@ -184,12 +322,18 @@
               },
               {
                 "type": "basic",
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "eisuu_layer",
+                    "value": 1
+                  }
+                ],
                 "from": {
                   "key_code": "backslash",
                   "modifiers": {
-                    "mandatory": [
-                      "control",
-                      "shift"
+                    "optional": [
+                      "any"
                     ]
                   }
                 },
@@ -201,12 +345,18 @@
               },
               {
                 "type": "basic",
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "eisuu_layer",
+                    "value": 1
+                  }
+                ],
                 "from": {
                   "key_code": "p",
                   "modifiers": {
-                    "mandatory": [
-                      "control",
-                      "shift"
+                    "optional": [
+                      "any"
                     ]
                   }
                 },
@@ -218,12 +368,18 @@
               },
               {
                 "type": "basic",
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "eisuu_layer",
+                    "value": 1
+                  }
+                ],
                 "from": {
                   "key_code": "open_bracket",
                   "modifiers": {
-                    "mandatory": [
-                      "control",
-                      "shift"
+                    "optional": [
+                      "any"
                     ]
                   }
                 },
@@ -235,12 +391,18 @@
               },
               {
                 "type": "basic",
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "eisuu_layer",
+                    "value": 1
+                  }
+                ],
                 "from": {
                   "key_code": "close_bracket",
                   "modifiers": {
-                    "mandatory": [
-                      "control",
-                      "shift"
+                    "optional": [
+                      "any"
                     ]
                   }
                 },
@@ -253,15 +415,22 @@
             ]
           },
           {
-            "description": "記号レイヤー: 右Shift+numpad → !\"#$%&'()",
+            "description": "記号レイヤー: かな+numpad → !\"#$%&'()",
             "manipulators": [
               {
                 "type": "basic",
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "kana_layer",
+                    "value": 1
+                  }
+                ],
                 "from": {
                   "key_code": "period",
                   "modifiers": {
-                    "mandatory": [
-                      "right_shift"
+                    "optional": [
+                      "any"
                     ]
                   }
                 },
@@ -276,11 +445,18 @@
               },
               {
                 "type": "basic",
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "kana_layer",
+                    "value": 1
+                  }
+                ],
                 "from": {
                   "key_code": "slash",
                   "modifiers": {
-                    "mandatory": [
-                      "right_shift"
+                    "optional": [
+                      "any"
                     ]
                   }
                 },
@@ -295,11 +471,18 @@
               },
               {
                 "type": "basic",
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "kana_layer",
+                    "value": 1
+                  }
+                ],
                 "from": {
                   "key_code": "international1",
                   "modifiers": {
-                    "mandatory": [
-                      "right_shift"
+                    "optional": [
+                      "any"
                     ]
                   }
                 },
@@ -314,11 +497,18 @@
               },
               {
                 "type": "basic",
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "kana_layer",
+                    "value": 1
+                  }
+                ],
                 "from": {
                   "key_code": "semicolon",
                   "modifiers": {
-                    "mandatory": [
-                      "right_shift"
+                    "optional": [
+                      "any"
                     ]
                   }
                 },
@@ -333,11 +523,18 @@
               },
               {
                 "type": "basic",
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "kana_layer",
+                    "value": 1
+                  }
+                ],
                 "from": {
                   "key_code": "quote",
                   "modifiers": {
-                    "mandatory": [
-                      "right_shift"
+                    "optional": [
+                      "any"
                     ]
                   }
                 },
@@ -352,11 +549,18 @@
               },
               {
                 "type": "basic",
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "kana_layer",
+                    "value": 1
+                  }
+                ],
                 "from": {
                   "key_code": "backslash",
                   "modifiers": {
-                    "mandatory": [
-                      "right_shift"
+                    "optional": [
+                      "any"
                     ]
                   }
                 },
@@ -371,11 +575,18 @@
               },
               {
                 "type": "basic",
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "kana_layer",
+                    "value": 1
+                  }
+                ],
                 "from": {
                   "key_code": "p",
                   "modifiers": {
-                    "mandatory": [
-                      "right_shift"
+                    "optional": [
+                      "any"
                     ]
                   }
                 },
@@ -390,11 +601,18 @@
               },
               {
                 "type": "basic",
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "kana_layer",
+                    "value": 1
+                  }
+                ],
                 "from": {
                   "key_code": "open_bracket",
                   "modifiers": {
-                    "mandatory": [
-                      "right_shift"
+                    "optional": [
+                      "any"
                     ]
                   }
                 },
@@ -409,11 +627,18 @@
               },
               {
                 "type": "basic",
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "kana_layer",
+                    "value": 1
+                  }
+                ],
                 "from": {
                   "key_code": "close_bracket",
                   "modifiers": {
-                    "mandatory": [
-                      "right_shift"
+                    "optional": [
+                      "any"
                     ]
                   }
                 },
@@ -457,37 +682,6 @@
                   },
                   {
                     "key_code": "escape"
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "description": "Hyperキー: 英数 (長押し=Hyper, 単押し=英数)",
-            "manipulators": [
-              {
-                "type": "basic",
-                "from": {
-                  "key_code": "japanese_eisuu",
-                  "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
-                  }
-                },
-                "to": [
-                  {
-                    "key_code": "left_shift",
-                    "modifiers": [
-                      "left_control",
-                      "left_option",
-                      "left_command"
-                    ]
-                  }
-                ],
-                "to_if_alone": [
-                  {
-                    "key_code": "japanese_eisuu"
                   }
                 ]
               }
