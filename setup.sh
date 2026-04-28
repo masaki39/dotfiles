@@ -1,15 +1,17 @@
 #!/bin/bash
 
+set -e
+
 DOTFILES="$HOME/ghq/github.com/masaki39/dotfiles"
 
-# Homebrew
-brew bundle --file="$DOTFILES/Brewfile"
-
-# Check Homebrew
+# Install Homebrew if not installed
 if ! command -v brew &>/dev/null; then
-  echo "Homebrew is not installed. Please install it first: https://brew.sh"
-  exit 1
+  echo "Installing Homebrew..."
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/homebrew/install/HEAD/install.sh)"
 fi
+
+# Install packages
+brew bundle --file="$DOTFILES/Brewfile"
 
 # Create directories
 mkdir -p ~/.config ~/.ssh ~/.claude

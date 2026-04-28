@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 DOTFILES_DIR="$HOME/ghq/github.com/masaki39/dotfiles"
 TIMESTAMP_FILE="$HOME/.local/share/update-brewfile-last-run"
 INTERVAL_DAYS=30
