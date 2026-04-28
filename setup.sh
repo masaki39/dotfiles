@@ -34,6 +34,13 @@ ln -sf "$DOTFILES/karabiner/karabiner.json" ~/.config/karabiner/karabiner.json
 # Install yazi plugins
 bash "$DOTFILES/yazi/install.sh"
 
+# LaunchAgent for auto Brewfile update
+chmod +x "$DOTFILES/scripts/update-brewfile.sh"
+PLIST="$HOME/Library/LaunchAgents/com.masaki.update-brewfile.plist"
+cp "$DOTFILES/scripts/com.masaki.update-brewfile.plist" "$PLIST"
+launchctl unload "$PLIST" 2>/dev/null
+launchctl load "$PLIST"
+
 # Menu bar shortcuts
 defaults write com.google.Chrome NSUserKeyEquivalents '{
     "他のタブをすべて閉じる" = "@~w";
