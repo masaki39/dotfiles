@@ -34,6 +34,13 @@ ln -sf "$DOTFILES/karabiner/karabiner.json" ~/.config/karabiner/karabiner.json
 # Install yazi plugins
 bash "$DOTFILES/yazi/install.sh"
 
+# LaunchAgent for monthly maintenance
+chmod +x "$DOTFILES/scripts/monthly-maintenance.sh"
+PLIST2="$HOME/Library/LaunchAgents/com.masaki.monthly-maintenance.plist"
+cp "$DOTFILES/scripts/com.masaki.monthly-maintenance.plist" "$PLIST2"
+launchctl unload "$PLIST2" 2>/dev/null
+launchctl load "$PLIST2"
+
 # LaunchAgent for auto Brewfile update
 chmod +x "$DOTFILES/scripts/update-brewfile.sh"
 PLIST="$HOME/Library/LaunchAgents/com.masaki.update-brewfile.plist"
