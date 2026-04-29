@@ -1,5 +1,5 @@
 return {
-	keybind = "ctrl+alt+1",
+	keybind = "ctrl+alt+q",
 	description = "Obsidian --> Ghostty --> Google Chrome",
 	windows = {
 		{ app = "com.google.Chrome", screen = 0, x = 0, y = 0, w = 1, h = 1 },

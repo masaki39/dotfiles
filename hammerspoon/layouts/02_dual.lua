@@ -1,5 +1,5 @@
 return {
-	keybind = "ctrl+alt+2",
+	keybind = "ctrl+alt+w",
 	description = "Obsidian | Chrome / Ghostty",
 	windows = {
 		{ app = "com.mitchellh.ghostty", screen = 0, x = 0, y = 0, w = 1, h = 1 },
