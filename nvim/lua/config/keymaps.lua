@@ -10,9 +10,3 @@ map({ "n", "v", "i" }, "<RightMouse>", "<Nop>", {})
 -- Insert mode: visual line movement (wrap-aware)
 map("i", "<Up>", "<C-o>gk", { desc = "Move Up (visual)" })
 map("i", "<Down>", "<C-o>gj", { desc = "Move Down (visual)" })
-
--- quit
-map({ "n", "i", "v" }, "<C-q>", "<esc><cmd>qa<cr>", { desc = "Quit All" })
-
--- Select All
-map({ "n", "i", "v" }, "<C-a>", "<esc>ggVG", { desc = "Select All" })
