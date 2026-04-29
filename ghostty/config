@@ -11,6 +11,9 @@ macos-option-as-alt = true
 macos-titlebar-style=tabs
 background-opacity=0.9
 maximize = true
+unfocused-split-opacity = 0.7
+unfocused-split-fill = #394b70
+split-divider-color = #f7768e
 background-opacity=0.9
 keybind = alt+right=unbind
 keybind = alt+left=unbind
@@ -36,3 +39,4 @@ keybind = super+ctrl+shift+j=resize_split:down,10
 keybind = super+ctrl+shift+h=resize_split:left,10
 keybind = super+ctrl+shift+l=resize_split:right,10
 keybind = super+ctrl+shift+k=resize_split:up,10
+keybind = super+ctrl+f=toggle_split_zoom
