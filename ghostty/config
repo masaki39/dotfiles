@@ -15,6 +15,7 @@ unfocused-split-opacity = 0.7
 unfocused-split-fill = #394b70
 split-divider-color = #f7768e
 background-opacity=0.9
+confirm-close-surface=false
 keybind = alt+right=unbind
 keybind = alt+left=unbind
 keybind = super+alt+w=close_tab:other
