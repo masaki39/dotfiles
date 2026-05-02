@@ -87,7 +87,7 @@ spoon.SpoonInstall:andUse("Jinrai", {
 			focus_back = {
 				hotkey = {
 					modifiers = { "option", "shift", "cmd", "ctrl" },
-					wey = "a",
+					key = "a",
 				},
 				stateSync = {
 					interval = 0.15,
