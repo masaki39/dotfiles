@@ -383,7 +383,7 @@
               {
                 "type": "basic",
                 "from": {
-                  "key_code": "w",
+                  "key_code": "x",
                   "modifiers": {
                     "mandatory": [
                       "left_shift",
@@ -396,23 +396,49 @@
                 "to": [
                   {
                     "key_code": "t",
-                    "modifiers": ["left_command"]
+                    "modifiers": [
+                      "left_command"
+                    ]
                   },
                   {
                     "key_code": "w",
-                    "modifiers": ["left_command", "left_option"]
+                    "modifiers": [
+                      "left_command",
+                      "left_option"
+                    ]
                   }
                 ]
               }
             ]
           },
           {
-            "description": "Hyperキー: Caps Lock (長押し=Hyper, 単押し=Esc)",
+            "description": "Caps Lock → Left Control",
             "manipulators": [
               {
                 "type": "basic",
                 "from": {
                   "key_code": "caps_lock",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "left_control"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "description": "Hyperキー: Left Control (長押し=Hyper, 単押し=Esc)",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "left_control",
                   "modifiers": {
                     "optional": [
                       "any"
