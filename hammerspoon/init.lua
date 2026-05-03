@@ -61,7 +61,7 @@ spoon.SpoonInstall:andUse("Jinrai", {
 				},
 				navigation = {
 					focusBack = {
-						key = "a",
+						key = "tab",
 					},
 					direction = {
 						hints = {
@@ -87,7 +87,7 @@ spoon.SpoonInstall:andUse("Jinrai", {
 			focus_back = {
 				hotkey = {
 					modifiers = { "option", "shift", "cmd", "ctrl" },
-					key = "a",
+					key = "tab",
 				},
 				stateSync = {
 					interval = 0.15,
