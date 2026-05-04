@@ -89,11 +89,6 @@ spoon.SpoonInstall:andUse("Jinrai", {
 					modifiers = { "option", "shift", "cmd", "ctrl" },
 					key = "tab",
 				},
-				stateSync = {
-					interval = 0.15,
-					targetApps = { "com.mitchellh.ghostty" },
-					historyScope = "application",
-				},
 			},
 		})
 	end,
