@@ -126,3 +126,15 @@ spoon.SpoonInstall:andUse("Jinrai", {
 		})
 	end,
 })
+
+-- Tomonari: keyboard typing sound
+spoon.SpoonInstall.repos.tomonari = {
+	url = "https://github.com/masaki39/tomonari",
+	desc = "Tomonari Spoon repository",
+	branch = "main",
+}
+spoon.SpoonInstall:andUse("Tomonari", {
+	repo = "tomonari",
+	start = true,
+	hotkeys = { toggle = { { "alt", "shift", "cmd", "ctrl" }, "k" } },
+})
