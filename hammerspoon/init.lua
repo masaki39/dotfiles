@@ -136,5 +136,4 @@ spoon.SpoonInstall.repos.tomonari = {
 spoon.SpoonInstall:andUse("Tomonari", {
 	repo = "tomonari",
 	start = true,
-	hotkeys = { toggle = { { "alt", "shift", "cmd", "ctrl" }, "k" } },
 })
