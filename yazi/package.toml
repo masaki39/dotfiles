@@ -38,5 +38,10 @@ use = "masaki39/git"
 rev = "3b2715e"
 hash = "62eac97b397e0590d381df53abed5404"
 
+[[plugin.deps]]
+use = "yazi-rs/plugins:full-border"
+rev = "4ffa48f"
+hash = "eff8ff12fa4e5f035a10d8aeeb4c258d"
+
 [flavor]
 deps = []

@@ -14,16 +14,16 @@ db-browser = [{ run = 'open -a "DB Browser for SQLite" "$@"', for = "unix" }]
 [open]
 prepend_rules = [
   { mime = "text/csv", use = "csvlens" },
-  { name = "*.db", use = "db-browser" },
+  { url = "*.db", use = "db-browser" },
 ]
 
 [plugin]
 prepend_previewers = [{ mime = "application/dicom", run = "magick" }]
 append_previewers = [
   { mime = "image/tiff", run = "magick" },
-  { name = "*.jsonl", run = "json" },
+  { url = "*.jsonl", run = "json" },
 ]
 prepend_fetchers = [
-  { id = "git", url = "*", run = "git" },
-  { id = "git", url = "*/", run = "git" },
+  { id = "git", group = "file", url = "*", run = "git" },
+  { id = "git", group = "directory", url = "*/", run = "git" },
 ]
