@@ -33,6 +33,9 @@ ln -sf "$DOTFILES/uv" ~/.config/uv
 ln -sf "$DOTFILES/claude" ~/.claude
 ln -sf "$DOTFILES/karabiner/karabiner.json" ~/.config/karabiner/karabiner.json
 
+# starship prompt preset
+starship preset jetpack -o ~/.config/starship.toml
+
 # Install yazi plugins
 bash "$DOTFILES/yazi/install.sh"
 
