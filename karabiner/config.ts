@@ -15,10 +15,6 @@ writeToProfile('Default profile', [
 
   // ── 両キーボード共通 ──────────────────────────────────────
 
-  rule('ESC → ディスプレイスリープ').manipulators([
-    map('escape').to$('pmset displaysleepnow'),
-  ]),
-
   rule('Left Control').manipulators([
     map('left_control', undefined, 'any')
       .to('left_control')
