@@ -6,7 +6,8 @@ alias gg="lazygit"
 alias dstop='docker stop $(docker ps -q)'
 alias drm='docker rm $(docker ps -aq)'
 alias p='nvim "/tmp/prompt_$(date +%Y%m%d%H%M%S).md" -c startinsert -c "autocmd VimLeave * silent! %y +"'
-alias ghi='gh search issues --owner masaki39 --state open'
+alias ghi='gh search issues --owner @me --state open'
+alias ghp='gh search prs --owner @me --state open'
 alias cl='claude'
 
 # expand alias on enter (must be after plugins)
