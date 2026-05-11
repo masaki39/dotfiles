@@ -46,13 +46,4 @@ writeToProfile('Default profile', [
       .toIfAlone(toKey('japanese_kana')),
   ]),
 
-  rule("; / ' shift反転").condition(ifDevice([hhkb])).manipulators([
-    map('semicolon', 'left_shift').to('semicolon'),
-    map('semicolon', 'right_shift').to('semicolon'),
-    map('semicolon', undefined, 'any').to('semicolon', 'left_shift'),
-    map('quote', 'left_shift').to('quote'),
-    map('quote', 'right_shift').to('quote'),
-    map('quote', undefined, 'any').to('quote', 'left_shift'),
-  ]),
-
 ])
