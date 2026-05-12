@@ -21,10 +21,10 @@ writeToProfile('Default profile', [
       .toIfAlone([toKey('japanese_eisuu'), toKey('escape')]),
   ]),
 
-  rule('Space Hyper').manipulators([
-    map('spacebar', undefined, 'any')
+  rule('Semicolon Hyper').manipulators([
+    map('semicolon', undefined, 'any')
       .to(toHyper())
-      .toIfAlone('spacebar'),
+      .toIfAlone('semicolon'),
   ]),
 
   // ── 組み込みキーボードのみ ────────────────────────────────
