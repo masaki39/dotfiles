@@ -1,6 +1,6 @@
 return {
 	keybind = "ctrl+alt+e",
-	description = "Obsidian → Terminal → Chrome",
+	description = "Layout 3",
 	windows = {
 		{ app = "md.obsidian", screen = 1, x = 0, y = 0, w = 0.333, h = 1 },
 		{ app = "com.mitchellh.ghostty", screen = 1, x = 0.333, y = 0, w = 0.333, h = 1, focus = true },
