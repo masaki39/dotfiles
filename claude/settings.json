@@ -52,19 +52,9 @@
     "command": "~/.claude/statusline.sh"
   },
   "enabledPlugins": {
-    "claude-md-management@claude-plugins-official": true,
-    "pdf-extract@masaki39-agent-skills": true,
-    "marp@marp-mcp": false
+    "claude-md-management@claude-plugins-official": true
   },
-  "extraKnownMarketplaces": {
-    "masaki39-agent-skills": {
-      "source": {
-        "source": "github",
-        "repo": "masaki39/agent-skills"
-      },
-      "autoUpdate": true
-    }
-  },
+  "extraKnownMarketplaces": {},
   "effortLevel": "high",
   "tui": "fullscreen",
   "autoMemoryEnabled": false,
