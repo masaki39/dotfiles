@@ -43,5 +43,10 @@ use = "yazi-rs/plugins:full-border"
 rev = "4ffa48f"
 hash = "eff8ff12fa4e5f035a10d8aeeb4c258d"
 
+[[plugin.deps]]
+use = "masaki39/ghostty-split"
+rev = "003d088"
+hash = "9cb0be2c432ef6b8153bee2d0dd3bc0c"
+
 [flavor]
 deps = []

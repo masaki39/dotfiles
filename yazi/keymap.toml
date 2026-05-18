@@ -40,6 +40,11 @@ run = "plugin fd-fzf preview"
 desc = "Jump to directory"
 
 [[mgr.prepend_keymap]]
+on = ["g", "p"]
+run = 'shell -- ya emit cd "/Users/masaki/pCloud Drive"'
+desc = "Go to pCloud"
+
+[[mgr.prepend_keymap]]
 on = ["g", "g"]
 run = "shell 'lazygit' --block"
 desc = "Lazygit"
@@ -78,3 +83,23 @@ desc = "Open with default app"
 on = ["o", "n"]
 run = 'shell -- nvim %h'
 desc = "Open with nvim"
+
+[[mgr.prepend_keymap]]
+on = ["o", "l"]
+run = "plugin ghostty-split right"
+desc = "Open terminal split right"
+
+[[mgr.prepend_keymap]]
+on = ["o", "j"]
+run = "plugin ghostty-split down"
+desc = "Open terminal split down"
+
+[[mgr.prepend_keymap]]
+on = ["o", "t"]
+run = "plugin ghostty-split tab"
+desc = "Open terminal new tab"
+
+[[mgr.prepend_keymap]]
+on = ["o", "w"]
+run = "plugin ghostty-split window"
+desc = "Open terminal new window"
