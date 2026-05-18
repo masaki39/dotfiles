@@ -1,5 +1,5 @@
 return {
-	keybind = "ctrl+alt+a",
+	keybind = "ctrl+alt+e",
 	description = "Obsidian → Terminal → Chrome",
 	windows = {
 		{ app = "md.obsidian", screen = 1, x = 0, y = 0, w = 0.333, h = 1 },

@@ -46,7 +46,14 @@ spoon.SpoonInstall:andUse("Ryoiki", {
 	repo = "ryoiki",
 	start = true,
 	config = { centerCursor = true },
-	hotkeys = { showChooser = { { "ctrl", "alt" }, "m" } },
+	hotkeys = {
+		showChooser  = { { "ctrl", "alt" }, "m" },
+		saveLayout   = { { "ctrl", "alt" }, "s" },
+		deleteLayout = { { "ctrl", "alt" }, "d" },
+		maximizeAll  = { { "ctrl", "alt" }, "a" },
+		unhideAll    = { { "ctrl", "alt" }, "z" },
+		tileAll      = { { "ctrl", "alt" }, "x" },
+	},
 })
 
 -- Hanten
