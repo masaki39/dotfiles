@@ -52,11 +52,9 @@
     "command": "~/.claude/statusline.sh"
   },
   "enabledPlugins": {
-    "skill-creator@claude-plugins-official": true,
-    "code-simplifier@claude-plugins-official": true,
     "claude-md-management@claude-plugins-official": true,
     "pdf-extract@masaki39-agent-skills": true,
-    "marp@marp-mcp": true
+    "marp@marp-mcp": false
   },
   "extraKnownMarketplaces": {
     "masaki39-agent-skills": {
@@ -69,5 +67,6 @@
   },
   "effortLevel": "high",
   "tui": "fullscreen",
-  "autoMemoryEnabled": false
+  "autoMemoryEnabled": false,
+  "skipDangerousModePermissionPrompt": true
 }
