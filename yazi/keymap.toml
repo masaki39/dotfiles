@@ -40,6 +40,11 @@ run = "plugin fd-fzf preview"
 desc = "Jump to directory"
 
 [[mgr.prepend_keymap]]
+on = ["g", "D"]
+run = 'shell -- cp -r %s ~/Downloads/'
+desc = "Copy to Downloads"
+
+[[mgr.prepend_keymap]]
 on = ["g", "p"]
 run = 'shell -- ya emit cd "/Users/masaki/pCloud Drive"'
 desc = "Go to pCloud"

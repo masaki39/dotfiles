@@ -47,12 +47,12 @@ spoon.SpoonInstall:andUse("Ryoiki", {
 	start = true,
 	config = { centerCursor = true },
 	hotkeys = {
-		showChooser  = { { "ctrl", "alt" }, "m" },
-		saveLayout   = { { "ctrl", "alt" }, "s" },
+		showChooser = { { "ctrl", "alt" }, "m" },
+		saveLayout = { { "ctrl", "alt" }, "s" },
 		deleteLayout = { { "ctrl", "alt" }, "d" },
-		maximizeAll  = { { "ctrl", "alt" }, "a" },
-		unhideAll    = { { "ctrl", "alt" }, "z" },
-		tileAll      = { { "ctrl", "alt" }, "x" },
+		maximizeAll = { { "ctrl", "alt" }, "a" },
+		unhideAll = { { "ctrl", "alt" }, "z" },
+		tileAll = { { "ctrl", "alt" }, "x" },
 	},
 })
 
@@ -143,4 +143,30 @@ spoon.SpoonInstall.repos.tomonari = {
 spoon.SpoonInstall:andUse("Tomonari", {
 	repo = "tomonari",
 	start = true,
+})
+
+-- Muryokusho: selected text → OpenAI translation → Anki card
+spoon.SpoonInstall.repos.muryokusho = {
+	url = "https://github.com/masaki39/muryokusho",
+	desc = "Muryokusho Spoon repository",
+	branch = "main",
+}
+spoon.SpoonInstall:andUse("Muryokusho", {
+	repo = "muryokusho",
+	start = true,
+	config = {
+		ankiDeck          = "Default",
+		ankiModelName     = "基本",
+		ankiFrontField    = "表面",
+		ankiBackField     = "裏面",
+		openaiModel       = "gpt-4.1-nano",
+		targetLanguage    = "Japanese",
+		allowDuplicate    = false,
+		captureSelection  = false,
+		alertDuration     = 6,    -- seconds (click or any key also dismisses)
+		-- customPrompt   = nil,  -- uncomment and set to override the built-in prompt
+	},
+	hotkeys = {
+		addCard = { { "ctrl", "alt", "shift", "cmd" }, "a" },
+	},
 })
