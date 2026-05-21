@@ -155,15 +155,14 @@ spoon.SpoonInstall:andUse("Muryokusho", {
 	repo = "muryokusho",
 	start = true,
 	config = {
-		ankiDeck          = "Default",
-		ankiModelName     = "基本",
-		ankiFrontField    = "表面",
-		ankiBackField     = "裏面",
-		openaiModel       = "gpt-4.1-nano",
-		targetLanguage    = "Japanese",
-		allowDuplicate    = false,
-		captureSelection  = false,
-		alertDuration     = 6,    -- seconds (click or any key also dismisses)
+		ankiDeck = "Default",
+		ankiModelName = "基本",
+		ankiFrontField = "表面",
+		ankiBackField = "裏面",
+		openaiModel = "gpt-4.1-nano",
+		targetLanguage = "Japanese",
+		allowDuplicate = false,
+		alertDuration = 6, -- seconds (click or any key also dismisses)
 		-- customPrompt   = nil,  -- uncomment and set to override the built-in prompt
 	},
 	hotkeys = {
