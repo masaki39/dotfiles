@@ -1,0 +1,509 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="838" height="520" role="img" aria-label="Keyboard diagram">
+<g transform="translate(0, 0)">
+  <rect width="838" height="260" fill="#1e1e1e"/>
+  <rect x="18" y="10" width="802" height="240" rx="12" fill="#2a2a2a"/>
+<g id="key_esc">
+  <rect x="32" y="24" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="55" y="44" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">esc</text>
+</g>
+<g id="key_1">
+  <rect x="84" y="24" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="107" y="50" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">1</text>
+  <text x="107" y="35.2" text-anchor="middle" dominant-baseline="central" fill="#888888" font-family="system-ui,sans-serif" font-size="8">!</text>
+</g>
+<g id="key_2">
+  <rect x="136" y="24" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="159" y="50" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">2</text>
+  <text x="159" y="35.2" text-anchor="middle" dominant-baseline="central" fill="#888888" font-family="system-ui,sans-serif" font-size="8">@</text>
+</g>
+<g id="key_3">
+  <rect x="188" y="24" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="211" y="50" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">3</text>
+  <text x="211" y="35.2" text-anchor="middle" dominant-baseline="central" fill="#888888" font-family="system-ui,sans-serif" font-size="8">#</text>
+</g>
+<g id="key_4">
+  <rect x="240" y="24" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="263" y="50" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">4</text>
+  <text x="263" y="35.2" text-anchor="middle" dominant-baseline="central" fill="#888888" font-family="system-ui,sans-serif" font-size="8">$</text>
+</g>
+<g id="key_5">
+  <rect x="292" y="24" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="315" y="50" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">5</text>
+  <text x="315" y="35.2" text-anchor="middle" dominant-baseline="central" fill="#888888" font-family="system-ui,sans-serif" font-size="8">%</text>
+</g>
+<g id="key_6">
+  <rect x="344" y="24" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="367" y="50" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">6</text>
+  <text x="367" y="35.2" text-anchor="middle" dominant-baseline="central" fill="#888888" font-family="system-ui,sans-serif" font-size="8">^</text>
+</g>
+<g id="key_7">
+  <rect x="396" y="24" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="419" y="50" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">7</text>
+  <text x="419" y="35.2" text-anchor="middle" dominant-baseline="central" fill="#888888" font-family="system-ui,sans-serif" font-size="8">&amp;</text>
+</g>
+<g id="key_8">
+  <rect x="448" y="24" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="471" y="50" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">8</text>
+  <text x="471" y="35.2" text-anchor="middle" dominant-baseline="central" fill="#888888" font-family="system-ui,sans-serif" font-size="8">*</text>
+</g>
+<g id="key_9">
+  <rect x="500" y="24" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="523" y="50" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">9</text>
+  <text x="523" y="35.2" text-anchor="middle" dominant-baseline="central" fill="#888888" font-family="system-ui,sans-serif" font-size="8">(</text>
+</g>
+<g id="key_0">
+  <rect x="552" y="24" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="575" y="50" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">0</text>
+  <text x="575" y="35.2" text-anchor="middle" dominant-baseline="central" fill="#888888" font-family="system-ui,sans-serif" font-size="8">)</text>
+</g>
+<g id="key_minus">
+  <rect x="604" y="24" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="627" y="50" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">-</text>
+  <text x="627" y="35.2" text-anchor="middle" dominant-baseline="central" fill="#888888" font-family="system-ui,sans-serif" font-size="8">_</text>
+</g>
+<g id="key_equal">
+  <rect x="656" y="24" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="679" y="50" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">=</text>
+  <text x="679" y="35.2" text-anchor="middle" dominant-baseline="central" fill="#888888" font-family="system-ui,sans-serif" font-size="8">+</text>
+</g>
+<g id="key_backslash">
+  <rect x="708" y="24" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="731" y="50" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">\</text>
+  <text x="731" y="35.2" text-anchor="middle" dominant-baseline="central" fill="#888888" font-family="system-ui,sans-serif" font-size="8">|</text>
+</g>
+<g id="key_backtick">
+  <rect x="760" y="24" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="783" y="50" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">`</text>
+  <text x="783" y="35.2" text-anchor="middle" dominant-baseline="central" fill="#888888" font-family="system-ui,sans-serif" font-size="8">~</text>
+</g>
+<g id="key_tab">
+  <rect x="32" y="69" width="72" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="68" y="89" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">tab</text>
+</g>
+<g id="key_q">
+  <rect x="110" y="69" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="133" y="89" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">Q</text>
+</g>
+<g id="key_w">
+  <rect x="162" y="69" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="185" y="89" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">W</text>
+</g>
+<g id="key_e">
+  <rect x="214" y="69" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="237" y="89" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">E</text>
+</g>
+<g id="key_r">
+  <rect x="266" y="69" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="289" y="89" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">R</text>
+</g>
+<g id="key_t">
+  <rect x="318" y="69" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="341" y="89" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">T</text>
+</g>
+<g id="key_y">
+  <rect x="370" y="69" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="393" y="89" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">Y</text>
+</g>
+<g id="key_u">
+  <rect x="422" y="69" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="445" y="89" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">U</text>
+</g>
+<g id="key_i">
+  <rect x="474" y="69" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="497" y="89" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">I</text>
+</g>
+<g id="key_o">
+  <rect x="526" y="69" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="549" y="89" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">O</text>
+</g>
+<g id="key_p">
+  <rect x="578" y="69" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="601" y="89" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">P</text>
+</g>
+<g id="key_lbracket">
+  <rect x="630" y="69" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="653" y="95" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">[</text>
+  <text x="653" y="80.2" text-anchor="middle" dominant-baseline="central" fill="#888888" font-family="system-ui,sans-serif" font-size="8">{</text>
+</g>
+<g id="key_rbracket">
+  <rect x="682" y="69" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="705" y="95" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">]</text>
+  <text x="705" y="80.2" text-anchor="middle" dominant-baseline="central" fill="#888888" font-family="system-ui,sans-serif" font-size="8">}</text>
+</g>
+<g id="key_delete">
+  <rect x="734" y="69" width="72" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="770" y="89" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">delete</text>
+</g>
+<g id="key_ctrl">
+  <rect x="32" y="114" width="85" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="74.5" y="134" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">control</text>
+</g>
+<g id="key_a">
+  <rect x="123" y="114" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="146" y="134" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">A</text>
+</g>
+<g id="key_s">
+  <rect x="175" y="114" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="198" y="134" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">S</text>
+</g>
+<g id="key_d">
+  <rect x="227" y="114" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="250" y="134" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">D</text>
+</g>
+<g id="key_f">
+  <rect x="279" y="114" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="302" y="134" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">F</text>
+</g>
+<g id="key_g">
+  <rect x="331" y="114" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="354" y="134" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">G</text>
+</g>
+<g id="key_h">
+  <rect x="383" y="114" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="406" y="134" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">H</text>
+</g>
+<g id="key_j">
+  <rect x="435" y="114" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="458" y="134" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">J</text>
+</g>
+<g id="key_k">
+  <rect x="487" y="114" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="510" y="134" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">K</text>
+</g>
+<g id="key_l">
+  <rect x="539" y="114" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="562" y="134" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">L</text>
+</g>
+<g id="key_semicolon">
+  <rect x="591" y="114" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="614" y="140" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">;</text>
+  <text x="614" y="125.2" text-anchor="middle" dominant-baseline="central" fill="#888888" font-family="system-ui,sans-serif" font-size="8">:</text>
+</g>
+<g id="key_quote">
+  <rect x="643" y="114" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="666" y="140" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">'</text>
+  <text x="666" y="125.2" text-anchor="middle" dominant-baseline="central" fill="#888888" font-family="system-ui,sans-serif" font-size="8">&quot;</text>
+</g>
+<g id="key_return">
+  <rect x="695" y="114" width="111" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="750.5" y="134" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">return</text>
+</g>
+<g id="key_shift_l">
+  <rect x="32" y="159" width="111" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="87.5" y="179" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">shift</text>
+</g>
+<g id="key_z">
+  <rect x="149" y="159" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="172" y="179" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">Z</text>
+</g>
+<g id="key_x">
+  <rect x="201" y="159" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="224" y="179" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">X</text>
+</g>
+<g id="key_c">
+  <rect x="253" y="159" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="276" y="179" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">C</text>
+</g>
+<g id="key_v">
+  <rect x="305" y="159" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="328" y="179" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">V</text>
+</g>
+<g id="key_b">
+  <rect x="357" y="159" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="380" y="179" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">B</text>
+</g>
+<g id="key_n">
+  <rect x="409" y="159" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="432" y="179" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">N</text>
+</g>
+<g id="key_m">
+  <rect x="461" y="159" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="484" y="179" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">M</text>
+</g>
+<g id="key_comma">
+  <rect x="513" y="159" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="536" y="185" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">,</text>
+  <text x="536" y="170.2" text-anchor="middle" dominant-baseline="central" fill="#888888" font-family="system-ui,sans-serif" font-size="8">&lt;</text>
+</g>
+<g id="key_period">
+  <rect x="565" y="159" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="588" y="185" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">.</text>
+  <text x="588" y="170.2" text-anchor="middle" dominant-baseline="central" fill="#888888" font-family="system-ui,sans-serif" font-size="8">&gt;</text>
+</g>
+<g id="key_slash">
+  <rect x="617" y="159" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="640" y="185" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">/</text>
+  <text x="640" y="170.2" text-anchor="middle" dominant-baseline="central" fill="#888888" font-family="system-ui,sans-serif" font-size="8">?</text>
+</g>
+<g id="key_shift_r">
+  <rect x="669" y="159" width="85" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="711.5" y="179" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">shift</text>
+</g>
+<g id="key_fn">
+  <rect x="760" y="159" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="783" y="179" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">fn</text>
+</g>
+<g id="key_opt_l">
+  <rect x="110" y="204" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="133" y="224" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">◇</text>
+</g>
+<g id="key_cmd_l">
+  <rect x="162" y="204" width="72" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="198" y="224" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">◆</text>
+</g>
+<g id="key_space">
+  <rect x="240" y="204" width="358" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+</g>
+<g id="key_cmd_r">
+  <rect x="604" y="204" width="72" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="640" y="224" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">◆</text>
+</g>
+<g id="key_opt_r">
+  <rect x="682" y="204" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="705" y="224" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">◇</text>
+</g>
+</g>
+<g transform="translate(0, 260)">
+  <rect width="838" height="260" fill="#1e1e1e"/>
+  <rect x="18" y="10" width="802" height="240" rx="12" fill="#2a2a2a"/>
+<g id="fn_key_esc">
+  <rect x="32" y="24" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="55" y="44" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">pwr</text>
+</g>
+<g id="fn_key_1">
+  <rect x="84" y="24" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="107" y="44" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">F1</text>
+</g>
+<g id="fn_key_2">
+  <rect x="136" y="24" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="159" y="44" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">F2</text>
+</g>
+<g id="fn_key_3">
+  <rect x="188" y="24" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="211" y="44" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">F3</text>
+</g>
+<g id="fn_key_4">
+  <rect x="240" y="24" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="263" y="44" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">F4</text>
+</g>
+<g id="fn_key_5">
+  <rect x="292" y="24" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="315" y="44" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">F5</text>
+</g>
+<g id="fn_key_6">
+  <rect x="344" y="24" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="367" y="44" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">F6</text>
+</g>
+<g id="fn_key_7">
+  <rect x="396" y="24" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="419" y="44" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">F7</text>
+</g>
+<g id="fn_key_8">
+  <rect x="448" y="24" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="471" y="44" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">F8</text>
+</g>
+<g id="fn_key_9">
+  <rect x="500" y="24" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="523" y="44" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">F9</text>
+</g>
+<g id="fn_key_0">
+  <rect x="552" y="24" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="575" y="44" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">F10</text>
+</g>
+<g id="fn_key_minus">
+  <rect x="604" y="24" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="627" y="44" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">F11</text>
+</g>
+<g id="fn_key_equal">
+  <rect x="656" y="24" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="679" y="44" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">F12</text>
+</g>
+<g id="fn_key_backslash">
+  <rect x="708" y="24" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="731" y="44" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">ins</text>
+</g>
+<g id="fn_key_backtick">
+  <rect x="760" y="24" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="783" y="44" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">del</text>
+</g>
+<g id="fn_key_tab">
+  <rect x="32" y="69" width="72" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="68" y="89" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">caps</text>
+</g>
+<g id="fn_key_q">
+  <rect x="110" y="69" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="133" y="89" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">Q</text>
+</g>
+<g id="fn_key_w">
+  <rect x="162" y="69" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="185" y="89" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">W</text>
+</g>
+<g id="fn_key_e">
+  <rect x="214" y="69" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="237" y="89" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">E</text>
+</g>
+<g id="fn_key_r">
+  <rect x="266" y="69" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="289" y="89" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">R</text>
+</g>
+<g id="fn_key_t">
+  <rect x="318" y="69" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="341" y="89" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">T</text>
+</g>
+<g id="fn_key_y">
+  <rect x="370" y="69" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="393" y="89" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">Y</text>
+</g>
+<g id="fn_key_u">
+  <rect x="422" y="69" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="445" y="89" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">U</text>
+</g>
+<g id="fn_key_i">
+  <rect x="474" y="69" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="497" y="89" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">psc</text>
+</g>
+<g id="fn_key_o">
+  <rect x="526" y="69" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="549" y="89" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">slk</text>
+</g>
+<g id="fn_key_p">
+  <rect x="578" y="69" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="601" y="89" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">pus</text>
+</g>
+<g id="fn_key_lbracket">
+  <rect x="630" y="69" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="653" y="89" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">↑</text>
+</g>
+<g id="fn_key_rbracket">
+  <rect x="682" y="69" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="705" y="89" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">]</text>
+</g>
+<g id="fn_key_delete">
+  <rect x="734" y="69" width="72" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="770" y="89" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">delete</text>
+</g>
+<g id="fn_key_ctrl">
+  <rect x="32" y="114" width="85" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="74.5" y="134" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">control</text>
+</g>
+<g id="fn_key_a">
+  <rect x="123" y="114" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="146" y="134" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">vol−</text>
+</g>
+<g id="fn_key_s">
+  <rect x="175" y="114" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="198" y="134" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">vol+</text>
+</g>
+<g id="fn_key_d">
+  <rect x="227" y="114" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="250" y="134" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">mute</text>
+</g>
+<g id="fn_key_f">
+  <rect x="279" y="114" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="302" y="134" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">eject</text>
+</g>
+<g id="fn_key_g">
+  <rect x="331" y="114" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="354" y="134" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">G</text>
+</g>
+<g id="fn_key_h">
+  <rect x="383" y="114" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="406" y="134" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">*</text>
+</g>
+<g id="fn_key_j">
+  <rect x="435" y="114" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="458" y="134" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">/</text>
+</g>
+<g id="fn_key_k">
+  <rect x="487" y="114" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="510" y="134" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">home</text>
+</g>
+<g id="fn_key_l">
+  <rect x="539" y="114" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="562" y="134" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">pg up</text>
+</g>
+<g id="fn_key_semicolon">
+  <rect x="591" y="114" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="614" y="134" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">←</text>
+</g>
+<g id="fn_key_quote">
+  <rect x="643" y="114" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="666" y="134" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">→</text>
+</g>
+<g id="fn_key_return">
+  <rect x="695" y="114" width="111" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="750.5" y="134" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">return</text>
+</g>
+<g id="fn_key_shift_l">
+  <rect x="32" y="159" width="111" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="87.5" y="179" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">shift</text>
+</g>
+<g id="fn_key_z">
+  <rect x="149" y="159" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="172" y="179" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">Z</text>
+</g>
+<g id="fn_key_x">
+  <rect x="201" y="159" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="224" y="179" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">X</text>
+</g>
+<g id="fn_key_c">
+  <rect x="253" y="159" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="276" y="179" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">C</text>
+</g>
+<g id="fn_key_v">
+  <rect x="305" y="159" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="328" y="179" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">V</text>
+</g>
+<g id="fn_key_b">
+  <rect x="357" y="159" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="380" y="179" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">B</text>
+</g>
+<g id="fn_key_n">
+  <rect x="409" y="159" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="432" y="179" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">+</text>
+</g>
+<g id="fn_key_m">
+  <rect x="461" y="159" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="484" y="179" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">−</text>
+</g>
+<g id="fn_key_comma">
+  <rect x="513" y="159" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="536" y="179" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">end</text>
+</g>
+<g id="fn_key_period">
+  <rect x="565" y="159" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="588" y="179" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">pg dn</text>
+</g>
+<g id="fn_key_slash">
+  <rect x="617" y="159" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="640" y="179" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">↓</text>
+</g>
+<g id="fn_key_shift_r">
+  <rect x="669" y="159" width="85" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="711.5" y="179" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">shift</text>
+</g>
+<g id="fn_key_fn">
+  <rect x="760" y="159" width="46" height="40" rx="6" fill="#F97316" stroke="#fb923c" stroke-width="1"/>
+  <text x="783" y="179" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">fn</text>
+</g>
+<g id="fn_key_opt_l">
+  <rect x="110" y="204" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="133" y="224" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">◇</text>
+</g>
+<g id="fn_key_cmd_l">
+  <rect x="162" y="204" width="72" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="198" y="224" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">◆</text>
+</g>
+<g id="fn_key_space">
+  <rect x="240" y="204" width="358" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+</g>
+<g id="fn_key_cmd_r">
+  <rect x="604" y="204" width="72" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="640" y="224" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">◆</text>
+</g>
+<g id="fn_key_opt_r">
+  <rect x="682" y="204" width="46" height="40" rx="6" fill="#3a3a3a" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="705" y="224" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="system-ui,sans-serif" font-size="11">◇</text>
+</g>
+</g>
+</svg>

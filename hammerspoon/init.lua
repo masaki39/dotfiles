@@ -8,7 +8,7 @@ hs.hotkey.bind({ "alt", "shift", "cmd", "ctrl" }, "h", function()
 		hhkbCanvas = nil
 		return
 	end
-	local img = hs.image.imageFromPath(os.getenv("HOME") .. "/.hammerspoon/help.jpg")
+	local img = hs.image.imageFromPath(os.getenv("HOME") .. "/.hammerspoon/help.svg")
 	if not img then
 		hs.alert("image load failed")
 		return
