@@ -21,7 +21,8 @@
       "WebSearch",
       "WebFetch"
     ],
-    "deny": []
+    "deny": [],
+    "defaultMode": "auto"
   },
   "hooks": {
     "Stop": [
@@ -58,5 +59,6 @@
   "effortLevel": "high",
   "tui": "fullscreen",
   "autoMemoryEnabled": false,
-  "skipDangerousModePermissionPrompt": true
+  "skipDangerousModePermissionPrompt": true,
+  "skipAutoPermissionPrompt": true
 }
