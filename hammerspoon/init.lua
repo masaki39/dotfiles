@@ -145,7 +145,7 @@ spoon.SpoonInstall:andUse("Tomonari", {
 	start = true,
 })
 
--- Muryokusho: selected text → OpenAI translation → Anki card
+-- Muryokusho: word → translation → Anki card
 spoon.SpoonInstall.repos.muryokusho = {
 	url = "https://github.com/masaki39/muryokusho",
 	desc = "Muryokusho Spoon repository",
@@ -159,11 +159,10 @@ spoon.SpoonInstall:andUse("Muryokusho", {
 		ankiModelName = "基本",
 		ankiFrontField = "表面",
 		ankiBackField = "裏面",
-		openaiModel = "gpt-4.1-nano",
-		targetLanguage = "Japanese",
+		translationMethod = "google",
+		language = "ja",
 		allowDuplicate = false,
 		alertDuration = 6, -- seconds (click or any key also dismisses)
-		-- customPrompt   = nil,  -- uncomment and set to override the built-in prompt
 	},
 	hotkeys = {
 		addCard = { { "ctrl", "alt", "shift", "cmd" }, "a" },
