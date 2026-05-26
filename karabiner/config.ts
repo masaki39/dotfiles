@@ -18,13 +18,15 @@ writeToProfile('Default profile', [
   rule('Left Control').manipulators([
     map('left_control', undefined, 'any')
       .to('left_control')
-      .toIfAlone([toKey('japanese_eisuu'), toKey('escape')]),
+      .toIfAlone([toKey('japanese_eisuu'), toKey('escape')])
+      .parameters({ 'basic.to_if_alone_timeout_milliseconds': 200 }),
   ]),
 
   rule('Semicolon Hyper').manipulators([
     map('semicolon', undefined, 'any')
       .to(toHyper())
-      .toIfAlone('semicolon'),
+      .toIfAlone('semicolon')
+      .parameters({ 'basic.to_if_alone_timeout_milliseconds': 200 }),
   ]),
 
   // ── 組み込みキーボードのみ ────────────────────────────────
@@ -37,13 +39,15 @@ writeToProfile('Default profile', [
   rule('Left Cmd → 英数').condition(ifDevice([hhkb])).manipulators([
     map('left_command', undefined, 'any')
       .to('left_command')
-      .toIfAlone(toKey('japanese_eisuu')),
+      .toIfAlone(toKey('japanese_eisuu'))
+      .parameters({ 'basic.to_if_alone_timeout_milliseconds': 200 }),
   ]),
 
   rule('Right Cmd → かな').condition(ifDevice([hhkb])).manipulators([
     map('right_command', undefined, 'any')
       .to('right_command')
-      .toIfAlone(toKey('japanese_kana')),
+      .toIfAlone(toKey('japanese_kana'))
+      .parameters({ 'basic.to_if_alone_timeout_milliseconds': 200 }),
   ]),
 
 ])
