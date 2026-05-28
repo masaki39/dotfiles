@@ -130,6 +130,21 @@ spoon.SpoonInstall:andUse("Jinrai", {
 					key = "tab",
 				},
 			},
+			window_mover = {
+				commands = {
+					moveToNextDisplay = {
+						hotkey = {
+							modifiers = { "option", "ctrl" }, -- Hotkey modifiers (nil to disable)
+							key = "space", -- Hotkey (nil to disable)
+						},
+					},
+				},
+				behavior = {
+					cursor = {
+						afterMove = true, -- Move cursor to window center after moving
+					},
+				},
+			},
 		})
 	end,
 })
