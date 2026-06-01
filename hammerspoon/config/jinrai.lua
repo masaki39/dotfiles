@@ -69,8 +69,8 @@ spoon.SpoonInstall:andUse("Jinrai", {
 					},
 					moveToSelectedArea = {
 						hotkey = {
-							modifiers = { "option", "ctrl" },
-							key = nil,
+							modifiers = { "option", "shift", "cmd", "ctrl" },
+							key = "k",
 						},
 					},
 					maximizeWindow = {
@@ -125,6 +125,40 @@ spoon.SpoonInstall:andUse("Jinrai", {
 				behavior = {
 					cursor = {
 						afterMove = true,
+					},
+				},
+				selectedArea = {
+					defaultScreen = "7F72F02E-3AEE-9A31-0857-D6964E3302DB",
+					screens = {
+						-- name: DELL P2723DE
+						-- id: 2
+						-- frame: x=-1120.0, y=-1440.0, w=2560.0, h=1440.0
+						["7F72F02E-3AEE-9A31-0857-D6964E3302DB"] = {
+							full = "A",
+							halfLeft = "H",
+							halfBottom = "J",
+							halfTop = "K",
+							halfRight = "L",
+							halfHorizontalCenter = "C",
+							halfVerticalCenter = "V",
+							thirdLeft = "S",
+							thirdHorizontalCenter = "D",
+							thirdRight = "F",
+							thirdTop = "P",
+							thirdVerticalCenter = "I",
+							thirdBottom = "N",
+							twoThirdsHorizontalCenter = "R",
+							twoThirdsVerticalCenter = "T",
+							quarterLeft = "1",
+							quarterHorizontalLeftCenter = "2",
+							quarterHorizontalRightCenter = "3",
+							quarterRight = "4",
+							quarterTop = "5",
+							quarterVerticalTopCenter = "6",
+							quarterVerticalBottomCenter = "7",
+							quarterBottom = "8",
+							["1920x1080Center"] = "M",
+						},
 					},
 				},
 			},
