@@ -58,22 +58,10 @@ spoon.SpoonInstall:andUse("Jinrai", {
 							key = "tab",
 						},
 					},
-					moveToSelectedArea = {
-						hotkey = {
-							modifiers = nil,
-							key = nil,
-						},
-					},
 					maximizeWindow = {
 						hotkey = {
 							modifiers = { "option", "ctrl" },
 							key = "return",
-						},
-					},
-					minimizeWindow = {
-						hotkey = {
-							modifiers = { "option", "ctrl" },
-							key = nil,
 						},
 					},
 					cycleLeft = {
