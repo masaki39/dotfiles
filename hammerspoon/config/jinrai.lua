@@ -35,15 +35,6 @@ spoon.SpoonInstall:andUse("Jinrai", {
 								right = "l",
 							},
 						},
-						direct = {
-							modifiers = { "ctrl", "alt", "shift", "cmd" },
-							keys = {
-								left = "left",
-								down = "down",
-								up = "up",
-								right = "right",
-							},
-						},
 					},
 				},
 			},
@@ -69,8 +60,8 @@ spoon.SpoonInstall:andUse("Jinrai", {
 					},
 					moveToSelectedArea = {
 						hotkey = {
-							modifiers = { "option", "shift", "cmd", "ctrl" },
-							key = "k",
+							modifiers = nil,
+							key = nil,
 						},
 					},
 					maximizeWindow = {
@@ -128,37 +119,21 @@ spoon.SpoonInstall:andUse("Jinrai", {
 					},
 				},
 				selectedArea = {
-					defaultScreen = "7F72F02E-3AEE-9A31-0857-D6964E3302DB",
+					defaultScreen = "37D8832A-2D66-02CA-B9F7-8F30A301B230",
 					screens = {
-						-- name: DELL P2723DE
-						-- id: 2
-						-- frame: x=-1120.0, y=-1440.0, w=2560.0, h=1440.0
-						["7F72F02E-3AEE-9A31-0857-D6964E3302DB"] = {
+						-- name: Built-in Retina Display
+						["37D8832A-2D66-02CA-B9F7-8F30A301B230"] = {
 							full = "A",
 							halfLeft = "H",
-							halfBottom = "J",
-							halfTop = "K",
 							halfRight = "L",
-							halfHorizontalCenter = "C",
-							halfVerticalCenter = "V",
-							thirdLeft = "S",
-							thirdHorizontalCenter = "D",
-							thirdRight = "F",
-							thirdTop = "P",
-							thirdVerticalCenter = "I",
-							thirdBottom = "N",
-							twoThirdsHorizontalCenter = "R",
-							twoThirdsVerticalCenter = "T",
-							quarterLeft = "1",
-							quarterHorizontalLeftCenter = "2",
-							quarterHorizontalRightCenter = "3",
-							quarterRight = "4",
-							quarterTop = "5",
-							quarterVerticalTopCenter = "6",
-							quarterVerticalBottomCenter = "7",
-							quarterBottom = "8",
-							["1920x1080Center"] = "M",
 						},
+					},
+				},
+			},
+			jinrai_mode = {
+				triggers = {
+					windowHints = {
+						key = "m", -- Key to start JinraiMode while Window Hints is shown
 					},
 				},
 			},
