@@ -35,15 +35,6 @@ spoon.SpoonInstall:andUse("Jinrai", {
 								right = "l",
 							},
 						},
-						direct = {
-							modifiers = { "ctrl", "alt", "shift", "cmd" },
-							keys = {
-								left = "left",
-								down = "down",
-								up = "up",
-								right = "right",
-							},
-						},
 					},
 				},
 			},
@@ -69,7 +60,7 @@ spoon.SpoonInstall:andUse("Jinrai", {
 					},
 					moveToSelectedArea = {
 						hotkey = {
-							modifiers = { "option", "ctrl" },
+							modifiers = nil,
 							key = nil,
 						},
 					},
@@ -125,6 +116,24 @@ spoon.SpoonInstall:andUse("Jinrai", {
 				behavior = {
 					cursor = {
 						afterMove = true,
+					},
+				},
+				selectedArea = {
+					defaultScreen = "37D8832A-2D66-02CA-B9F7-8F30A301B230",
+					screens = {
+						-- name: Built-in Retina Display
+						["37D8832A-2D66-02CA-B9F7-8F30A301B230"] = {
+							full = "A",
+							halfLeft = "H",
+							halfRight = "L",
+						},
+					},
+				},
+			},
+			jinrai_mode = {
+				triggers = {
+					windowHints = {
+						key = "m", -- Key to start JinraiMode while Window Hints is shown
 					},
 				},
 			},
