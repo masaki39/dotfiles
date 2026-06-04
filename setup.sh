@@ -56,8 +56,6 @@ launchctl load "$PLIST"
 # Menu bar shortcuts
 defaults write com.google.Chrome NSUserKeyEquivalents '{
     "他のタブをすべて閉じる" = "@~w";
-    "前のタブを選択" = "@~h";
-    "次のタブを選択" = "@~l";
 }'
 
 echo "✓ Setup complete!"
