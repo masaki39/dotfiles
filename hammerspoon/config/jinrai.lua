@@ -99,6 +99,8 @@ spoon.SpoonInstall:andUse("Jinrai", {
 							sixthBottomLeft = ";d",
 							sixthBottomCenter = ";f",
 							sixthBottomRight = ";g",
+							twoThirdsLeft = ";y",
+							twoThirdsRight = ";o",
 						},
 					},
 				},
