@@ -20,13 +20,9 @@ function gb() {
 
 # devcontainer
 function dvc() {
-	if ! docker info >/dev/null 2>&1; then
-		echo "Docker Desktop is not running. Starting..."
-		open -a Docker
-		while ! docker info >/dev/null 2>&1; do
-			sleep 1
-		done
-		echo "Docker Desktop started."
+	if ! colima status >/dev/null 2>&1; then
+		echo "Colima is not running. Starting..."
+		colima start
 	fi
 	local config_args=()
 	if [[ ! -f ".devcontainer/devcontainer.json" && ! -f ".devcontainer.json" ]]; then
@@ -39,13 +35,9 @@ function dvc() {
 
 # devcontainer + claude
 function dvcc() {
-	if ! docker info >/dev/null 2>&1; then
-		echo "Docker Desktop is not running. Starting..."
-		open -a Docker
-		while ! docker info >/dev/null 2>&1; do
-			sleep 1
-		done
-		echo "Docker Desktop started."
+	if ! colima status >/dev/null 2>&1; then
+		echo "Colima is not running. Starting..."
+		colima start
 	fi
 	local config_args=()
 	if [[ ! -f ".devcontainer/devcontainer.json" && ! -f ".devcontainer.json" ]]; then
