@@ -64,28 +64,14 @@ spoon.SpoonInstall:andUse("Jinrai", {
 							key = "return",
 						},
 					},
-					cycleLeft = {
-						hotkey = {
-							modifiers = { "option", "ctrl" },
-							key = "left",
-						},
-					},
+					cycleLeft = { hotkey = { modifiers = { "option", "ctrl" }, key = "h" } },
+					cycleRight = { hotkey = { modifiers = { "option", "ctrl" }, key = "l" } },
+					cycleTop = { hotkey = { modifiers = { "option", "ctrl" }, key = "p" } },
+					cycleBottom = { hotkey = { modifiers = { "option", "ctrl" }, key = "n" } },
 					cycleHorizontalCenter = {
 						hotkey = {
 							modifiers = { "option", "ctrl" },
 							key = "c",
-						},
-					},
-					cycleRight = {
-						hotkey = {
-							modifiers = { "option", "ctrl" },
-							key = "right",
-						},
-					},
-					cycleTop = {
-						hotkey = {
-							modifiers = { "option", "ctrl" },
-							key = "up",
 						},
 					},
 					cycleVerticalCenter = {
@@ -94,12 +80,16 @@ spoon.SpoonInstall:andUse("Jinrai", {
 							key = "v",
 						},
 					},
-					cycleBottom = {
-						hotkey = {
-							modifiers = { "option", "ctrl" },
-							key = "down",
-						},
-					},
+					quarterTopLeft = { hotkey = { modifiers = { "option", "ctrl" }, key = "u" } },
+					quarterTopRight = { hotkey = { modifiers = { "option", "ctrl" }, key = "i" } },
+					quarterBottomLeft = { hotkey = { modifiers = { "option", "ctrl" }, key = "j" } },
+					quarterBottomRight = { hotkey = { modifiers = { "option", "ctrl" }, key = "k" } },
+					sixthTopLeft = { hotkey = { modifiers = { "option", "ctrl" }, key = "e" } },
+					sixthTopCenter = { hotkey = { modifiers = { "option", "ctrl" }, key = "r" } },
+					sixthTopRight = { hotkey = { modifiers = { "option", "ctrl" }, key = "t" } },
+					sixthBottomLeft = { hotkey = { modifiers = { "option", "ctrl" }, key = "d" } },
+					sixthBottomCenter = { hotkey = { modifiers = { "option", "ctrl" }, key = "f" } },
+					sixthBottomRight = { hotkey = { modifiers = { "option", "ctrl" }, key = "g" } },
 				},
 				behavior = {
 					cursor = {
@@ -111,9 +101,34 @@ spoon.SpoonInstall:andUse("Jinrai", {
 					screens = {
 						-- name: Built-in Retina Display
 						["37D8832A-2D66-02CA-B9F7-8F30A301B230"] = {
-							full = "A",
-							halfLeft = "H",
-							halfRight = "L",
+							full = "a",
+							halfLeft = "h",
+							halfRight = "l",
+							quarterTopLeft = "u",
+							quarterTopRight = "i",
+							quarterBottomLeft = "j",
+							quarterBottomRight = "k",
+							sixthTopLeft = "e",
+							sixthTopCenter = "r",
+							sixthTopRight = "t",
+							sixthBottomLeft = "d",
+							sixthBottomCenter = "f",
+							sixthBottomRight = "g",
+						},
+						["7F72F02E-3AEE-9A31-0857-D6964E3302DB"] = {
+							full = ";a",
+							halfLeft = ";h",
+							halfRight = ";l",
+							quarterTopLeft = ";u",
+							quarterTopRight = ";i",
+							quarterBottomLeft = ";j",
+							quarterBottomRight = ";k",
+							sixthTopLeft = ";e",
+							sixthTopCenter = ";r",
+							sixthTopRight = ";t",
+							sixthBottomLeft = ";d",
+							sixthBottomCenter = ";f",
+							sixthBottomRight = ";g",
 						},
 					},
 				},

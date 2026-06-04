@@ -1,5 +1,5 @@
 return {
-	keybind = "ctrl+alt+e",
+	keybind = "ctrl+alt+s",
 	description = "Layout 3",
 	windows = {
 		{ app = "md.obsidian", screen = 1, x = 0, y = 0, w = 0.333, h = 1 },
