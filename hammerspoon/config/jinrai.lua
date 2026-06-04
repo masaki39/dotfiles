@@ -4,16 +4,16 @@ spoon.SpoonInstall.repos.jinrai = {
 	branch = "spoons",
 }
 
+local hyper = { "option", "shift", "cmd", "ctrl" }
+local mods = { "option", "ctrl" }
+
 spoon.SpoonInstall:andUse("Jinrai", {
 	repo = "jinrai",
 	fn = function(jinrai)
 		jinrai:setup({
 			focus_border = {},
 			window_hints = {
-				hotkey = {
-					modifiers = { "alt", "shift", "cmd", "ctrl" },
-					key = "j",
-				},
+				hotkey = { modifiers = hyper, key = "j" },
 				hint = {
 					prefixOverrides = {
 						{
@@ -38,58 +38,28 @@ spoon.SpoonInstall:andUse("Jinrai", {
 					},
 				},
 			},
-			focus_back = {
-				hotkey = {
-					modifiers = { "option", "shift", "cmd", "ctrl" },
-					key = "tab",
-				},
-			},
+			focus_back = { hotkey = { modifiers = hyper, key = "tab" } },
 			window_mover = {
 				commands = {
-					moveToNextDisplay = {
-						hotkey = {
-							modifiers = { "option", "ctrl" },
-							key = "space",
-						},
-					},
-					moveToActiveDisplayFreeArea = {
-						hotkey = {
-							modifiers = { "option", "ctrl" },
-							key = "tab",
-						},
-					},
-					maximizeWindow = {
-						hotkey = {
-							modifiers = { "option", "ctrl" },
-							key = "return",
-						},
-					},
-					cycleLeft = { hotkey = { modifiers = { "option", "ctrl" }, key = "h" } },
-					cycleRight = { hotkey = { modifiers = { "option", "ctrl" }, key = "l" } },
-					cycleTop = { hotkey = { modifiers = { "option", "ctrl" }, key = "p" } },
-					cycleBottom = { hotkey = { modifiers = { "option", "ctrl" }, key = "n" } },
-					cycleHorizontalCenter = {
-						hotkey = {
-							modifiers = { "option", "ctrl" },
-							key = "c",
-						},
-					},
-					cycleVerticalCenter = {
-						hotkey = {
-							modifiers = { "option", "ctrl" },
-							key = "v",
-						},
-					},
-					quarterTopLeft = { hotkey = { modifiers = { "option", "ctrl" }, key = "u" } },
-					quarterTopRight = { hotkey = { modifiers = { "option", "ctrl" }, key = "i" } },
-					quarterBottomLeft = { hotkey = { modifiers = { "option", "ctrl" }, key = "j" } },
-					quarterBottomRight = { hotkey = { modifiers = { "option", "ctrl" }, key = "k" } },
-					sixthTopLeft = { hotkey = { modifiers = { "option", "ctrl" }, key = "e" } },
-					sixthTopCenter = { hotkey = { modifiers = { "option", "ctrl" }, key = "r" } },
-					sixthTopRight = { hotkey = { modifiers = { "option", "ctrl" }, key = "t" } },
-					sixthBottomLeft = { hotkey = { modifiers = { "option", "ctrl" }, key = "d" } },
-					sixthBottomCenter = { hotkey = { modifiers = { "option", "ctrl" }, key = "f" } },
-					sixthBottomRight = { hotkey = { modifiers = { "option", "ctrl" }, key = "g" } },
+					moveToNextDisplay = { hotkey = { modifiers = mods, key = "space" } },
+					moveToActiveDisplayFreeArea = { hotkey = { modifiers = mods, key = "tab" } },
+					maximizeWindow = { hotkey = { modifiers = mods, key = "return" } },
+					cycleLeft = { hotkey = { modifiers = mods, key = "h" } },
+					cycleRight = { hotkey = { modifiers = mods, key = "l" } },
+					cycleTop = { hotkey = { modifiers = mods, key = "p" } },
+					cycleBottom = { hotkey = { modifiers = mods, key = "n" } },
+					cycleHorizontalCenter = { hotkey = { modifiers = mods, key = "c" } },
+					cycleVerticalCenter = { hotkey = { modifiers = mods, key = "v" } },
+					quarterTopLeft = { hotkey = { modifiers = mods, key = "u" } },
+					quarterTopRight = { hotkey = { modifiers = mods, key = "i" } },
+					quarterBottomLeft = { hotkey = { modifiers = mods, key = "j" } },
+					quarterBottomRight = { hotkey = { modifiers = mods, key = "k" } },
+					sixthTopLeft = { hotkey = { modifiers = mods, key = "e" } },
+					sixthTopCenter = { hotkey = { modifiers = mods, key = "r" } },
+					sixthTopRight = { hotkey = { modifiers = mods, key = "t" } },
+					sixthBottomLeft = { hotkey = { modifiers = mods, key = "d" } },
+					sixthBottomCenter = { hotkey = { modifiers = mods, key = "f" } },
+					sixthBottomRight = { hotkey = { modifiers = mods, key = "g" } },
 				},
 				behavior = {
 					cursor = {
