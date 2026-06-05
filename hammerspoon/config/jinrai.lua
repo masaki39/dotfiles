@@ -16,16 +16,11 @@ spoon.SpoonInstall:andUse("Jinrai", {
 				hotkey = { modifiers = hyper, key = "j" },
 				hint = {
 					prefixOverrides = {
-						{
-							match = { bundleID = "com.google.Chrome" },
-							prefix = "B",
-						},
+						{ match = { bundleID = "com.google.Chrome" }, prefix = "B" },
 					},
 				},
 				navigation = {
-					focusBack = {
-						key = "tab",
-					},
+					focusBack = { key = "tab" },
 					direction = {
 						hints = {
 							keys = {
@@ -36,6 +31,7 @@ spoon.SpoonInstall:andUse("Jinrai", {
 							},
 						},
 					},
+					windowMover = { moveToSelectedArea = { key = "space" } },
 				},
 			},
 			focus_back = { hotkey = { modifiers = hyper, key = "tab" } },
@@ -103,6 +99,8 @@ spoon.SpoonInstall:andUse("Jinrai", {
 							twoThirdsRight = ";o",
 						},
 					},
+					actions = { closeWindow = "x" },
+					windowHints = { key = "space" },
 				},
 			},
 			jinrai_mode = {
