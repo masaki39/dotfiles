@@ -4,6 +4,8 @@ import {
   writeToProfile,
   toKey,
   toHyper,
+  toSetVar,
+  ifVar,
 } from 'karabiner.ts'
 
 writeToProfile('Default profile', [
@@ -31,6 +33,19 @@ writeToProfile('Default profile', [
 
   rule('Disable Caps Lock').manipulators([
     map('caps_lock', undefined, 'any').to('vk_none'),
+  ]),
+
+  rule('Escape to Eisuu').manipulators([
+    map('escape').to([toKey('escape'), toKey('japanese_eisuu')]),
+  ]),
+
+  rule('Ctrl+Space IME Toggle').manipulators([
+    map('spacebar', 'control')
+      .condition(ifVar('ime_kana', 0))
+      .to([toKey('japanese_kana'), toSetVar('ime_kana', 1)]),
+    map('spacebar', 'control')
+      .condition(ifVar('ime_kana', 1))
+      .to([toKey('japanese_eisuu'), toSetVar('ime_kana', 0)]),
   ]),
 
 ])
