@@ -8,11 +8,6 @@ import {
 
 writeToProfile('Default profile', [
 
-  rule('Input Mode Switching').manipulators([
-    map('j', ['control', 'shift']).to(toKey('japanese_kana')),
-    map('semicolon', ['control', 'shift']).to(toKey('japanese_eisuu')),
-  ]),
-
   rule('Emacs Keybindings').manipulators([
     map('open_bracket', 'control').to([toKey('escape'), toKey('japanese_eisuu')]),
     map('h', 'control').to('delete_or_backspace'),
