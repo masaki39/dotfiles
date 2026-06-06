@@ -1,5 +1,8 @@
 hs.loadSpoon("SpoonInstall")
 spoon.SpoonInstall:andUse("ReloadConfiguration", { start = true })
+screenWatcher = hs.screen.watcher.new(function()
+    hs.timer.doAfter(2, function() hs.reload() end)
+end):start()
 require("config.help")
 require("config.ryoiki")
 require("config.hanten")
