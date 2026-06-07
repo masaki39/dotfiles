@@ -1,8 +1,4 @@
-spoon.SpoonInstall.repos.jinrai = {
-	url = "https://github.com/tadashi-aikawa/jinrai",
-	desc = "JINRAI Spoon repository",
-	branch = "spoons",
-}
+hs.loadSpoon("Jinrai")
 
 local hyper = { "option", "shift", "cmd", "ctrl" }
 local mods = { "option", "ctrl" }
@@ -77,7 +73,9 @@ end
 local function findExternalUUID()
 	for _, s in ipairs(hs.screen.allScreens()) do
 		local uuid = s:getUUID()
-		if uuid ~= internalUUID then return uuid end
+		if uuid ~= internalUUID then
+			return uuid
+		end
 	end
 	return nil
 end
@@ -94,61 +92,60 @@ else
 	screensConfig = { [internalUUID] = base }
 end
 
-spoon.SpoonInstall:andUse("Jinrai", {
-	repo = "jinrai",
-	fn = function(jinrai)
-		jinrai:setup({
-			focus_border = {},
-			window_hints = {
-				hotkey = { modifiers = hyper, key = "j" },
-				hint = {
-					prefixOverrides = {
-						{ match = { bundleID = "com.google.Chrome" }, prefix = "B" },
-					},
-				},
-				navigation = {
-					focusBack = { key = "tab" },
-					direction = {
-						hints = {
-							keys = {
-								left = "h",
-								down = "j",
-								up = "k",
-								right = "l",
-							},
-						},
-					},
-					windowMover = { moveToSelectedArea = { key = "space" } },
-				},
+spoon.Jinrai:setup({
+	focus_border = {},
+	window_hints = {
+		hotkey = { modifiers = hyper, key = "j" },
+		hint = {
+			prefixOverrides = {
+				{ match = { bundleID = "com.google.Chrome" }, prefix = "B" },
 			},
-			focus_back = { hotkey = { modifiers = hyper, key = "tab" } },
-			window_mover = {
-				commands = {
-					moveToNextDisplay = { hotkey = { modifiers = mods, key = "space" } },
-					moveToActiveDisplayFreeArea = { hotkey = { modifiers = mods, key = "tab" } },
-					maximizeWindow = { hotkey = { modifiers = mods, key = "return" } },
-					cycleLeft = { hotkey = { modifiers = mods, key = "h" } },
-					cycleRight = { hotkey = { modifiers = mods, key = "l" } },
-				},
-				behavior = {
-					cursor = {
-						afterMove = true,
-					},
-				},
-				selectedArea = {
-					defaultScreen = internalUUID,
-					screens = screensConfig,
-					actions = { closeWindow = "x" },
-					windowHints = { key = "space" },
-				},
-			},
-			jinrai_mode = {
-				triggers = {
-					windowHints = {
-						key = "m",
+		},
+		navigation = {
+			focusBack = { key = "tab" },
+			direction = {
+				hints = {
+					keys = {
+						left = "h",
+						down = "j",
+						up = "k",
+						right = "l",
 					},
 				},
 			},
-		})
-	end,
+			windowMover = { moveToSelectedArea = { key = "space" } },
+		},
+	},
+	focus_back = { hotkey = { modifiers = hyper, key = "tab" } },
+	window_mover = {
+		commands = {
+			moveToNextDisplay = { hotkey = { modifiers = mods, key = "space" } },
+			moveToActiveDisplayFreeArea = { hotkey = { modifiers = mods, key = "tab" } },
+			maximizeWindow = { hotkey = { modifiers = mods, key = "return" } },
+			cycleLeft = { hotkey = { modifiers = mods, key = "h" } },
+			cycleRight = { hotkey = { modifiers = mods, key = "l" } },
+		},
+		behavior = {
+			cursor = {
+				afterMove = true,
+			},
+		},
+		selectedArea = {
+			defaultScreen = internalUUID,
+			screens = screensConfig,
+			actions = { closeWindow = "x" },
+			windowHints = { key = "space" },
+		},
+	},
+	jinrai_mode = {
+		triggers = {
+			windowHints = {
+				key = "m",
+			},
+		},
+		combo = {
+			character = { enabled = true }, -- 迅雷ちゃんのミニキャラ画像を表示
+			text = { enabled = true }, -- 『● Combo』のテキストを表示
+		},
+	},
 })
