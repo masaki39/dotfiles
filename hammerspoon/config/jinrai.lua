@@ -7,11 +7,12 @@ local internalUUID = "37D8832A-2D66-02CA-B9F7-8F30A301B230"
 local prefix = ";"
 
 -- selectedAreaキーマップ設計方針:
--- - vim方向キーの一貫性を最優先: h=左, l=右, k=上, j=下, i=水平中央, m=垂直中央
+-- - vim方向キーの一貫性を最優先: h=左, l=右, k=上, j=下, i=水平中央, ,=垂直中央
 -- - 単一文字: よく使うポジション(halves/quarters2x2/sixths/twoThirds水平)
 -- - 2文字シーケンス: 数字プレフィックス(3=thirds, 2=twoThirds, 4=4等分)
 -- - 将来の追加・変更はこの方針に従うこと
 local base = {
+	freeArea = "f",
 	-- Full
 	full = "a",
 	-- Halves
@@ -20,19 +21,19 @@ local base = {
 	halfHorizontalCenter = "i",
 	halfTop = "k",
 	halfBottom = "j",
-	halfVerticalCenter = "m",
+	halfVerticalCenter = ",",
 	-- Quarters (2x2)
 	quarterTopLeft = "u",
 	quarterTopRight = "o",
-	quarterBottomLeft = "n",
-	quarterBottomRight = ",",
+	quarterBottomLeft = "m",
+	quarterBottomRight = ".",
 	-- Sixths (2x3)
 	sixthTopLeft = "6u",
 	sixthTopCenter = "6i",
 	sixthTopRight = "6o",
-	sixthBottomLeft = "6n",
-	sixthBottomCenter = "6m",
-	sixthBottomRight = "6,",
+	sixthBottomLeft = "6m",
+	sixthBottomCenter = "6,",
+	sixthBottomRight = "6.",
 	-- Two-thirds horizontal (2: prefix)
 	twoThirdsLeft = "2h",
 	twoThirdsHorizontalCenter = "2i",
@@ -42,52 +43,43 @@ local base = {
 	thirdHorizontalCenter = "3i",
 	thirdRight = "3l",
 	thirdTop = "3k",
-	thirdVerticalCenter = "3m",
+	thirdVerticalCenter = "3,",
 	thirdBottom = "3j",
 	-- Two-thirds vertical (2: prefix)
 	twoThirdsTop = "2k",
-	twoThirdsVerticalCenter = "2m",
+	twoThirdsVerticalCenter = "2,",
 	twoThirdsBottom = "2j",
-	-- Quarter strips horizontal (4: prefix, h/i/o/l = outer-left to outer-right)
+	-- Quarter strips horizontal (4: prefix, h/u/i/l = outer-left to outer-right)
 	quarterLeft = "4h",
 	quarterHorizontalLeftCenter = "4u",
 	quarterHorizontalRightCenter = "4i",
 	quarterRight = "4l",
-	-- Quarter strips vertical (p: prefix, portrait)
-	quarterTop = "4p",
-	quarterVerticalTopCenter = "4k",
-	quarterVerticalBottomCenter = "4j",
-	quarterBottom = "4n",
+	-- Quarter strips vertical (4: prefix, k/,/m/j = outer-top to outer-bottom)
+	quarterTop = "4k",
+	quarterVerticalTopCenter = "4,",
+	quarterVerticalBottomCenter = "4m",
+	quarterBottom = "4j",
 }
 
-local function withPrefix(keys, p)
-	local result = {}
-	for k, v in pairs(keys) do
-		if #v == 1 then
-			result[k] = p .. v
-		end -- 2文字シーケンスは3文字になるためスキップ
+local externalUUID
+for _, s in ipairs(hs.screen.allScreens()) do
+	local uuid = s:getUUID()
+	if uuid ~= internalUUID then
+		externalUUID = uuid
+		break
 	end
-	return result
-end
-
-local function findExternalUUID()
-	for _, s in ipairs(hs.screen.allScreens()) do
-		local uuid = s:getUUID()
-		if uuid ~= internalUUID then
-			return uuid
-		end
-	end
-	return nil
 end
 
 local screensConfig
-local externalUUID = findExternalUUID()
 if externalUUID then
 	-- 外付けあり: 外付け=全アクション, 内蔵=単一文字のみ+プレフィックス
-	screensConfig = {
-		[internalUUID] = withPrefix(base, prefix),
-		[externalUUID] = base,
-	}
+	local prefixed = {}
+	for k, v in pairs(base) do
+		if #v == 1 then
+			prefixed[k] = prefix .. v
+		end
+	end
+	screensConfig = { [internalUUID] = prefixed, [externalUUID] = base }
 else
 	screensConfig = { [internalUUID] = base }
 end
