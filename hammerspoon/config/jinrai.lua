@@ -7,7 +7,7 @@ local internalUUID = "37D8832A-2D66-02CA-B9F7-8F30A301B230"
 local prefix = ";"
 
 -- selectedAreaキーマップ設計方針:
--- - vim方向キーの一貫性を最優先: h=左, l=右, k=上, j=下, c=水平中央, v=垂直中央
+-- - vim方向キーの一貫性を最優先: h=左, l=右, k=上, j=下, i=水平中央, m=垂直中央
 -- - 単一文字: よく使うポジション(halves/quarters2x2/sixths/twoThirds水平)
 -- - 2文字シーケンス: 数字プレフィックス(3=thirds, 2=twoThirds, 4=4等分)
 -- - 将来の追加・変更はこの方針に従うこと
@@ -17,41 +17,41 @@ local base = {
 	-- Halves
 	halfLeft = "h",
 	halfRight = "l",
-	halfHorizontalCenter = "c",
+	halfHorizontalCenter = "i",
 	halfTop = "k",
 	halfBottom = "j",
-	halfVerticalCenter = "v",
+	halfVerticalCenter = "m",
 	-- Quarters (2x2)
 	quarterTopLeft = "u",
-	quarterTopRight = "i",
+	quarterTopRight = "o",
 	quarterBottomLeft = "n",
-	quarterBottomRight = "m",
+	quarterBottomRight = ",",
 	-- Sixths (2x3)
-	sixthTopLeft = "e",
-	sixthTopCenter = "r",
-	sixthTopRight = "t",
-	sixthBottomLeft = "d",
-	sixthBottomCenter = "f",
-	sixthBottomRight = "g",
+	sixthTopLeft = "6u",
+	sixthTopCenter = "6i",
+	sixthTopRight = "6o",
+	sixthBottomLeft = "6n",
+	sixthBottomCenter = "6m",
+	sixthBottomRight = "6,",
 	-- Two-thirds horizontal (2: prefix)
 	twoThirdsLeft = "2h",
-	twoThirdsHorizontalCenter = "2c",
+	twoThirdsHorizontalCenter = "2i",
 	twoThirdsRight = "2l",
 	-- Thirds (3: prefix)
 	thirdLeft = "3h",
-	thirdHorizontalCenter = "3c",
+	thirdHorizontalCenter = "3i",
 	thirdRight = "3l",
 	thirdTop = "3k",
-	thirdVerticalCenter = "3v",
+	thirdVerticalCenter = "3m",
 	thirdBottom = "3j",
 	-- Two-thirds vertical (2: prefix)
 	twoThirdsTop = "2k",
-	twoThirdsVerticalCenter = "2v",
+	twoThirdsVerticalCenter = "2m",
 	twoThirdsBottom = "2j",
 	-- Quarter strips horizontal (4: prefix, h/i/o/l = outer-left to outer-right)
 	quarterLeft = "4h",
-	quarterHorizontalLeftCenter = "4i",
-	quarterHorizontalRightCenter = "4o",
+	quarterHorizontalLeftCenter = "4u",
+	quarterHorizontalRightCenter = "4i",
 	quarterRight = "4l",
 	-- Quarter strips vertical (p: prefix, portrait)
 	quarterTop = "4p",
