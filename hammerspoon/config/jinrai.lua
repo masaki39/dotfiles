@@ -116,11 +116,10 @@ spoon.Jinrai:setup({
 			maximizeWindow = { hotkey = { modifiers = mods, key = "return" } },
 			cycleLeft = { hotkey = { modifiers = mods, key = "h" } },
 			cycleRight = { hotkey = { modifiers = mods, key = "l" } },
+			moveToSelectedAreaInJinraiMode = { hotkey = { modifiers = hyper, key = "m" } },
 		},
 		behavior = {
-			cursor = {
-				afterMove = true,
-			},
+			cursor = { afterMove = true },
 		},
 		selectedArea = {
 			defaultScreen = internalUUID,
