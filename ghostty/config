@@ -14,7 +14,6 @@ maximize = true
 unfocused-split-opacity = 0.5
 # unfocused-split-fill = #a9b1d6
 split-divider-color = #7aa2f7
-background-opacity=0.9
 # confirm-close-surface=false
 keybind = alt+right=unbind
 keybind = alt+left=unbind
