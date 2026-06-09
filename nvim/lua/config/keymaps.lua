@@ -10,3 +10,6 @@ map({ "n", "v", "i" }, "<RightMouse>", "<Nop>", {})
 -- Insert mode: visual line movement (wrap-aware)
 map("i", "<Up>", "<C-o>gk", { desc = "Move Up (visual)" })
 map("i", "<Down>", "<C-o>gj", { desc = "Move Down (visual)" })
+
+-- Ctrl+Q to quit (IME reset is handled by VimLeave autocmd)
+map({ "n", "i", "v" }, "<C-q>", "<cmd>q<cr>", { desc = "Quit" })
