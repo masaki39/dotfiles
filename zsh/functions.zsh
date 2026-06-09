@@ -1,21 +1,28 @@
-# ghq fzf
-function gv() {
+# ghq / gh fzf
+function g() {
   local root=$(ghq root)
-  local target=$(ghq list | fzf \
-    --preview "eza --tree --color=always --icons --level=2 '$root/{}'" \
-    --preview-window=right:60%)
-  if [ -n "$target" ]; then
-    cd "$root/$target"
-  fi
+  local result=$(ghq list | fzf \
+    --prompt "ghq> " \
+    --header "Enter:cd  C-g:GitHub" \
+    --layout=reverse \
+    --border=rounded \
+    --height=80% \
+    --preview "eza --tree --color=always --icons --level=2 --git-ignore '$root/{}'" \
+    --preview-window=right:40%:border-left \
+    --bind "ctrl-g:execute-silent(gh repo view --web {})")
+  [ -n "$result" ] && cd "$root/$result"
 }
 
 function gb() {
-  local selected=$(gh repo list --limit 100 --json nameWithOwner --jq '.[].nameWithOwner' | \
-    fzf --prompt "gh repo: " \
-        --preview "gh repo view {} | bat --color=always --style=plain --language=markdown" \
-        --preview-window=right:60%:wrap)
-
-  [ -n "$selected" ] && gh repo view -w "$selected"
+  local selected=$(gh repo list --limit 100 --json nameWithOwner --jq '.[].nameWithOwner' | fzf \
+    --prompt "gh> " \
+    --header "Enter:open" \
+    --layout=reverse \
+    --border=rounded \
+    --height=80% \
+    --preview "gh repo view {} | bat --color=always --style=plain --language=markdown" \
+    --preview-window=right:40%:border-left:wrap)
+  [ -n "$selected" ] && gh repo view --web "$selected"
 }
 
 # devcontainer
