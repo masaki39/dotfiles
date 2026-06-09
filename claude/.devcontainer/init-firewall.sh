@@ -68,8 +68,8 @@ for domain in \
     "registry.npmjs.org" \
     "api.anthropic.com" \
     "sentry.io" \
-    "statsig.anthropic.com" \
     "statsig.com" \
+    "api.statsig.com" \
     "marketplace.visualstudio.com" \
     "vscode.blob.core.windows.net" \
     "update.code.visualstudio.com"; do
@@ -86,7 +86,7 @@ for domain in \
             exit 1
         fi
         echo "Adding $ip for $domain"
-        ipset add allowed-domains "$ip"
+        ipset add allowed-domains "$ip" 2>/dev/null || true
     done < <(echo "$ips")
 done
 

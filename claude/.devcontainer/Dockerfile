@@ -1,4 +1,4 @@
-FROM node:20
+FROM node:lts
 
 ARG TZ
 ENV TZ="$TZ"
