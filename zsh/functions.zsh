@@ -56,7 +56,7 @@ function dvcc() {
 }
 
 # dev layout (yazi + lazygit | claude + terminal)
-function dev() {
+function d() {
   osascript << 'EOF'
 tell application "Ghostty"
   set mainTerm to focused terminal of selected tab of front window
