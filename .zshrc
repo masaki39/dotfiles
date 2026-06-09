@@ -1,5 +1,5 @@
 # PATH
-export BREW_PREFIX="$(brew --prefix)"
+export BREW_PREFIX="/opt/homebrew"
 export PATH="$BREW_PREFIX/bin:$PATH"
 export EDITOR='nvim'
 export VISUAL='nvim'
@@ -27,7 +27,8 @@ bindkey '^[[A' up-line-or-beginning-search
 bindkey '^[[B' down-line-or-beginning-search
 
 # plugins
-source <(fzf --zsh)
+[[ -f ~/.cache/fzf-zsh.zsh ]] || fzf --zsh > ~/.cache/fzf-zsh.zsh
+source ~/.cache/fzf-zsh.zsh
 export FZF_DEFAULT_COMMAND='fd --type f'
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
