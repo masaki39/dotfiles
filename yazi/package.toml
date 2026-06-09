@@ -10,8 +10,8 @@ hash = "2eca70f99d25c661e0a92000843d001e"
 
 [[plugin.deps]]
 use = "masaki39/ghq"
-rev = "488f7f4"
-hash = "146472f90631578a7b8186e040b88302"
+rev = "1b9526c"
+hash = "f19a25faa72415bc3e041c15c97fadd9"
 
 [[plugin.deps]]
 use = "masaki39/fd-fzf"
@@ -35,18 +35,18 @@ hash = "e1750a93725e27d877430690628ebaff"
 
 [[plugin.deps]]
 use = "masaki39/git"
-rev = "3b2715e"
-hash = "62eac97b397e0590d381df53abed5404"
+rev = "2f72da1"
+hash = "ab9df3b5436af53de798d9d887bdadcd"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
-rev = "4ffa48f"
-hash = "eff8ff12fa4e5f035a10d8aeeb4c258d"
+rev = "598cdb6"
+hash = "7b625412411be411153886894d9acaf"
 
 [[plugin.deps]]
 use = "masaki39/ghostty-split"
-rev = "003d088"
-hash = "9cb0be2c432ef6b8153bee2d0dd3bc0c"
+rev = "9f85aff"
+hash = "eedd2937398ebe8bac9be34b77871011"
 
 [flavor]
 deps = []
