@@ -1,5 +1,5 @@
 # ghq / gh fzf
-function g() {
+function gv() {
   local root=$(ghq root)
   local result=$(ghq list | fzf \
     --prompt "ghq> " \

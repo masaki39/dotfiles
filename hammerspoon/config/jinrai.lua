@@ -6,11 +6,6 @@ local mods = { "option", "ctrl" }
 local internalUUID = "37D8832A-2D66-02CA-B9F7-8F30A301B230"
 local prefix = ";"
 
--- selectedAreaキーマップ設計方針:
--- - vim方向キーの一貫性を最優先: h=左, l=右, k=上, j=下, i=水平中央, ,=垂直中央
--- - 単一文字: よく使うポジション(halves/quarters2x2/sixths/twoThirds水平)
--- - 2文字シーケンス: 数字プレフィックス(3=thirds, 2=twoThirds, 4=4等分)
--- - 将来の追加・変更はこの方針に従うこと
 local base = {
 	freeArea = "f",
 	-- Full
@@ -59,6 +54,9 @@ local base = {
 	quarterVerticalTopCenter = "4,",
 	quarterVerticalBottomCenter = "4m",
 	quarterBottom = "4j",
+	-- center
+	threeQuartersCenter = "qc",
+	twoThirdsCenter = "2c",
 }
 
 local externalUUID
@@ -72,12 +70,9 @@ end
 
 local screensConfig
 if externalUUID then
-	-- 外付けあり: 外付け=全アクション, 内蔵=単一文字のみ+プレフィックス
 	local prefixed = {}
 	for k, v in pairs(base) do
-		if #v == 1 then
-			prefixed[k] = prefix .. v
-		end
+		prefixed[k] = prefix .. v
 	end
 	screensConfig = { [internalUUID] = prefixed, [externalUUID] = base }
 else
