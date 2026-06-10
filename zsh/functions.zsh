@@ -4,9 +4,7 @@ function gv() {
   local result=$(ghq list | fzf \
     --prompt "ghq> " \
     --header "Enter:cd  C-g:GitHub" \
-    --layout=reverse \
     --border=rounded \
-    --height=80% \
     --preview "eza --tree --color=always --icons --level=2 --git-ignore '$root/{}'" \
     --preview-window=right:40%:border-left \
     --bind "ctrl-g:execute-silent(gh repo view --web {})")
@@ -17,9 +15,7 @@ function gb() {
   local selected=$(gh repo list --limit 100 --json nameWithOwner --jq '.[].nameWithOwner' | fzf \
     --prompt "gh> " \
     --header "Enter:open" \
-    --layout=reverse \
     --border=rounded \
-    --height=80% \
     --preview "gh repo view {} | bat --color=always --style=plain --language=markdown" \
     --preview-window=right:40%:border-left:wrap)
   [ -n "$selected" ] && gh repo view --web "$selected"
