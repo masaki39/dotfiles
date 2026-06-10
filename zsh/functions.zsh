@@ -2,22 +2,13 @@
 function gv() {
   local root=$(ghq root)
   local result=$(ghq list | fzf \
-    --prompt "ghq> " \
-    --header "Enter:cd  C-g:GitHub" \
-    --border=rounded \
-    --preview "eza --tree --color=always --icons --level=2 --git-ignore '$root/{}'" \
-    --preview-window=right:40%:border-left \
-    --bind "ctrl-g:execute-silent(gh repo view --web {})")
+    --preview "eza -TL 2 --color=always --icons --git-ignore '$root/{}'")
   [ -n "$result" ] && cd "$root/$result"
 }
 
 function gb() {
   local selected=$(gh repo list --limit 100 --json nameWithOwner --jq '.[].nameWithOwner' | fzf \
-    --prompt "gh> " \
-    --header "Enter:open" \
-    --border=rounded \
-    --preview "gh repo view {} | bat --color=always --style=plain --language=markdown" \
-    --preview-window=right:40%:border-left:wrap)
+    --preview "gh repo view {} | bat --color=always --style=plain --language=markdown")
   [ -n "$selected" ] && gh repo view --web "$selected"
 }
 
@@ -51,20 +42,17 @@ function dvcc() {
 	devcontainer exec --workspace-folder . "${config_args[@]}" claude --permission-mode plan --allow-dangerously-skip-permissions
 }
 
-# dev layout (yazi + lazygit | claude + terminal)
-function d() {
+# dev layout
+function dev() {
   osascript << 'EOF'
 tell application "Ghostty"
   set mainTerm to focused terminal of selected tab of front window
-  set rightTop to split mainTerm direction right
-  set leftBottom to split mainTerm direction down
-  set rightBottom to split rightTop direction down
-  perform action "resize_split:down,9999" on rightBottom
-  perform action "resize_split:up,100" on rightBottom
+  set cmdTerm to split mainTerm direction right
+  set gitTerm to split cmdTerm direction down
   input text "yazi\n" to mainTerm
-  input text "lazygit\n" to leftBottom
-  input text "claude\n" to rightTop
-  tell rightTop to focus
+  input text "claude\n" to cmdTerm
+  input text "lazygit\n" to gitTerm
+  tell mainTerm to focus
 end tell
 EOF
 }
