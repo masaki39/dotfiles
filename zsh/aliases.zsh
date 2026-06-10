@@ -1,6 +1,7 @@
 alias ze="$EDITOR $HOME/.zshrc"
 alias zs="source $HOME/.zshrc"
 alias ls='eza --icons --group-directories-first'
+alias lt='eza --icons --group-directories-first --git-ignore -DTL 3'
 alias gr='cd "$(git rev-parse --show-toplevel 2>/dev/null || pwd)"'
 alias gg="lazygit"
 alias dstop='docker stop $(docker ps -q)'
