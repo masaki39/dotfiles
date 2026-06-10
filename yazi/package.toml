@@ -10,8 +10,8 @@ hash = "2eca70f99d25c661e0a92000843d001e"
 
 [[plugin.deps]]
 use = "masaki39/ghq"
-rev = "1b9526c"
-hash = "f19a25faa72415bc3e041c15c97fadd9"
+rev = "488f7f4"
+hash = "146472f90631578a7b8186e040b88302"
 
 [[plugin.deps]]
 use = "masaki39/fd-fzf"
