@@ -30,8 +30,16 @@ ln -sf "$DOTFILES/zsh" ~/.config/zsh
 ln -sf "$DOTFILES/lazygit" ~/.config/lazygit
 ln -sf "$DOTFILES/pnpm" ~/.config/pnpm
 ln -sf "$DOTFILES/uv" ~/.config/uv
-ln -sf "$DOTFILES/claude" ~/.claude
+ln -sf "$DOTFILES/claude/settings.json" ~/.claude/settings.json
+ln -sf "$DOTFILES/claude/CLAUDE.md" ~/.claude/CLAUDE.md
+ln -sf "$DOTFILES/claude/statusline.sh" ~/.claude/statusline.sh
+ln -sf "$DOTFILES/claude/skills" ~/.claude/skills
+mkdir -p ~/.config/karabiner
 ln -sf "$DOTFILES/karabiner/karabiner.json" ~/.config/karabiner/karabiner.json
+if [ ! -s "$DOTFILES/karabiner/karabiner.json" ]; then
+  echo '{"profiles":[{"name":"Default profile","complex_modifications":{"rules":[]}}]}' > "$DOTFILES/karabiner/karabiner.json"
+fi
+cd "$DOTFILES/karabiner" && pnpm build
 
 # starship prompt preset
 starship preset jetpack -o ~/.config/starship.toml
