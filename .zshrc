@@ -53,6 +53,9 @@ source "$BREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 source ~/.config/zsh/aliases.zsh
 source ~/.config/zsh/functions.zsh
 source ~/.config/zsh/env.zsh
+# ghq-fzf
+export GHQ_FZF_FUNC='gv'
+source /opt/homebrew/share/ghq-fzf/init.zsh
 
 # zsh-syntax-highlighting (must be last)
 source "$BREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
