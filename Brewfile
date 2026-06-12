@@ -79,6 +79,8 @@ brew "masaki39/tap/ghq-fzf"
 brew "masaki39/tap/typewriter"
 # Memory training application
 cask "anki"
+# Fujitsu ScanSnap Scanner software
+cask "fujitsu-scansnap-home"
 # Terminal emulator that uses platform-native UI and GPU acceleration
 cask "ghostty"
 # Web browser

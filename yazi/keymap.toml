@@ -46,7 +46,7 @@ desc = "Copy to Downloads"
 
 [[mgr.prepend_keymap]]
 on = ["g", "p"]
-run = 'shell -- ya emit cd "/Users/masaki/pCloud Drive"'
+run = 'shell -- ya emit cd "/Users/masaki39/pCloud Drive"'
 desc = "Go to pCloud"
 
 [[mgr.prepend_keymap]]
