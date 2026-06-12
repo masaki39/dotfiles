@@ -30,6 +30,21 @@ bindkey '^[[B' down-line-or-beginning-search
 [[ -f ~/.cache/fzf-zsh.zsh ]] || fzf --zsh > ~/.cache/fzf-zsh.zsh
 source ~/.cache/fzf-zsh.zsh
 export FZF_DEFAULT_COMMAND='fd --type f'
+export FZF_DEFAULT_OPTS="
+  --prompt='🔍️'
+  --ghost='search...'
+  --layout=reverse
+  --style full:double
+  --border
+  --highlight-line
+  --cycle
+  --tiebreak=index
+  --info=right
+  --info-command=''
+  --separator='―'
+  --border-label ' FZF ' --list-label ' Result ' --preview-label ' Preview '
+  --color 'bg:#1a1b26,bg+:#24283b,fg:#c0caf5,fg+:#c0caf5,hl:#7aa2f7,hl+:#7dcfff,border:#7aa2f7,label:#7aa2f7,list-border:#9ece6a,list-label:#9ece6a,preview-border:#bb9af7,preview-label:#bb9af7,input-border:#7dcfff,input-label:#7dcfff,header-border:#e0af68,header-label:#e0af68,footer:#f7768e,footer-border:#f7768e,footer-label:#f7768e,pointer:#ff9e64,marker:#9ece6a,gutter:#1a1b26,prompt:#7aa2f7,query:#c0caf5,info:#c0caf5,spinner:#ff9e64'
+"
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
 source "$BREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"

@@ -1,15 +1,18 @@
-# ghq / gh fzf
+# ghq fzf
 function gv() {
   local root=$(ghq root)
   local result=$(ghq list | fzf \
-    --preview "eza -TL 2 --color=always --icons --git-ignore '$root/{}'")
+    --preview "eza -TL 2 --color=always --icons --git-ignore '$root/{}'" \
+    --list-label ' Result ' --preview-label ' Eza Preview ' \
+    --border-label ' GHQ ' \
+    --info-command='echo "$(echo {} | cut -d/ -f3-)  $FZF_MATCH_COUNT/$FZF_TOTAL_COUNT"' \
+    --header $'^O: open in browser' --header-label ' Keys ' \
+    --bind "start:transform-footer(git -C '$root/{}' log -1 --format=' last updated %cr' 2>/dev/null)" \
+    --bind "focus:transform-footer(git -C '$root/{}' log -1 --format=' last updated %cr' 2>/dev/null)" \
+    --bind "zero:transform-footer(echo ' no results')" \
+    --bind "ctrl-o:execute(cd '$root/{}' && gh repo view --web >/dev/null 2>&1 && echo 'Browser opened' || { echo 'No remote configured'; read -k1 '?[press any key]' })" \
+  )
   [ -n "$result" ] && cd "$root/$result"
-}
-
-function gb() {
-  local selected=$(gh repo list --limit 100 --json nameWithOwner --jq '.[].nameWithOwner' | fzf \
-    --preview "gh repo view {} | bat --color=always --style=plain --language=markdown")
-  [ -n "$selected" ] && gh repo view --web "$selected"
 }
 
 # devcontainer
