@@ -1,5 +1,6 @@
 hs.loadSpoon("SpoonInstall")
 spoon.SpoonInstall:andUse("ReloadConfiguration", { start = true })
+hs.alert.show("Hammerspoon reloaded")
 screenWatcher = hs.screen.watcher.new(function()
     hs.timer.doAfter(2, function() hs.reload() end)
 end):start()

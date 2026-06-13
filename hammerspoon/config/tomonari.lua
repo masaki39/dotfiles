@@ -5,6 +5,9 @@ spoon.SpoonInstall.repos.tomonari = {
 }
 spoon.SpoonInstall:andUse("Tomonari", {
 	repo = "tomonari",
-	config = { menubarIcon = "⌨️" },
+	config = { menubarIcon = "⌨️", menubarHidden = true },
+	hotkeys = {
+		showMenu = { { "ctrl", "alt", "shift", "cmd" }, "t" },
+	},
 	start = true,
 })
