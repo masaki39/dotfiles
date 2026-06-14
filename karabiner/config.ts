@@ -13,7 +13,6 @@ writeToProfile('Default profile', [
   rule('Emacs Keybindings').manipulators([
     map('open_bracket', 'control').to([toKey('escape'), toKey('japanese_eisuu')]),
     map('h', 'control').to('delete_or_backspace'),
-    map('d', 'control').to('delete_forward'),
     map('p', 'control').to('up_arrow'),
     map('n', 'control').to('down_arrow'),
     map('f', 'control').to('right_arrow'),
