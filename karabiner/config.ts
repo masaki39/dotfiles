@@ -25,6 +25,11 @@ writeToProfile('Default profile', [
     map('l', ['command', 'option']).to('right_arrow', ['command', 'option']),
   ]),
 
+  rule('Input Mode Switch').manipulators([
+    map('j', ['control', 'shift']).to('japanese_kana'),
+    map('semicolon', ['control', 'shift']).to('japanese_eisuu'),
+  ]),
+
   rule('Semicolon Hyper').manipulators([
     map('semicolon', undefined, 'any')
       .to(toHyper())
