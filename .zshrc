@@ -17,7 +17,7 @@ setopt SHARE_HISTORY         # セッション間で履歴を共有
 # edit-command-line (Esc -> e)
 autoload -Uz edit-command-line
 zle -N edit-command-line
-bindkey '\ee' edit-command-line
+bindkey '^G' edit-command-line
 
 # beginning search history ( up-line and down-line )
 autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
