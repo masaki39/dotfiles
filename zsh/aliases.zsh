@@ -10,6 +10,7 @@ alias p='nvim "/tmp/prompt_$(date +%Y%m%d%H%M%S).md" -c startinsert -c "autocmd 
 alias ghi='gh search issues --owner @me --state open'
 alias ghp='gh search prs --owner @me --state open'
 alias cl='claude'
+alias n='nvim'
 
 # expand alias on enter (must be after plugins)
 expand-alias-and-accept-line() {
