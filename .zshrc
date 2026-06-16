@@ -27,8 +27,7 @@ bindkey '^[[A' up-line-or-beginning-search
 bindkey '^[[B' down-line-or-beginning-search
 
 # plugins
-[[ -f ~/.cache/fzf-zsh.zsh ]] || fzf --zsh > ~/.cache/fzf-zsh.zsh
-source ~/.cache/fzf-zsh.zsh
+source <(fzf --zsh)
 export FZF_DEFAULT_COMMAND='fd --type f'
 export FZF_DEFAULT_OPTS="
   --prompt='🔍️'
