@@ -2,8 +2,6 @@
 !.gitignore
 !settings.json
 !statusline.sh
-!skills/
-!skills/**
 !.devcontainer/
 !.devcontainer/*
 !CLAUDE.md
