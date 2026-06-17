@@ -4,6 +4,8 @@
 !statusline.sh
 !skills/
 !skills/**
+!output-styles/
+!output-styles/**
 !.devcontainer/
 !.devcontainer/*
 !CLAUDE.md
