@@ -3,6 +3,7 @@
 set -e
 
 DOTFILES="$HOME/ghq/github.com/masaki39/dotfiles"
+STATUSLINE_REPO="$HOME/ghq/github.com/masaki39/ClaudeCodeStatusLine"
 
 # Install Homebrew if not installed
 if ! command -v brew &>/dev/null; then
@@ -32,7 +33,10 @@ ln -sf "$DOTFILES/pnpm" ~/.config/pnpm
 ln -sf "$DOTFILES/uv" ~/.config/uv
 ln -sf "$DOTFILES/claude/settings.json" ~/.claude/settings.json
 ln -sf "$DOTFILES/claude/CLAUDE.md" ~/.claude/CLAUDE.md
-ln -sf "$DOTFILES/claude/statusline.sh" ~/.claude/statusline.sh
+# statusline は別リポジトリ(ClaudeCodeStatusLine fork)で保守。mascot.sh も同階層に必要
+[ -d "$STATUSLINE_REPO" ] || ghq get git@github.com:masaki39/ClaudeCodeStatusLine
+ln -sf "$STATUSLINE_REPO/statusline.sh" ~/.claude/statusline.sh
+ln -sf "$STATUSLINE_REPO/mascot.sh" ~/.claude/mascot.sh
 ln -sf "$DOTFILES/claude/skills" ~/.claude/skills
 mkdir -p ~/.config/karabiner
 ln -sf "$DOTFILES/karabiner/karabiner.json" ~/.config/karabiner/karabiner.json
