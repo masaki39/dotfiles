@@ -36,8 +36,8 @@ writeToProfile('Default profile', [
       .parameters({ 'basic.to_if_alone_timeout_milliseconds': 200 }),
   ]),
 
-  rule('Disable Caps Lock').manipulators([
-    map('caps_lock', undefined, 'any').to('vk_none'),
+  rule('Caps Lock to Control').manipulators([
+    map('caps_lock', undefined, 'any').to('left_control'),
   ]),
 
   rule('Escape to Eisuu').manipulators([
