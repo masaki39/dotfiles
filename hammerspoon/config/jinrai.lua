@@ -119,7 +119,10 @@ spoon.Jinrai:setup({
 		selectedArea = {
 			defaultScreen = internalUUID,
 			screens = screensConfig,
-			actions = { closeWindow = "x" },
+			actions = {
+				closeWindow = "x",
+				detachChromeTabToNewWindow = "t",
+			},
 			windowHints = { key = "space" },
 		},
 	},
