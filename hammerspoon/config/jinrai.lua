@@ -132,10 +132,7 @@ spoon.Jinrai:setup({
 				key = "m",
 			},
 		},
-		combo = {
-			character = { enabled = true },
-			text = { enabled = true },
-		},
+		position = "activeDisplay",
 	},
 	application_hints = {
 		apps = {
