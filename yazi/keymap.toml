@@ -12,10 +12,6 @@ run = "shell 'cb paste' --block"
 desc = "Paste from clipboard"
 
 [[mgr.prepend_keymap]]
-on = "<C-v>"
-run = "shell -- qlmanage -p %s"
-
-[[mgr.prepend_keymap]]
 on = "q"
 run = "plugin confirm-quit"
 
@@ -90,6 +86,11 @@ run = 'shell -- open %h'
 desc = "Open with default app"
 
 [[mgr.prepend_keymap]]
+on = ["o", "p"]
+run = "shell -- qlmanage -p %s"
+desc = "Open with Quick Look"
+
+[[mgr.prepend_keymap]]
 on = ["o", "n"]
 run = "shell 'nvim %h' --block"
 desc = "Open with nvim"
@@ -113,7 +114,3 @@ desc = "Open terminal new tab"
 on = ["o", "w"]
 run = "plugin ghostty-split window"
 desc = "Open terminal new window"
-
-[[mgr.prepend_keymap]]
-on = "n"
-run = "shell 'nvim' --block"
