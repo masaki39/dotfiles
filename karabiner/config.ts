@@ -4,14 +4,11 @@ import {
   writeToProfile,
   toKey,
   toHyper,
-  toSetVar,
-  ifVar,
 } from 'karabiner.ts'
 
 writeToProfile('Default profile', [
 
   rule('Emacs Keybindings').manipulators([
-    map('open_bracket', 'control').to([toKey('escape'), toKey('japanese_eisuu')]),
     map('h', 'control').to('delete_or_backspace'),
     map('p', 'control').to('up_arrow'),
     map('n', 'control').to('down_arrow'),
@@ -22,11 +19,6 @@ writeToProfile('Default profile', [
   rule('Tab Navigation').manipulators([
     map('h', ['command', 'option']).to('left_arrow', ['command', 'option']),
     map('l', ['command', 'option']).to('right_arrow', ['command', 'option']),
-  ]),
-
-  rule('Input Mode Switch').manipulators([
-    map('j', ['control', 'shift']).to('japanese_kana'),
-    map('semicolon', ['control', 'shift']).to('japanese_eisuu'),
   ]),
 
   rule('Semicolon Hyper').manipulators([
