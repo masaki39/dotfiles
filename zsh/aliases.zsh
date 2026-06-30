@@ -11,6 +11,8 @@ alias ghi='gh search issues --owner @me --state open'
 alias ghp='gh search prs --owner @me --state open'
 alias cl='claude'
 alias n='nvim'
+alias nosleep="sudo pmset -a disablesleep 1"
+alias oksleep="sudo pmset -a disablesleep 0"
 
 # expand alias on enter (must be after plugins)
 expand-alias-and-accept-line() {
