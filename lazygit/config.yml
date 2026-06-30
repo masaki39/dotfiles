@@ -3,11 +3,11 @@
 customCommands:
   - command: czg ai
     context: files
-    key: C
+    key: c
     output: terminal
   - command: czg
     context: files
-    key: c
+    key: C
     output: terminal
 gui:
   language: "en"
