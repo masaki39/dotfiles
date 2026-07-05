@@ -1,0 +1,191 @@
+{
+  // Jinrai 設定ファイル(JSONC: コメント・末尾カンマ可)
+  // 各機能はセクションが存在するときだけ有効になります
+  // フォーカス移動時にウィンドウを枠線で強調
+  "focus_border": {},
+  // option+shift+cmd+ctrl+tab で直前のウィンドウへ戻る
+  "focus_back": {
+    "hotkey": {
+      "modifiers": [
+        "option",
+        "shift",
+        "cmd",
+        "ctrl"
+      ],
+      "key": "tab"
+    }
+  },
+  // ウィンドウヒント (option+shift+cmd+ctrl+j)
+  "window_hints": {
+    "hotkey": {
+      "modifiers": [
+        "option",
+        "shift",
+        "cmd",
+        "ctrl"
+      ],
+      "key": "j"
+    },
+    "hint": {
+      "prefixOverrides": [
+        {
+          "match": {
+            "bundleID": "com.google.Chrome"
+          },
+          "prefix": "B"
+        }
+      ]
+    },
+    "navigation": {
+      "focusBack": {
+        "key": "tab"
+      },
+      "direction": {
+        "hints": {
+          "keys": {
+            "left": "h",
+            "down": "j",
+            "up": "k",
+            "right": "l"
+          }
+        }
+      },
+      "windowMover": {
+        "moveToSelectedArea": {
+          "key": "space"
+        }
+      },
+      "applicationHints": {
+        "key": "n",
+        "jinraiMode": true
+      }
+    }
+  },
+  // ウィンドウ移動
+  "window_mover": {
+    "commands": {
+      "moveToNextDisplay": {
+        "hotkey": {
+          "modifiers": [
+            "option",
+            "ctrl"
+          ],
+          "key": "space"
+        }
+      },
+      "moveToActiveDisplayFreeArea": {
+        "hotkey": {
+          "modifiers": [
+            "option",
+            "ctrl"
+          ],
+          "key": "tab"
+        }
+      },
+      "maximizeWindow": {
+        "hotkey": {
+          "modifiers": [
+            "option",
+            "ctrl"
+          ],
+          "key": "return"
+        }
+      },
+      "cycleLeft": {
+        "hotkey": {
+          "modifiers": [
+            "option",
+            "ctrl"
+          ],
+          "key": "h"
+        }
+      },
+      "cycleRight": {
+        "hotkey": {
+          "modifiers": [
+            "option",
+            "ctrl"
+          ],
+          "key": "l"
+        }
+      }
+    },
+    "behavior": {
+      "cursor": {
+        "afterMove": true
+      }
+    },
+    "selectedArea": {
+      // 外部ディスプレイ接続時のデフォルト(外部ディスプレイ用): プレフィックスなし
+      "defaultScreen": {
+        "freeArea": "f",
+        "full": "a",
+        "halfLeft": "h",
+        "halfRight": "l",
+        "halfHorizontalCenter": "i",
+        "quarterTopLeft": "u",
+        "quarterTopRight": "o",
+        "quarterBottomLeft": "m",
+        "quarterBottomRight": ".",
+        "sixthTopLeft": "6u",
+        "sixthTopCenter": "6i",
+        "sixthTopRight": "6o",
+        "sixthBottomLeft": "6m",
+        "sixthBottomCenter": "6,",
+        "sixthBottomRight": "6.",
+        "twoThirdsLeft": "2h",
+        "twoThirdsHorizontalCenter": "2i",
+        "twoThirdsRight": "2l",
+        "thirdLeft": "3h",
+        "thirdHorizontalCenter": "3i",
+        "thirdRight": "3l",
+        "quarterLeft": "4h",
+        "quarterRight": "4l"
+      },
+      // 内蔵ディスプレイ: プレフィックス ";" 付き
+      "screens": {
+        "37D8832A-2D66-02CA-B9F7-8F30A301B230": {
+          "full": "d"
+        }
+      },
+      "actions": {
+        "closeWindow": "x",
+        "detachChromeTabToNewWindow": "t"
+      },
+      "windowHints": {
+        "key": "space"
+      }
+    }
+  },
+  // Jinraiモード
+  "jinrai_mode": {
+    "triggers": {
+      "windowHints": {
+        "key": "m"
+      }
+    },
+    "combo": {
+      "character": {
+        // 操作回数に応じたキャラクター画像を表示します。
+        "enabled": true
+      },
+      "text": {
+        // 継続回数をCOMBOテキストで表示します。
+        "enabled": true
+      }
+    }
+  },
+  // アプリランチャー (Window Hints から "n" キーで開く)
+  "application_hints": {
+    "apps": [
+      {
+        "bundleID": "com.mitchellh.ghostty",
+        "key": "G"
+      },
+      {
+        "bundleID": "com.google.Chrome",
+        "key": "B"
+      }
+    ]
+  }
+}
