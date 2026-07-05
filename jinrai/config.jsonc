@@ -114,8 +114,7 @@
         "afterMove": true
       },
       "freeArea": {
-        // 前面ウィンドウに隠れた背面ウィンドウをfreeArea計算から除外するしきい値です。
-        "hiddenWindowThreshold": 1.1
+        "excludeHiddenWindows": false
       }
     },
   },
@@ -147,7 +146,7 @@
     // 内蔵ディスプレイ: プレフィックス ";" 付き
     "screens": {
       "37D8832A-2D66-02CA-B9F7-8F30A301B230": {
-        "full": "d"
+        "full": "s"
       }
     },
     "actions": {
