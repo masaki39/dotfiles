@@ -119,7 +119,7 @@
     },
   },
   "areaHints": {
-    // 外部ディスプレイ接続時のデフォルト(外部ディスプレイ用): プレフィックスなし
+    // デフォルトの設定(未登録のディスプレイはこれになる)
     "defaultScreen": {
       "freeArea": "f",
       "full": "a",
@@ -146,32 +146,10 @@
     // 内蔵ディスプレイ
     "screens": {
       "37D8832A-2D66-02CA-B9F7-8F30A301B230": {
-        "full": "d",
-        "halfLeft": "s",
-        "halfRight": "f",
-      },
-      "A5F30F68-1D7E-41AE-97C8-2ACAE66D0AFF": {
-        "freeArea": "f",
-        "full": "a",
-        "halfLeft": "h",
-        "halfRight": "l",
-        "halfHorizontalCenter": "i",
-        "quarterTopLeft": "u",
-        "quarterTopRight": "o",
-        "quarterBottomLeft": "m",
-        "quarterBottomRight": ".",
-        "sixthTopLeft": "6u",
-        "sixthTopRight": "6o",
-        "sixthBottomLeft": "6m",
-        "sixthBottomRight": "6.",
-        "twoThirdsLeft": "2h",
-        "twoThirdsHorizontalCenter": "2i",
-        "twoThirdsRight": "2l",
-        "thirdLeft": "3h",
-        "thirdHorizontalCenter": "3i",
-        "thirdRight": "3l",
-        "quarterLeft": "4h",
-        "quarterRight": "4l"
+        // 2枚のディスプレイのときは最大化移動のみ
+        "2": {
+          "full": "s",
+        },
       },
     },
     "actions": {
