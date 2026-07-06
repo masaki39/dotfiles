@@ -143,11 +143,36 @@
       "quarterLeft": "4h",
       "quarterRight": "4l"
     },
-    // 内蔵ディスプレイ: プレフィックス ";" 付き
+    // 内蔵ディスプレイ
     "screens": {
       "37D8832A-2D66-02CA-B9F7-8F30A301B230": {
-        "full": "s"
-      }
+        "full": "d",
+        "halfLeft": "s",
+        "halfRight": "f",
+      },
+      "A5F30F68-1D7E-41AE-97C8-2ACAE66D0AFF": {
+        "freeArea": "f",
+        "full": "a",
+        "halfLeft": "h",
+        "halfRight": "l",
+        "halfHorizontalCenter": "i",
+        "quarterTopLeft": "u",
+        "quarterTopRight": "o",
+        "quarterBottomLeft": "m",
+        "quarterBottomRight": ".",
+        "sixthTopLeft": "6u",
+        "sixthTopRight": "6o",
+        "sixthBottomLeft": "6m",
+        "sixthBottomRight": "6.",
+        "twoThirdsLeft": "2h",
+        "twoThirdsHorizontalCenter": "2i",
+        "twoThirdsRight": "2l",
+        "thirdLeft": "3h",
+        "thirdHorizontalCenter": "3i",
+        "thirdRight": "3l",
+        "quarterLeft": "4h",
+        "quarterRight": "4l"
+      },
     },
     "actions": {
       "closeWindow": "x",
@@ -169,14 +194,34 @@
     "combo": {
       "character": {
         // 操作回数に応じたキャラクター画像を表示します。
-        "enabled": true
+        "enabled": false
       },
       "text": {
         // 継続回数をCOMBOテキストで表示します。
-        "enabled": true
+        "enabled": false
       }
     }
   },
+  "profiles": [
+    {
+      // 自席モニタが接続されているときだけCOMBO演出を有効にします。
+      "displays": [
+        "A5F30F68-1D7E-41AE-97C8-2ACAE66D0AFF"
+      ],
+      "overrides": {
+        "jinraiMode": {
+          "combo": {
+            "character": {
+              "enabled": true
+            },
+            "text": {
+              "enabled": true
+            }
+          }
+        }
+      }
+    }
+  ],
   // アプリランチャー (Window Hints から "n" キーで開く)
   "applicationHints": {
     "apps": [
