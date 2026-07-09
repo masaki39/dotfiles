@@ -217,4 +217,81 @@
       }
     ]
   },
+  "windowLayouts": {
+    "hotkey": {
+      "modifiers": [
+        "ctrl",
+        "alt"
+      ],
+      "key": "m"
+    },
+    "layouts": {
+      "base": {
+        "hotkey": {
+          "modifiers": [
+            "ctrl",
+            "alt"
+          ],
+          "key": "q"
+        },
+        "windows": [
+          {
+            "bundleID": "md.obsidian",
+            "screen": "desk",
+            "area": "halfLeft",
+            "focus": true
+          },
+          {
+            "bundleID": "com.google.Chrome",
+            "screen": "desk",
+            "area": "halfRight"
+          },
+          {
+            "bundleID": "com.mitchellh.ghostty",
+            "screen": "macbook",
+            "area": "full"
+          }
+        ]
+      },
+      "dev": {
+        "hotkey": {
+          "modifiers": [
+            "ctrl",
+            "alt"
+          ],
+          "key": "s"
+        },
+        "windows": [
+          {
+            "bundleID": "com.mitchellh.ghostty",
+            "screen": "desk",
+            "area": "halfHorizontalCenter",
+            "focus": true
+          },
+          {
+            "bundleID": "md.obsidian",
+            "screen": "desk",
+            "area": "quarterLeft"
+          },
+          {
+            "bundleID": "com.google.Chrome",
+            "screen": "desk",
+            "area": "quarterRight"
+          }
+        ]
+      },
+      "maximizeAll": {
+        "hotkey": {
+          "modifiers": [
+            "ctrl",
+            "alt"
+          ],
+          "key": "a"
+        },
+        "unlistedWindows": {
+          "area": "full"
+        }
+      }
+    }
+  },
 }
