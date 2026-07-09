@@ -57,6 +57,10 @@
       "applicationHints": {
         "key": "n",
         "jinraiMode": true
+      },
+      "windowLayouts": {
+        "key": ",",
+        "jinraiMode": true
       }
     }
   },
