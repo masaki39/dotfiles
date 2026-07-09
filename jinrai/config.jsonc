@@ -118,6 +118,10 @@
       }
     },
   },
+  "displayAliases": {
+    "macbook": "37D8832A-2D66-02CA-B9F7-8F30A301B230",
+    "desk": "A5F30F68-1D7E-41AE-97C8-2ACAE66D0AFF"
+  },
   "areaHints": {
     // デフォルトの設定(未登録のディスプレイはこれになる)
     "defaultScreen": {
@@ -145,7 +149,7 @@
     },
     // 内蔵ディスプレイ
     "screens": {
-      "37D8832A-2D66-02CA-B9F7-8F30A301B230": {
+      "macbook": {
         // 2枚のディスプレイのときは最大化移動のみ
         "2": {
           "full": "s",
@@ -184,7 +188,7 @@
     {
       // 自席モニタが接続されているときだけCOMBO演出を有効にします。
       "displays": [
-        "A5F30F68-1D7E-41AE-97C8-2ACAE66D0AFF"
+        "desk"
       ],
       "overrides": {
         "jinraiMode": {
@@ -212,5 +216,82 @@
         "key": "B"
       }
     ]
-  }
+  },
+  "windowLayouts": {
+    "hotkey": {
+      "modifiers": [
+        "ctrl",
+        "alt"
+      ],
+      "key": "m"
+    },
+    "layouts": {
+      "base": {
+        "hotkey": {
+          "modifiers": [
+            "ctrl",
+            "alt"
+          ],
+          "key": "q"
+        },
+        "windows": [
+          {
+            "bundleID": "md.obsidian",
+            "screen": "desk",
+            "area": "halfLeft",
+            "focus": true
+          },
+          {
+            "bundleID": "com.google.Chrome",
+            "screen": "desk",
+            "area": "halfRight"
+          },
+          {
+            "bundleID": "com.mitchellh.ghostty",
+            "screen": "macbook",
+            "area": "full"
+          }
+        ]
+      },
+      "dev": {
+        "hotkey": {
+          "modifiers": [
+            "ctrl",
+            "alt"
+          ],
+          "key": "s"
+        },
+        "windows": [
+          {
+            "bundleID": "com.mitchellh.ghostty",
+            "screen": "desk",
+            "area": "halfHorizontalCenter",
+            "focus": true
+          },
+          {
+            "bundleID": "md.obsidian",
+            "screen": "desk",
+            "area": "quarterLeft"
+          },
+          {
+            "bundleID": "com.google.Chrome",
+            "screen": "desk",
+            "area": "quarterRight"
+          }
+        ]
+      },
+      "maximizeAll": {
+        "hotkey": {
+          "modifiers": [
+            "ctrl",
+            "alt"
+          ],
+          "key": "a"
+        },
+        "unlistedWindows": {
+          "area": "full"
+        }
+      }
+    }
+  },
 }
