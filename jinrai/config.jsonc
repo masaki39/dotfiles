@@ -229,8 +229,9 @@
       ],
       "key": "m"
     },
-    "layouts": {
-      "base": {
+    "layouts": [
+      {
+        "name": "base",
         "hotkey": {
           "modifiers": [
             "ctrl",
@@ -255,9 +256,10 @@
             "screen": "macbook",
             "area": "full"
           }
-        ]
+        ],
       },
-      "dev": {
+      {
+        "name": "dev",
         "hotkey": {
           "modifiers": [
             "ctrl",
@@ -282,9 +284,10 @@
             "screen": "desk",
             "area": "quarterRight"
           }
-        ]
+        ],
       },
-      "maximizeAll": {
+      {
+        "name": "maximizeAll",
         "hotkey": {
           "modifiers": [
             "ctrl",
@@ -296,6 +299,6 @@
           "area": "full"
         }
       }
-    }
+    ],
   },
 }
