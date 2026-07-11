@@ -32,7 +32,7 @@
     "claude-md-management@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {},
-  "effortLevel": "xhigh",
+  "effortLevel": "high",
   "tui": "fullscreen",
   "autoMemoryEnabled": false,
   "skipDangerousModePermissionPrompt": true,
