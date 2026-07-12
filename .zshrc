@@ -58,3 +58,11 @@ source /opt/homebrew/share/ghq-fzf/init.zsh
 
 # zsh-syntax-highlighting (must be last)
 source "$BREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+
+# pnpm
+export PNPM_HOME="/Users/masaki39/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME/bin:"*) ;;
+  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
+esac
+# pnpm end

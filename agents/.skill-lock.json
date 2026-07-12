@@ -1,0 +1,35 @@
+{
+  "version": 3,
+  "skills": {
+    "difit": {
+      "source": "yoshiko-pg/difit",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/yoshiko-pg/difit.git",
+      "skillPath": "skills/difit/SKILL.md",
+      "skillFolderHash": "5ac7df1a4b4a4f67adc699085d1c499b3bedecaa",
+      "installedAt": "2026-07-12T12:10:13.881Z",
+      "updatedAt": "2026-07-12T12:10:13.881Z"
+    },
+    "difit-review": {
+      "source": "yoshiko-pg/difit",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/yoshiko-pg/difit.git",
+      "skillPath": "skills/difit-review/SKILL.md",
+      "skillFolderHash": "dd443b6a580a7188ac1016bc06b6c597bb231beb",
+      "installedAt": "2026-07-12T12:10:13.884Z",
+      "updatedAt": "2026-07-12T12:10:13.884Z"
+    },
+    "find-skills": {
+      "source": "vercel-labs/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/vercel-labs/skills.git",
+      "skillPath": "skills/find-skills/SKILL.md",
+      "skillFolderHash": "76a98a285cb0434f3d39e1a873823556330e398b",
+      "installedAt": "2026-07-12T12:10:19.706Z",
+      "updatedAt": "2026-07-12T12:10:19.706Z"
+    }
+  },
+  "dismissed": {
+    "findSkillsPrompt": true
+  }
+}

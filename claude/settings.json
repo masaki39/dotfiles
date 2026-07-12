@@ -29,7 +29,7 @@
     "command": "~/.claude/statusline.sh"
   },
   "enabledPlugins": {
-    "claude-md-management@claude-plugins-official": true
+    "claude-md-management@claude-plugins-official": false
   },
   "extraKnownMarketplaces": {},
   "effortLevel": "high",
