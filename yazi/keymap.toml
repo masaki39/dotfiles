@@ -91,6 +91,11 @@ run = "shell -- qlmanage -p %s"
 desc = "Open with Quick Look"
 
 [[mgr.prepend_keymap]]
+on = ["o", "m"]
+run = "shell 'mo %h' --block"
+desc = "Open with mo"
+
+[[mgr.prepend_keymap]]
 on = ["o", "n"]
 run = "shell 'nvim %h' --block"
 desc = "Open with nvim"
