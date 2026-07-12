@@ -29,11 +29,6 @@ rev = "f982283"
 hash = "95a05280a6e553fd7259519eaff0f773"
 
 [[plugin.deps]]
-use = "masaki39/git-time-machine"
-rev = "3740a9e"
-hash = "e1750a93725e27d877430690628ebaff"
-
-[[plugin.deps]]
 use = "masaki39/git"
 rev = "2f72da1"
 hash = "ab9df3b5436af53de798d9d887bdadcd"
