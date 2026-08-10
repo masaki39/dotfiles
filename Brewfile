@@ -1,4 +1,6 @@
-tap "masaki39/tap", trusted: true
+tap "k1low/tap", "https://github.com/k1LoW/homebrew-tap"
+tap "masaki39/tap"
+tap "tadashi-aikawa/tap"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
 # Resource monitor. C++ version and continuation of bashtop and bpytop
@@ -41,10 +43,16 @@ brew "imagemagick"
 brew "jq"
 # Simple terminal UI for git commands
 brew "lazygit"
+# Tool for linting and static analysis of Lua code
+brew "luacheck"
 # Easily convert Marp Markdown files into static HTML/CSS, PDF, PPT and images
 brew "marp-cli"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
+# Create, run, and share large language models (LLMs)
+brew "ollama"
+# Swiss-army knife of markup format conversion
+brew "pandoc"
 # Fast, disk space efficient package manager
 brew "pnpm"
 # PDF rendering library (based on the xpdf-3.0 code base)
@@ -62,7 +70,7 @@ brew "starship"
 # Extremely fast Python package installer and resolver, written in Rust
 brew "uv"
 # Command-line interface for Vercel
-brew "vercel-cli"
+brew "vercel"
 # Blazing fast terminal file manager written in Rust, based on async I/O
 brew "yazi"
 # Shell extension to navigate your filesystem faster
@@ -71,14 +79,10 @@ brew "zoxide"
 brew "zsh-autosuggestions"
 # Fish shell like syntax highlighting for zsh
 brew "zsh-syntax-highlighting"
-# Interactive Zotero CSL style selector with clipboard integration
-brew "masaki39/tap/csl"
-# Interactive ghq repository picker with fzf
-brew "masaki39/tap/ghq-fzf"
-# Typewriter effect CLI - type text char by char or display fortune messages
-brew "masaki39/tap/typewriter"
 # Memory training application
 cask "anki"
+# Browser for SQLite databases
+cask "db-browser-for-sqlite"
 # Fujitsu ScanSnap Scanner software
 cask "fujitsu-scansnap-home"
 # Terminal emulator that uses platform-native UI and GPU acceleration
@@ -93,6 +97,7 @@ cask "hammerspoon"
 cask "hhkb"
 # Keyboard shortcuts for every button on your screen
 cask "homerow"
+cask "jinrai"
 # Keyboard customiser
 cask "karabiner-elements"
 # Spreadsheet software
