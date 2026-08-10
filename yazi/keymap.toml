@@ -66,11 +66,6 @@ run = "plugin ghq"
 desc = "Go ghq repo"
 
 [[mgr.prepend_keymap]]
-on = ["g", "t"]
-run = "plugin git-time-machine"
-desc = "Git time machine (restore file from history)"
-
-[[mgr.prepend_keymap]]
 on = ["g", "f"]
 run = "shell 'lazygit -f %h' --block"
 desc = "Lazygit file history"
