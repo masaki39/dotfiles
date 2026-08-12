@@ -45,8 +45,8 @@ hash = "eedd2937398ebe8bac9be34b77871011"
 
 [[plugin.deps]]
 use = "masaki39/office"
-rev = "ff004be"
-hash = "5295df87abb269285e9d5d8b8096f0c"
+rev = "434da11"
+hash = "c7aac7cccdf4b1a4dde424c5a504bdb6"
 
 [flavor]
 deps = []
