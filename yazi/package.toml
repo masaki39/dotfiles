@@ -1,6 +1,6 @@
 [[plugin.deps]]
 use = "yazi-rs/plugins:smart-enter"
-rev = "598cdb6"
+rev = "3f2b882"
 hash = "187cc58ba7ac3befd49c342129e6f1b6"
 
 [[plugin.deps]]
@@ -20,8 +20,8 @@ hash = "953a577b4674469160d342ea325f5a48"
 
 [[plugin.deps]]
 use = "Rolv-Apneseth/starship"
-rev = "a837101"
-hash = "635b0feb9215772d22020eb0abf0bb34"
+rev = "159eaba"
+hash = "7de446280b1ba8c49ffd86dbc24bbbe6"
 
 [[plugin.deps]]
 use = "masaki39/confirm-quit"
@@ -35,7 +35,7 @@ hash = "ab9df3b5436af53de798d9d887bdadcd"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
-rev = "598cdb6"
+rev = "3f2b882"
 hash = "7b625412411be411153886894d9acaf"
 
 [[plugin.deps]]
@@ -45,8 +45,8 @@ hash = "eedd2937398ebe8bac9be34b77871011"
 
 [[plugin.deps]]
 use = "masaki39/office"
-rev = "e11d0dc"
-hash = "766195c0055b08549105a4095caf78f8"
+rev = "368675e"
+hash = "c5d81d7bea32edb8e8d0f1bbad038f11"
 
 [flavor]
 deps = []
