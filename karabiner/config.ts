@@ -13,7 +13,6 @@ writeToProfile('Default profile', [
     map('p', 'control').to('up_arrow'),
     map('n', 'control').to('down_arrow'),
     map('f', 'control').to('right_arrow'),
-    map('b', 'control').to('left_arrow'),
   ]),
 
   rule('Tab Navigation').manipulators([
