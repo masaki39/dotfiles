@@ -1,11 +1,5 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
-  "autoMemoryEnabled": false,
-  "effortLevel": "high",
-  "enabledPlugins": {
-    "claude-md-management@claude-plugins-official": false
-  },
-  "extraKnownMarketplaces": {},
   "permissions": {
     "allow": [
       "Read",
@@ -27,14 +21,48 @@
       "WebSearch",
       "WebFetch"
     ],
-    "defaultMode": "auto",
-    "deny": []
+    "deny": [],
+    "defaultMode": "auto"
   },
-  "skipAutoPermissionPrompt": true,
-  "skipDangerousModePermissionPrompt": true,
   "statusLine": {
-    "command": "~/.claude/statusline.sh",
-    "type": "command"
+    "type": "command",
+    "command": "~/.claude/statusline.sh"
   },
-  "tui": "fullscreen"
+  "enabledPlugins": {
+    "claude-md-management@claude-plugins-official": false
+  },
+  "extraKnownMarketplaces": {},
+  "effortLevel": "high",
+  "tui": "fullscreen",
+  "autoMemoryEnabled": false,
+  "skipDangerousModePermissionPrompt": true,
+  "skipAutoPermissionPrompt": true,
+  "autoMode": {
+    "environment": [
+      "### Org-wide",
+      "**Organization**: None configured",
+      "**Cloud provider(s)**: None configured",
+      "**Repository visibility**: Not queryable here (no remotes configured on this repo) — assume private",
+      "**Internal sharing / snippet hosting**: None configured — treat public paste/gist services as outside the trust boundary",
+      "**Secrets management**: None configured",
+      "**Default / protected branches**: Not queryable here (no remotes configured; default branch unknown, origin/HEAD unset)",
+      "**CI/CD deploy targets**: None configured",
+      "**Network posture**: None configured",
+      "**Source control**: The trusted repo only (no remotes configured, no additional orgs configured)",
+      "**Trusted internal domains**: None configured",
+      "**Trusted cloud buckets**: None configured",
+      "**Key internal services**: None configured",
+      "**Internal package registry**: None configured",
+      "**Sensitive data locations & audiences**: This is an Obsidian Vault of personal notes; treat all vault content (notes, Literatures/, attachments, and specifically files like \"Sairyo classification.md\") as personal data — share only with audiences cleared at the [named+specifics] bar; preserve exact handles when known",
+      "**Data retention / declassification**: None configured",
+      "**Sensitive remote targets**: any namespace, host, or container whose name carries `prod` or `production` as a whole word or name segment",
+      "**Protected deployment namespaces / environments**: None configured — fall back to the Sensitive remote targets heuristic",
+      "**Protected IaC scopes**: IAM, RBAC, networking, quota, and node-pool resources; anything whose name or tag carries `prod` or `production` as a whole word or name segment",
+      "### User-specific",
+      "**Primary use of Claude Code**: personal knowledge-management / Obsidian vault maintenance (note-taking, literature organization, slide creation) — hobby/personal use",
+      "**Trusted repo**: /Users/masaki39/ghq/github.com/local/masaki39-core (this Obsidian Vault working directory; no git remotes configured)",
+      "**Org-specific CLIs**: None configured — routine tools observed in this project: pnpm, uvx/pnpm dlx (per user's global CLAUDE.md preference), pdftotext, textutil",
+      "**Trusted repo qualifier**: routine vault operations (note creation/edit, wikilink management, MOC updates) under this repo's working directory are expected and low-risk"
+    ]
+  }
 }
