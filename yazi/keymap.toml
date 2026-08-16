@@ -41,14 +41,14 @@ run = 'shell -- cp -r %s ~/Downloads/'
 desc = "Copy to Downloads"
 
 [[mgr.prepend_keymap]]
+on = ["g", "e"]
+run = 'shell -- ya emit cd "/Volumes"'
+desc = "Go to Volumes"
+
+[[mgr.prepend_keymap]]
 on = ["g", "p"]
 run = 'shell -- ya emit cd "~/pCloud Drive"'
 desc = "Go to pCloud"
-
-[[mgr.prepend_keymap]]
-on = ["g", "o"]
-run = 'shell -- ya emit cd "~/ghq/github.com/masaki39/masaki39-core"'
-desc = "Go to Obsidian"
 
 [[mgr.prepend_keymap]]
 on = ["g", "g"]
