@@ -1,1 +1,2 @@
 exclude-newer = "24 hours"
+exclude-newer-package = { "pplyz" = false }
