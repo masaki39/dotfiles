@@ -64,5 +64,6 @@
       "**Org-specific CLIs**: None configured — routine tools observed in this project: pnpm, uvx/pnpm dlx (per user's global CLAUDE.md preference), pdftotext, textutil",
       "**Trusted repo qualifier**: routine vault operations (note creation/edit, wikilink management, MOC updates) under this repo's working directory are expected and low-risk"
     ]
-  }
+  },
+  "agentPushNotifEnabled": true
 }
