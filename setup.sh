@@ -58,10 +58,13 @@ cp "$DOTFILES/scripts/com.masaki.monthly-maintenance.plist" "$PLIST2"
 launchctl unload "$PLIST2" 2>/dev/null
 launchctl load "$PLIST2"
 
-# LaunchAgent for auto Brewfile update
-chmod +x "$DOTFILES/scripts/update-brewfile.sh"
-PLIST="$HOME/Library/LaunchAgents/com.masaki.update-brewfile.plist"
-cp "$DOTFILES/scripts/com.masaki.update-brewfile.plist" "$PLIST"
+# LaunchAgent for monthly auto-update (Brewfile + agent skills)
+chmod +x "$DOTFILES/scripts/auto-update.sh"
+# migrate old label
+OLD_PLIST="$HOME/Library/LaunchAgents/com.masaki.update-brewfile.plist"
+[ -f "$OLD_PLIST" ] && launchctl unload "$OLD_PLIST" 2>/dev/null && rm -f "$OLD_PLIST"
+PLIST="$HOME/Library/LaunchAgents/com.masaki.auto-update.plist"
+cp "$DOTFILES/scripts/com.masaki.auto-update.plist" "$PLIST"
 launchctl unload "$PLIST" 2>/dev/null
 launchctl load "$PLIST"
 
