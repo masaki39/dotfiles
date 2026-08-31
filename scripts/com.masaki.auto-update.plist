@@ -3,11 +3,16 @@
 <plist version="1.0">
 <dict>
     <key>Label</key>
-    <string>com.masaki.update-brewfile</string>
+    <string>com.masaki.auto-update</string>
     <key>ProgramArguments</key>
     <array>
-        <string>/Users/masaki/ghq/github.com/masaki39/dotfiles/scripts/update-brewfile.sh</string>
+        <string>/Users/masaki39/ghq/github.com/masaki39/dotfiles/scripts/auto-update.sh</string>
     </array>
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+    </dict>
     <key>RunAtLoad</key>
     <true/>
     <key>StartCalendarInterval</key>
@@ -18,8 +23,8 @@
         <integer>0</integer>
     </dict>
     <key>StandardOutPath</key>
-    <string>/tmp/update-brewfile.log</string>
+    <string>/tmp/auto-update.log</string>
     <key>StandardErrorPath</key>
-    <string>/tmp/update-brewfile.err</string>
+    <string>/tmp/auto-update.err</string>
 </dict>
 </plist>
