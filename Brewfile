@@ -1,5 +1,5 @@
 tap "k1low/tap", "https://github.com/k1LoW/homebrew-tap"
-tap "masaki39/tap"
+tap "masaki39/tap", trusted: true
 tap "tadashi-aikawa/tap"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
@@ -7,6 +7,8 @@ brew "bat"
 brew "btop"
 # Cut, copy, and paste anything, anywhere, all from the terminal
 brew "clipboard"
+# Dependency manager for Cocoa projects
+brew "cocoapods"
 # Container runtimes on MacOS (and Linux) with minimal setup
 brew "colima"
 # Filename encoding conversion tool
@@ -37,6 +39,8 @@ brew "ghq"
 brew "git"
 # Syntax-highlighting pager for git and diff output
 brew "git-delta"
+# Agent multiplexer that lives in your terminal
+brew "herdr"
 # Tools and libraries to manipulate images in select formats
 brew "imagemagick"
 # Lightweight and flexible command-line JSON processor
@@ -79,10 +83,22 @@ brew "zoxide"
 brew "zsh-autosuggestions"
 # Fish shell like syntax highlighting for zsh
 brew "zsh-syntax-highlighting"
+# mo is a Markdown viewer that opens .md files in a browser.
+brew "k1low/tap/mo", trusted: true
+# Interactive Zotero CSL style selector with clipboard integration
+brew "masaki39/tap/csl"
+# Interactive ghq repository picker with fzf
+brew "masaki39/tap/ghq-fzf", trusted: true
+# Typewriter effect CLI - type text char by char or display fortune messages
+brew "masaki39/tap/typewriter"
 # Memory training application
 cask "anki"
 # Browser for SQLite databases
 cask "db-browser-for-sqlite"
+# Open-source image processing package
+cask "fiji"
+# UI toolkit for building applications for mobile, web and desktop
+cask "flutter"
 # Fujitsu ScanSnap Scanner software
 cask "fujitsu-scansnap-home"
 # Terminal emulator that uses platform-native UI and GPU acceleration
@@ -97,9 +113,12 @@ cask "hammerspoon"
 cask "hhkb"
 # Keyboard shortcuts for every button on your screen
 cask "homerow"
-cask "jinrai"
+# 思考の速度で素早くウィンドウ操作を行う macOS 用ツール
+cask "tadashi-aikawa/tap/jinrai", trusted: true
 # Keyboard customiser
 cask "karabiner-elements"
+# Free cross-platform office suite, fresh version
+cask "libreoffice"
 # Spreadsheet software
 cask "microsoft-excel"
 # Presentation software
