@@ -35,4 +35,9 @@ writeToProfile('Default profile', [
     map('escape').to([toKey('escape'), toKey('japanese_eisuu')]),
   ]),
 
+  rule('Right CMD to Eisuu, Right OPT to Kana').manipulators([
+    map('right_command').to('japanese_eisuu'),
+    map('right_option').to('japanese_kana'),
+  ]),
+
 ])
