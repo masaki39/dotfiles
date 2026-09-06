@@ -35,6 +35,10 @@ writeToProfile('Default profile', [
     map('escape').to([toKey('escape'), toKey('japanese_eisuu')]),
   ]),
 
+  rule('Ctrl-B to Eisuu then Ctrl-B (for tmux)').manipulators([
+    map('b', 'control').to([toKey('japanese_eisuu'), toKey('b', 'control')]),
+  ]),
+
   rule('Right CMD to Eisuu, Right OPT to Kana').manipulators([
     map('right_command').to('japanese_eisuu'),
     map('right_option').to('japanese_kana'),
