@@ -85,6 +85,8 @@ brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
 # mo is a Markdown viewer that opens .md files in a browser.
 brew "k1low/tap/mo", trusted: true
+# macOS CLI for AirDrop
+brew "masaki39/tap/airdrop-cli"
 # Interactive Zotero CSL style selector with clipboard integration
 brew "masaki39/tap/csl"
 # Interactive ghq repository picker with fzf
