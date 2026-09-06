@@ -48,5 +48,10 @@ use = "masaki39/office"
 rev = "9057b7e"
 hash = "de66628c7aa4d1eadeb7c57a91f09eec"
 
+[[plugin.deps]]
+use = "masaki39/airdrop"
+rev = "92a0516"
+hash = "4fa1dd542d3437465620f3c381449321"
+
 [flavor]
 deps = []
