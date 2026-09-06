@@ -50,8 +50,8 @@ hash = "de66628c7aa4d1eadeb7c57a91f09eec"
 
 [[plugin.deps]]
 use = "masaki39/airdrop"
-rev = "f322536"
-hash = "fbe6897711213d164bc3116d70018d68"
+rev = "83b3151"
+hash = "8ff4a91e403008fa733fe4cde5b0e4c9"
 
 [flavor]
 deps = []
