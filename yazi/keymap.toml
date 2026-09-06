@@ -111,6 +111,6 @@ run = "plugin ghostty-split window"
 desc = "Open terminal new window"
 
 [[mgr.prepend_keymap]]
-on = ["g", "a"]
+on = ["o", "a"]
 run = "plugin airdrop"
 desc = "Open AirDrop"
