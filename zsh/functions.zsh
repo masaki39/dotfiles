@@ -14,16 +14,14 @@ function dvc() {
 }
 
 # dev layout
-function dev() {
+function dv() {
   osascript << 'EOF'
 tell application "Ghostty"
   set mainTerm to focused terminal of selected tab of front window
-  set cmdTerm to split mainTerm direction right
-  set gitTerm to split cmdTerm direction down
-  input text "yazi\n" to mainTerm
-  input text "claude\n" to cmdTerm
-  input text "lazygit\n" to gitTerm
-  tell mainTerm to focus
+  set subTerm to split mainTerm direction right
+  input text "herdr\n" to mainTerm
+  input text "y\n" to subTerm
+  tell subTerm to focus
 end tell
 EOF
 }
