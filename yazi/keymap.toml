@@ -37,7 +37,7 @@ desc = "Jump to directory"
 
 [[mgr.prepend_keymap]]
 on = ["g", "D"]
-run = 'shell -- cp -r %s ~/Downloads/'
+run = 'shell -- cp -r %s ~/Downloads/ && ya emit escape --select'
 desc = "Copy to Downloads"
 
 [[mgr.prepend_keymap]]
