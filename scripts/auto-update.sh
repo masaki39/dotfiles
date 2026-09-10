@@ -2,6 +2,8 @@
 # 月次で Brewfile とエージェントスキルを更新し、変更があれば commit & push する。
 # launchd (com.masaki.auto-update) から毎日 2:00 に起動され、30日間隔で実処理する。
 # 失敗時は macOS 通知 + ログ (~/.local/share/auto-update.log) で知らせる。
+# 変更の検査・コミットは Brewfile と agents/ に限定する (claude/settings.json は
+# Claude Code が実行時に書き戻すため作業ツリーは常に汚れている)。
 
 DOTFILES_DIR="$HOME/ghq/github.com/masaki39/dotfiles"
 TIMESTAMP_FILE="$HOME/.local/share/auto-update-last-run"
@@ -38,9 +40,9 @@ fi
 log "Starting auto-update"
 cd "$DOTFILES_DIR" || fail "cd $DOTFILES_DIR"
 
-# 作業ツリーが汚れている場合はローカル変更を壊さないよう中断
-if ! "$GIT" diff --quiet || ! "$GIT" diff --cached --quiet; then
-    fail "working tree is dirty; commit or stash local changes first"
+# 対象パスに手作業の変更が残っている場合のみ中断 (他パスのローカル変更は無視)
+if ! "$GIT" diff --quiet -- Brewfile agents || ! "$GIT" diff --cached --quiet -- Brewfile agents; then
+    fail "Brewfile/agents に未コミットの変更あり; commit or stash してください"
 fi
 
 # Brewfile 更新
@@ -53,10 +55,11 @@ log "skills update done"
 
 # 変更をコミット & push
 "$GIT" add Brewfile agents || fail "git add"
-if "$GIT" diff --cached --quiet; then
+if "$GIT" diff --cached --quiet -- Brewfile agents; then
     log "no changes to commit"
 else
-    "$GIT" commit -m "chore: auto-update Brewfile and skills" >>"$LOG_FILE" 2>&1 || fail "git commit"
+    # パス指定コミット: 他パスにステージ済みの変更があっても巻き込まない
+    "$GIT" commit -m "chore: auto-update Brewfile and skills" -- Brewfile agents >>"$LOG_FILE" 2>&1 || fail "git commit"
     "$GIT" push >>"$LOG_FILE" 2>&1 || fail "git push"
     log "committed and pushed"
 fi
