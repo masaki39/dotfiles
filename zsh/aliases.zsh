@@ -17,6 +17,7 @@ alias he='herdr'
 alias hes='herdr server stop'
 alias hel='herdr session list'
 alias skills='pnpm dlx skills'
+alias flux='uvx --from mflux mflux-generate-flux2 --model flux2-klein-4b -q 8 --steps 4 --prompt'
 
 # expand alias on enter (must be after plugins)
 expand-alias-and-accept-line() {
