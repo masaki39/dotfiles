@@ -24,6 +24,20 @@
     "deny": [],
     "defaultMode": "auto"
   },
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash '/Users/masaki39/.claude/hooks/herdr-agent-state.sh' session",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  },
   "statusLine": {
     "type": "command",
     "command": "~/.claude/statusline.sh"
@@ -36,6 +50,7 @@
   "tui": "fullscreen",
   "autoMemoryEnabled": false,
   "skipDangerousModePermissionPrompt": true,
+  "agentPushNotifEnabled": true,
   "skipAutoPermissionPrompt": true,
   "autoMode": {
     "environment": [
@@ -65,5 +80,5 @@
       "**Trusted repo qualifier**: routine vault operations (note creation/edit, wikilink management, MOC updates) under this repo's working directory are expected and low-risk"
     ]
   },
-  "agentPushNotifEnabled": true
+  "model": "opus"
 }
