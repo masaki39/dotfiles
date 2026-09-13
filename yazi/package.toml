@@ -45,8 +45,8 @@ hash = "de66628c7aa4d1eadeb7c57a91f09eec"
 
 [[plugin.deps]]
 use = "masaki39/airdrop"
-rev = "83b3151"
-hash = "8ff4a91e403008fa733fe4cde5b0e4c9"
+rev = "5147a8d"
+hash = "6eef6e28e237adcb915d6570cad3ae3c"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"
