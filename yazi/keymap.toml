@@ -76,9 +76,14 @@ run = "shell --confirm 'git_root=$(git rev-parse --show-toplevel 2>/dev/null) &&
 desc = "Copy git-relative path"
 
 [[mgr.prepend_keymap]]
-on = ["o", "o"]
+on = ["o", "d"]
 run = 'shell -- open %h'
 desc = "Open with default app"
+
+[[mgr.prepend_keymap]]
+on = ["o", "o"]
+run = 'shell -- open -a Obsidian %h'
+desc = "Open with Obsidian"
 
 [[mgr.prepend_keymap]]
 on = ["o", "p"]
