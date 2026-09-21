@@ -13,6 +13,10 @@ npxのかわりにpnpm dlxを使ってください。
 - 別エージェントが blocked (承認/質問) になったら自分で答えず、内容をユーザーに確認する。
 - 完了後は自己報告を鵜呑みにせず `git diff` で検証する。
 
+## difit
+- `--background` で起動したら、出力JSONの `url` を続けて `open <url>` でブラウザに開く
+  (ユーザーが手動で開かなくて済むように)。スキル本体は書き換えない。
+
 ## pptxスライド作成 (pptxスキル)
 - LibreOffice変換で日本語が消えたら、まず `FONTCONFIG_FILE=/opt/homebrew/etc/fonts/fonts.conf`
   を明示する。それでも出ない場合はヒラギノ(.ttc)をLibreOfficeが解釈できないケースなので、
