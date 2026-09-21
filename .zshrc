@@ -53,7 +53,8 @@ source "$BREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 # load configs
 source ~/.config/zsh/aliases.zsh
 source ~/.config/zsh/functions.zsh
-source ~/.config/zsh/env.zsh
+[[ -f ~/.config/zsh/local.zsh ]] && source ~/.config/zsh/local.zsh  # マシン固有 (gitignore)
+source ~/.config/zsh/secrets.zsh   # API キーを Keychain から export
 # ghq-fzf
 export GHQ_FZF_FUNC='gv'
 source /opt/homebrew/share/ghq-fzf/init.zsh
