@@ -1,0 +1,7 @@
+# local.zsh
+# マシン固有だが秘密ではない設定。zsh/local.zsh にコピーして使う。
+# (公開リポジトリなので実パスはコミットしない)
+
+# backup コマンド (functions.zsh) の既定値
+export BACKUP_SRC="$HOME/path/to/dir"
+export BACKUP_DEST_BASE="/Volumes/YourDrive/backup"
