@@ -1,5 +1,4 @@
-tap "k1low/tap", "https://github.com/k1LoW/homebrew-tap"
-tap "masaki39/tap", trusted: true
+tap "masaki39/tap"
 tap "tadashi-aikawa/tap"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
@@ -27,6 +26,8 @@ brew "eza"
 brew "fd"
 # Play, record, convert, and stream select audio and video codecs
 brew "ffmpeg"
+# Infamous electronic fortune-cookie generator
+brew "fortune"
 # Command-line fuzzy finder written in Go
 brew "fzf"
 # GitHub command-line tool
@@ -54,7 +55,7 @@ brew "marp-cli"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
 # Create, run, and share large language models (LLMs)
-brew "ollama"
+brew "ollama", restart_service: :changed
 # Swiss-army knife of markup format conversion
 brew "pandoc"
 # Fast, disk space efficient package manager
@@ -83,16 +84,6 @@ brew "zoxide"
 brew "zsh-autosuggestions"
 # Fish shell like syntax highlighting for zsh
 brew "zsh-syntax-highlighting"
-# mo is a Markdown viewer that opens .md files in a browser.
-brew "k1low/tap/mo", trusted: true
-# macOS CLI for AirDrop
-brew "masaki39/tap/airdrop-cli"
-# Interactive Zotero CSL style selector with clipboard integration
-brew "masaki39/tap/csl"
-# Interactive ghq repository picker with fzf
-brew "masaki39/tap/ghq-fzf", trusted: true
-# Typewriter effect CLI - type text char by char or display fortune messages
-brew "masaki39/tap/typewriter"
 # Memory training application
 cask "anki"
 # Browser for SQLite databases
@@ -101,8 +92,6 @@ cask "db-browser-for-sqlite"
 cask "fiji"
 # UI toolkit for building applications for mobile, web and desktop
 cask "flutter"
-# Fujitsu ScanSnap Scanner software
-cask "fujitsu-scansnap-home"
 # Terminal emulator that uses platform-native UI and GPU acceleration
 cask "ghostty"
 # Web browser
@@ -115,8 +104,7 @@ cask "hammerspoon"
 cask "hhkb"
 # Keyboard shortcuts for every button on your screen
 cask "homerow"
-# 思考の速度で素早くウィンドウ操作を行う macOS 用ツール
-cask "tadashi-aikawa/tap/jinrai", trusted: true
+cask "jinrai"
 # Keyboard customiser
 cask "karabiner-elements"
 # Free cross-platform office suite, fresh version
@@ -131,7 +119,11 @@ cask "microsoft-word"
 cask "obsidian"
 # Control your tools with a few keystrokes
 cask "raycast"
+# ScanSnap Scanner software
+cask "scansnap-home"
 # Medical image processing and visualization system
 cask "slicer"
 # Collect, organise, cite, and share research sources
 cask "zotero"
+uv "pplyz"
+npm "yarn"
