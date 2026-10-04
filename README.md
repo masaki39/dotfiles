@@ -19,8 +19,10 @@ API キーは平文ファイルではなく macOS Keychain に置く (`zsh/secre
 シェル起動時に Keychain から読んで export されるので、普段は何も叩かなくてよい。
 
 ```zsh
-secret-set HF_TOKEN   # 登録・更新 (値は対話入力)
-secret HF_TOKEN       # 1 つ取り出して標準出力へ
+secret set HF_TOKEN   # 登録・更新 (値は対話入力)
+secret get HF_TOKEN   # 1 つ取り出して標準出力へ (secret HF_TOKEN でも可)
+secret rm HF_TOKEN    # 削除 (このシェルからも unset)
+secret ls             # 登録済みの鍵名を一覧 (値は出さない)
 ```
 
 鍵を増やすときは `zsh/secrets.zsh` の `_SECRET_KEYS` に名前を足す。
