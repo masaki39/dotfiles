@@ -31,10 +31,40 @@
       "prefixOverrides": [
         {
           "match": {
+            "bundleID": "com.apple.systempreferences"
+          },
+          "prefix": "S"
+        },
+        {
+          "match": {
+            "bundleID": "com.apple.Preview"
+          },
+          "prefix": "P"
+        },
+        {
+          "match": {
             "bundleID": "com.google.Chrome"
           },
           "prefix": "B"
-        }
+        },
+        {
+          "match": {
+            "bundleID": "com.microsoft.Word"
+          },
+          "prefix": "W"
+        },
+        {
+          "match": {
+            "bundleID": "com.microsoft.Excel"
+          },
+          "prefix": "E"
+        },
+        {
+          "match": {
+            "bundleID": "com.microsoft.Powerpoint"
+          },
+          "prefix": "P"
+        },
       ]
     },
     "navigation": {
