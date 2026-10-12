@@ -51,14 +51,14 @@ starship preset jetpack -o ~/.config/starship.toml
 # Install yazi plugins
 bash "$DOTFILES/yazi/install.sh"
 
-# LaunchAgent for monthly maintenance
+# LaunchAgent for monthly maintenance (cache cleanup + outdated notification)
 chmod +x "$DOTFILES/scripts/monthly-maintenance.sh"
 PLIST2="$HOME/Library/LaunchAgents/com.masaki.monthly-maintenance.plist"
 cp "$DOTFILES/scripts/com.masaki.monthly-maintenance.plist" "$PLIST2"
 launchctl unload "$PLIST2" 2>/dev/null
 launchctl load "$PLIST2"
 
-# LaunchAgent for monthly auto-update (Brewfile + agent skills)
+# LaunchAgent for monthly auto-update (Brewfile)
 chmod +x "$DOTFILES/scripts/auto-update.sh"
 # migrate old label
 OLD_PLIST="$HOME/Library/LaunchAgents/com.masaki.update-brewfile.plist"
