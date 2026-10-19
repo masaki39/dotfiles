@@ -20,16 +20,13 @@ prepend_rules = [
 [plugin]
 prepend_previewers = [
   { mime = "application/dicom", run = "magick" },
-  # Office Documents
-  { mime = "application/openxmlformats-officedocument.*", run = "quicklook" },
-  { mime = "application/oasis.opendocument.*", run = "quicklook" },
-  { mime = "application/ms-*", run = "quicklook" },
-  { mime = "application/msword", run = "quicklook" },
-  { url = "*.docx", run = "quicklook" },
 ]
 append_previewers = [
   { mime = "image/tiff", run = "magick" },
   { url = "*.jsonl", run = "json" },
+  # Anything the built-in previewers don't handle (Office, iWork, ...) via
+  # macOS Quick Look; replaces the preset `file` fallback.
+  { url = "*", run = "quicklook" },
 ]
 prepend_fetchers = [
   { id = "git", group = "file", url = "*", run = "git" },
