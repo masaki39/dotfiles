@@ -39,11 +39,6 @@ rev = "9f85aff"
 hash = "eedd2937398ebe8bac9be34b77871011"
 
 [[plugin.deps]]
-use = "masaki39/office"
-rev = "9057b7e"
-hash = "de66628c7aa4d1eadeb7c57a91f09eec"
-
-[[plugin.deps]]
 use = "masaki39/airdrop"
 rev = "7cd1a9a"
 hash = "be2189dc9c858f31af33c5d8b4b48a29"
