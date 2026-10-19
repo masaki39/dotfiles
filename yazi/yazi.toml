@@ -18,14 +18,6 @@ prepend_rules = [
 ]
 
 [plugin]
-prepend_preloaders = [
-  # Office Documents
-  { mime = "application/openxmlformats-officedocument.*", run = "office" },
-  { mime = "application/oasis.opendocument.*", run = "office" },
-  { mime = "application/ms-*", run = "office" },
-  { mime = "application/msword", run = "office" },
-  { url = "*.docx", run = "office" },
-]
 prepend_previewers = [
   { mime = "application/dicom", run = "magick" },
   # Office Documents
