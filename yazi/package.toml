@@ -50,8 +50,8 @@ hash = "5bb0bfab901d3601c370eafdd66edd31"
 
 [[plugin.deps]]
 use = "masaki39/quicklook"
-rev = "b96b731"
-hash = "cc2a447073ee223d72769c16a904b013"
+rev = "751ba5e"
+hash = "d96c2d7b681e8f632786905a1c1a2d"
 
 [flavor]
 deps = []
