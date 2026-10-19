@@ -82,6 +82,8 @@ brew "yazi"
 brew "zoxide"
 # Fish-like fast/unobtrusive autosuggestions for zsh
 brew "zsh-autosuggestions"
+# Render a local HTML file to PNG with WebKit (helper for quicklook.yazi)
+brew "masaki39/tap/html2png"
 # Fish shell like syntax highlighting for zsh
 brew "zsh-syntax-highlighting"
 # Memory training application
