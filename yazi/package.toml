@@ -48,5 +48,10 @@ use = "yazi-rs/plugins:git"
 rev = "58c4f4e"
 hash = "5bb0bfab901d3601c370eafdd66edd31"
 
+[[plugin.deps]]
+use = "masaki39/quicklook"
+rev = "b96b731"
+hash = "cc2a447073ee223d72769c16a904b013"
+
 [flavor]
 deps = []
