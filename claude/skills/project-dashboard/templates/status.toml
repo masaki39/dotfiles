@@ -1,0 +1,46 @@
+# プロジェクトの進捗・目標の唯一の管理ファイル（タスクの状態はここだけで管理する）。
+# 更新したら project-dashboard スキルの手順で dashboard/index.html を再生成する。
+# status: todo / doing / blocked / decide（ユーザー判断待ち）/ done
+# 詳しい経緯・知見は別の文書（README・設計メモ等）に書き、ここは「今どこにいて次に何をするか」だけを書く。
+
+[goal]
+title = "プロジェクトの目標（1行）"
+short_title = "プロジェクトダッシュボード"   # 任意: HTMLの<title>
+target = ""                                 # 任意: 期限・提出先など。空なら表示しない
+target_label = "期限・提出先"               # 任意: target の見出し
+summary = ""                                # 任意: 目標の補足（1〜2文）
+glossary = [                                # 任意: 新しいセッションが知るべき用語
+]
+
+# 次にやること（上から順に）。AIはセッション開始時にまずここを見る。
+next_actions = [
+  "最初にやること",
+]
+
+[[milestones]]
+name = "マイルストーン1"
+tasks = [
+  { title = "タスクの例", status = "todo", note = "任意のメモ" },
+]
+
+# 任意: 主要な数値（KPIタイル）。無ければセクションごと表示しない
+# [[results]]
+# label = "指標名"
+# value = "0.95"
+# note = "条件など"
+
+# 任意: 結果JSONの自動集計。dir 内の fold*_size*.json を size 別に平均±SDで学習曲線にする。
+# glob を指定すると fold 別の結果として表にする。metric はJSON内のドット区切りキー。
+# [[experiments]]
+# name = "実験名"
+# dir = "/path/to/results"
+# expected_jobs = 25
+# metric = "overall.score"
+# metric_label = "Score"
+# glob = "fold*.json"   # 任意
+# note = ""             # 任意
+
+# 決定事項（新しいものを上に）
+# [[decisions]]
+# date = "2026-01-01"
+# text = "何をなぜ決めたか"
