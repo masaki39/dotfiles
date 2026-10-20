@@ -118,7 +118,7 @@ def collect_git():
 def render_summary(st, exps):
     g = st["goal"]
     target = f"（{g.get('target_label', '期限・提出先')}: {g['target']}）" if g.get("target") else ""
-    lines = [f"[プロジェクトダッシュボード] 目標: {g['title']}{target}"]
+    lines = [f"[{g.get('short_title', 'プロジェクトダッシュボード')}] 目標: {g['title']}{target}"]
     if g.get("glossary"):
         lines.append("用語:")
         lines += [f"  - {x}" for x in g["glossary"]]
