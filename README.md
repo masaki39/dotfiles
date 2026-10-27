@@ -4,8 +4,13 @@ My personal settings.
 
 ## Setup
 
+新しいマシンでは Xcode Command Line Tools を入れてから、ghq と同じ場所に clone する
+(setup.sh はこのパスを前提にしている)。
+
 ```zsh
-bash setup.sh
+xcode-select --install
+git clone https://github.com/masaki39/dotfiles ~/ghq/github.com/masaki39/dotfiles
+bash ~/ghq/github.com/masaki39/dotfiles/setup.sh
 ```
 
 This will:
@@ -13,7 +18,14 @@ This will:
 - Create symbolic links
 - Install yazi plugins
 
-Raycast の設定 (`raycast/Raycast.rayconfig`) はリンクできないので、Raycast の Settings → Advanced → Import から手動で取り込む。
+### セットアップ後にやること
+
+- [ ] SSH 鍵を作って GitHub に登録 (`gh auth login -p ssh`)。setup.sh で statusline の取得に失敗していたら再実行する
+- [ ] システム設定 > プライバシーとセキュリティ > アクセシビリティ: Hammerspoon, Karabiner-Elements, Homerow, Ghostty を許可
+- [ ] Google 日本語入力を入力ソースに追加
+- [ ] `secret ls` で `!` が付いた鍵を `secret set <KEY>` で登録
+- [ ] `cp zsh/local.zsh.example zsh/local.zsh` してマシン固有の設定を書く
+- [ ] Raycast: Settings → Advanced → Import から `raycast/Raycast.rayconfig` を取り込む (リンクできないため)
 
 ## Secrets
 

@@ -33,6 +33,10 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 # plugins
 source <(fzf --zsh)
 export FZF_DEFAULT_COMMAND='fd --type f'
+export FZF_CTRL_T_COMMAND='fd --type f --hidden --exclude .git'
+export FZF_CTRL_T_OPTS="--preview 'bat --color=always --style=numbers --line-range=:300 {}'"
+export FZF_ALT_C_COMMAND='fd --type d --hidden --exclude .git'
+export FZF_ALT_C_OPTS="--preview 'eza --tree --level=2 --icons --color=always {}'"
 export FZF_DEFAULT_OPTS="
   --prompt='🔍️'
   --ghost='search...'

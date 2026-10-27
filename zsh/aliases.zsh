@@ -1,5 +1,7 @@
 alias ze="$EDITOR $HOME/.zshrc"
-alias zs="source $HOME/.zshrc"
+alias zs='exec zsh'
+alias dot='cd "$HOME/ghq/github.com/masaki39/dotfiles"'
+alias kb='(cd "$HOME/ghq/github.com/masaki39/dotfiles/karabiner" && pnpm build)'
 alias ls='eza --icons --group-directories-first'
 alias lt='eza --icons --group-directories-first --git-ignore -DTL 3'
 alias gr='cd "$(git rev-parse --show-toplevel 2>/dev/null || pwd)"'
