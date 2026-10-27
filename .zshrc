@@ -22,6 +22,14 @@ zle -N down-line-or-beginning-search
 bindkey '^[[A' up-line-or-beginning-search
 bindkey '^[[B' down-line-or-beginning-search
 
+# completion (1日1回だけフルチェック、それ以外はキャッシュ)
+autoload -Uz compinit
+_zcompdump_old=(~/.zcompdump(N.mh+24))
+if (( $#_zcompdump_old )) || [[ ! -f ~/.zcompdump ]]; then compinit; else compinit -C; fi
+unset _zcompdump_old
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+
 # plugins
 source <(fzf --zsh)
 export FZF_DEFAULT_COMMAND='fd --type f'
@@ -40,8 +48,10 @@ export FZF_DEFAULT_OPTS="
   --border-label ' FZF ' --list-label ' Result ' --preview-label ' Preview '
   --color 'bg:#1a1b26,bg+:#24283b,fg:#c0caf5,fg+:#c0caf5,hl:#7aa2f7,hl+:#7dcfff,border:#7aa2f7,label:#7aa2f7,list-border:#9ece6a,list-label:#9ece6a,preview-border:#bb9af7,preview-label:#bb9af7,input-border:#7dcfff,input-label:#7dcfff,header-border:#e0af68,header-label:#e0af68,footer:#f7768e,footer-border:#f7768e,footer-label:#f7768e,pointer:#ff9e64,marker:#9ece6a,gutter:#1a1b26,prompt:#7aa2f7,query:#c0caf5,info:#c0caf5,spinner:#ff9e64'
 "
-NLI_KEY='^K'                    # nli: Ctrl-K turns "<tool> <request>" into a command
-eval "$(nli init zsh)"           # nli: Enter on "nli <tool> <request>" also works
+if (( $+commands[nli] )); then
+  NLI_KEY='^K'                  # nli: Ctrl-K turns "<tool> <request>" into a command
+  eval "$(nli init zsh)"         # nli: Enter on "nli <tool> <request>" also works
+fi
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
 source "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
@@ -53,7 +63,7 @@ source ~/.config/zsh/functions.zsh
 source ~/.config/zsh/secrets.zsh   # API キーを Keychain から export
 # ghq-fzf
 export GHQ_FZF_FUNC='gv'
-source "$HOMEBREW_PREFIX/share/ghq-fzf/init.zsh"
+[[ -f $HOMEBREW_PREFIX/share/ghq-fzf/init.zsh ]] && source "$HOMEBREW_PREFIX/share/ghq-fzf/init.zsh"
 
 # zsh-syntax-highlighting (must be last)
 source "$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"

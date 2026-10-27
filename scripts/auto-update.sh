@@ -49,6 +49,15 @@ fi
 "$BREW" bundle dump --force --file="$DOTFILES_DIR/Brewfile" >>"$LOG_FILE" 2>&1 || fail "brew bundle dump"
 log "Brewfile dumped"
 
+# エントリの削除が出たら自動コミットしない (一時的な取得失敗で消えたまま push されるのを防ぐ)
+removed=$("$GIT" diff -U0 -- Brewfile | grep -E '^-(tap|brew|cask|uv|npm|mas|vscode) ' || true)
+if [ -n "$removed" ]; then
+    log "removed entries detected:"
+    log "$removed"
+    "$GIT" checkout -- Brewfile
+    fail "Brewfile から削除が出たので自動コミットを中止 (ログ参照)"
+fi
+
 # 変更をコミット & push
 "$GIT" add Brewfile || fail "git add"
 if "$GIT" diff --cached --quiet -- Brewfile; then

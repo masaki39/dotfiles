@@ -181,4 +181,18 @@ _secret_load() {
 	return 0
 }
 
+# 補完: サブコマンド → 鍵名 / プロジェクト名
+_secret_complete() {
+	if (( CURRENT == 2 )); then
+		compadd get set rm ls load exec help
+		return
+	fi
+	(( CURRENT == 3 )) || return
+	case $words[2] in
+	get|set|rm) compadd -- $_SECRET_KEYS ${${(M)${(f)"$(_secret_stored)"}:#*/*}} ;;
+	ls|load|exec) compadd -- ${(u)${(M)${(f)"$(_secret_stored)"}:#*/*}%%/*} ;;
+	esac
+}
+(( $+functions[compdef] )) && compdef _secret_complete secret
+
 _secret_load

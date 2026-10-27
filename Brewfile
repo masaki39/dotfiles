@@ -1,4 +1,4 @@
-tap "masaki39/tap"
+tap "masaki39/tap", trusted: true
 tap "tadashi-aikawa/tap"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
@@ -82,10 +82,18 @@ brew "yazi"
 brew "zoxide"
 # Fish-like fast/unobtrusive autosuggestions for zsh
 brew "zsh-autosuggestions"
-# Render a local HTML file to PNG with WebKit (helper for quicklook.yazi)
-brew "masaki39/tap/html2png"
 # Fish shell like syntax highlighting for zsh
 brew "zsh-syntax-highlighting"
+# macOS CLI for AirDrop
+brew "masaki39/tap/airdrop-cli", trusted: true
+# Interactive Zotero CSL style selector with clipboard integration
+brew "masaki39/tap/csl"
+# Interactive ghq repository picker with fzf
+brew "masaki39/tap/ghq-fzf", trusted: true
+# Render a local HTML file to PNG with WebKit (helper for quicklook.yazi)
+brew "masaki39/tap/html2png", trusted: true
+# Typewriter effect CLI - type text char by char or display fortune messages
+brew "masaki39/tap/typewriter"
 # Memory training application
 cask "anki"
 # Browser for SQLite databases
@@ -106,7 +114,8 @@ cask "hammerspoon"
 cask "hhkb"
 # Keyboard shortcuts for every button on your screen
 cask "homerow"
-cask "jinrai"
+# 思考の速度で素早くウィンドウ操作を行う macOS 用ツール
+cask "tadashi-aikawa/tap/jinrai", trusted: true
 # Keyboard customiser
 cask "karabiner-elements"
 # Free cross-platform office suite, fresh version

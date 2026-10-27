@@ -16,6 +16,12 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 # Install packages
 brew bundle --file="$DOTFILES/Brewfile"
 
+# pnpm グローバルパッケージ (difit, nli など)
+xargs pnpm add -g < "$DOTFILES/pnpm/global-packages.txt"
+
+# Claude Code (ネイティブ版)
+command -v claude >/dev/null || [ -x ~/.local/bin/claude ] || curl -fsSL https://claude.ai/install.sh | bash
+
 # Create directories
 mkdir -p ~/.config ~/.ssh ~/.claude
 chmod 700 ~/.ssh

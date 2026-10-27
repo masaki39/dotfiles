@@ -19,8 +19,7 @@
       "Bash(brew info*)",
       "Bash(fd*)",
       "Bash(rg*)",
-      "WebSearch",
-      "WebFetch"
+      "WebSearch"
     ],
     "deny": [
       "Read(~/.ssh/id_*)",
