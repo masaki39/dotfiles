@@ -74,8 +74,6 @@ brew "sevenzip"
 brew "starship"
 # Extremely fast Python package installer and resolver, written in Rust
 brew "uv"
-# Command-line interface for Vercel
-brew "vercel"
 # Blazing fast terminal file manager written in Rust, based on async I/O
 brew "yazi"
 # Shell extension to navigate your filesystem faster
@@ -134,6 +132,8 @@ cask "raycast"
 cask "scansnap-home"
 # Medical image processing and visualization system
 cask "slicer"
+# Command-line interface for Vercel
+cask "vercel"
 # Collect, organise, cite, and share research sources
 cask "zotero"
 uv "pplyz"

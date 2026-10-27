@@ -26,14 +26,16 @@ fi
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Install packages
-if [ -n "${DOTFILES_CI:-}" ]; then
-  BREWFILE=$(mktemp)
-  grep -v '^cask ' "$DOTFILES/Brewfile" > "$BREWFILE"
-else
-  BREWFILE="$DOTFILES/Brewfile"
-fi
-# uv tool (pplyz) は最新 Python だと依存のビルドが通らないことがあるので固定する
-UV_PYTHON=3.13 brew bundle --file="$BREWFILE"
+# uv tool は brew bundle が環境変数を渡さず最新 Python で入れてしまい、依存のビルドが
+# 通らないことがあるので、Brewfile から外して後で Python を固定して入れる
+skip='^uv '
+[ -n "${DOTFILES_CI:-}" ] && skip='^(uv|cask) '
+BREWFILE=$(mktemp)
+grep -Ev "$skip" "$DOTFILES/Brewfile" > "$BREWFILE"
+brew bundle --file="$BREWFILE"
+sed -n 's/^uv "\([^"]*\)".*/\1/p' "$DOTFILES/Brewfile" | while read -r tool; do
+  uv tool install --python 3.13 "$tool"
+done
 
 # pnpm グローバルパッケージ (difit, nli など)。.zprofile が効く前なのでここで通す
 mkdir -p ~/.config
