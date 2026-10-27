@@ -23,29 +23,27 @@ ln -sf "$DOTFILES/.gitconfig" ~/.gitconfig
 ln -sf "$DOTFILES/.zshrc" ~/.zshrc
 ln -sf "$DOTFILES/.zshenv" ~/.zshenv
 ln -sf "$DOTFILES/ssh/config" ~/.ssh/config
-ln -sf "$DOTFILES/yazi" ~/.config/yazi
-ln -sf "$DOTFILES/ghostty" ~/.config/ghostty
-ln -sf "$DOTFILES/nvim" ~/.config/nvim
-ln -sf "$DOTFILES/hammerspoon" ~/.hammerspoon
-ln -sf "$DOTFILES/zsh" ~/.config/zsh
-ln -sf "$DOTFILES/lazygit" ~/.config/lazygit
-ln -sf "$DOTFILES/pnpm" ~/.config/pnpm
-ln -sf "$DOTFILES/uv" ~/.config/uv
+ln -sfn "$DOTFILES/yazi" ~/.config/yazi
+ln -sfn "$DOTFILES/ghostty" ~/.config/ghostty
+ln -sfn "$DOTFILES/nvim" ~/.config/nvim
+ln -sfn "$DOTFILES/hammerspoon" ~/.hammerspoon
+ln -sfn "$DOTFILES/zsh" ~/.config/zsh
+ln -sfn "$DOTFILES/lazygit" ~/.config/lazygit
+ln -sfn "$DOTFILES/pnpm" ~/.config/pnpm
+ln -sfn "$DOTFILES/uv" ~/.config/uv
 ln -sf "$DOTFILES/claude/settings.json" ~/.claude/settings.json
 ln -sf "$DOTFILES/claude/CLAUDE.md" ~/.claude/CLAUDE.md
 # statusline は別リポジトリ(ClaudeCodeStatusLine fork)で保守。mascot.sh も同階層に必要
 [ -d "$STATUSLINE_REPO" ] || ghq get git@github.com:masaki39/ClaudeCodeStatusLine
 ln -sf "$STATUSLINE_REPO/statusline.sh" ~/.claude/statusline.sh
 ln -sf "$STATUSLINE_REPO/mascot.sh" ~/.claude/mascot.sh
-ln -sf "$DOTFILES/claude/skills" ~/.claude/skills
+ln -sfn "$DOTFILES/claude/skills" ~/.claude/skills
 mkdir -p ~/.claude/hooks
-ln -sf "$DOTFILES/claude/hooks/prefer-rust-tools.sh" ~/.claude/hooks/prefer-rust-tools.sh
-mkdir -p ~/.config/karabiner
-ln -sf "$DOTFILES/karabiner/karabiner.json" ~/.config/karabiner/karabiner.json
-if [ ! -s "$DOTFILES/karabiner/karabiner.json" ]; then
-  echo '{"profiles":[{"name":"Default profile","complex_modifications":{"rules":[]}}]}' > "$DOTFILES/karabiner/karabiner.json"
-fi
-cd "$DOTFILES/karabiner" && pnpm build
+for hook in "$DOTFILES"/claude/hooks/*.sh; do
+  ln -sf "$hook" ~/.claude/hooks/
+done
+# karabiner.ts が ~/.config/karabiner/karabiner.json に直接書き込む (リンク不要)
+(cd "$DOTFILES/karabiner" && pnpm install && pnpm build)
 
 # starship prompt preset
 starship preset jetpack -o ~/.config/starship.toml

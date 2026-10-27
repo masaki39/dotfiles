@@ -32,14 +32,19 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash '/Users/masaki39/.claude/hooks/herdr-agent-state.sh' session",
-            "timeout": 10
-          },
-          {
-            "type": "command",
             "command": "[ -f \"$CLAUDE_PROJECT_DIR/dashboard/status.toml\" ] && cd \"$CLAUDE_PROJECT_DIR\" && uv run --no-project --python '>=3.11' ~/.claude/skills/project-dashboard/scripts/build_dashboard.py --summary 2>/dev/null; exit 0",
             "timeout": 30,
             "statusMessage": "プロジェクトダッシュボードを読み込み中..."
+          }
+        ]
+      },
+      {
+        "matcher": "^(startup|resume|clear|compact|fork)$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ~/.claude/hooks/herdr-agent-state.sh session",
+            "timeout": 10
           }
         ]
       }
