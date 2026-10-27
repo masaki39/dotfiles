@@ -5,13 +5,12 @@ export VISUAL='nvim'
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=100000
 SAVEHIST=100000
-setopt HIST_IGNORE_DUPS      # 重複コマンドを記録しない
 setopt HIST_IGNORE_ALL_DUPS  # 履歴全体から重複を削除
 setopt HIST_IGNORE_SPACE     # スペース始まりのコマンドを記録しない
 setopt HIST_REDUCE_BLANKS    # 余分な空白を削除して記録
 setopt SHARE_HISTORY         # セッション間で履歴を共有
 
-# edit-command-line (Esc -> e)
+# edit-command-line (Ctrl-G)
 autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey '^G' edit-command-line

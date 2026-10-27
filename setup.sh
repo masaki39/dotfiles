@@ -32,6 +32,7 @@ ln -sfn "$DOTFILES/zsh" ~/.config/zsh
 ln -sfn "$DOTFILES/lazygit" ~/.config/lazygit
 ln -sfn "$DOTFILES/pnpm" ~/.config/pnpm
 ln -sfn "$DOTFILES/uv" ~/.config/uv
+ln -sfn "$DOTFILES/git" ~/.config/git
 ln -sfn "$DOTFILES/jinrai" ~/.config/jinrai
 ln -sfn "$DOTFILES/pplyz" ~/.config/pplyz
 # pnpm dlx skills -g のインストール先

@@ -28,11 +28,11 @@ EOF
 
 # backup a directory to external storage via rsync mirror (--delete, no excludes)
 # usage: backup [-n|--dry-run] [src] [dest_base]
-#   defaults to $BACKUP_SRC / $BACKUP_DEST_BASE (set in env.zsh)
+#   defaults to $BACKUP_SRC / $BACKUP_DEST_BASE (set in local.zsh)
 #   dest is dest_base/$(basename src)
 function backup() {
 	local usage="Usage: backup [-n|--dry-run] [src] [dest_base]
-  defaults to \$BACKUP_SRC / \$BACKUP_DEST_BASE (set in env.zsh)
+  defaults to \$BACKUP_SRC / \$BACKUP_DEST_BASE (set in local.zsh)
   dest is dest_base/\$(basename src)"
 
 	local dry_run="" args=()

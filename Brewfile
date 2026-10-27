@@ -128,4 +128,3 @@ cask "slicer"
 # Collect, organise, cite, and share research sources
 cask "zotero"
 uv "pplyz"
-npm "yarn"
