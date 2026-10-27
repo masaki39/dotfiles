@@ -4,6 +4,8 @@ set -e
 
 # DOTFILES_CI=1: CI 用。cask と LaunchAgent の登録を飛ばす
 DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# pnpm などが ~/.config を読むように (.zshenv はまだ効いていない)
+export XDG_CONFIG_HOME="$HOME/.config"
 STATUSLINE_REPO="$HOME/ghq/github.com/masaki39/ClaudeCodeStatusLine"
 
 # Install Homebrew if not installed
@@ -25,6 +27,9 @@ fi
 UV_PYTHON=3.13 brew bundle --file="$BREWFILE"
 
 # pnpm グローバルパッケージ (difit, nli など)。.zprofile が効く前なのでここで通す
+mkdir -p ~/.config
+# minimumReleaseAge (pnpm/config.yaml) をグローバルインストール前に効かせる
+ln -sfn "$DOTFILES/pnpm" ~/.config/pnpm
 export PNPM_HOME="$HOME/Library/pnpm"
 export PATH="$PNPM_HOME/bin:$PATH"
 xargs pnpm add -g < "$DOTFILES/pnpm/global-packages.txt"
@@ -48,7 +53,6 @@ ln -sfn "$DOTFILES/nvim" ~/.config/nvim
 ln -sfn "$DOTFILES/hammerspoon" ~/.hammerspoon
 ln -sfn "$DOTFILES/zsh" ~/.config/zsh
 ln -sfn "$DOTFILES/lazygit" ~/.config/lazygit
-ln -sfn "$DOTFILES/pnpm" ~/.config/pnpm
 ln -sfn "$DOTFILES/uv" ~/.config/uv
 ln -sfn "$DOTFILES/git" ~/.config/git
 ln -sfn "$DOTFILES/jinrai" ~/.config/jinrai

@@ -40,6 +40,17 @@ fi
 log "Starting auto-update"
 cd "$DOTFILES_DIR" || fail "cd $DOTFILES_DIR"
 
+# 安全弁: main 以外・merge/rebase 中・自分以外の未 push コミットがあるときは何もしない
+branch=$("$GIT" branch --show-current)
+[ "$branch" = main ] || fail "main 以外のブランチ ($branch) なので中止"
+gitdir=$("$GIT" rev-parse --git-dir)
+if [ -e "$gitdir/MERGE_HEAD" ] || [ -d "$gitdir/rebase-merge" ] || [ -d "$gitdir/rebase-apply" ]; then
+    fail "merge/rebase 中なので中止"
+fi
+"$GIT" fetch -q origin main >>"$LOG_FILE" 2>&1 || fail "git fetch"
+others=$("$GIT" log --format=%s origin/main..HEAD | grep -vxF "chore: auto-update Brewfile" || true)
+[ -z "$others" ] || fail "未 push のコミットがあるので中止 (手動で push してください)"
+
 # 対象パスに手作業の変更が残っている場合のみ中断 (他パスのローカル変更は無視)
 if ! "$GIT" diff --quiet -- Brewfile || ! "$GIT" diff --cached --quiet -- Brewfile; then
     fail "Brewfile に未コミットの変更あり; commit or stash してください"
@@ -65,8 +76,13 @@ if "$GIT" diff --cached --quiet -- Brewfile; then
 else
     # パス指定コミット: 他パスにステージ済みの変更があっても巻き込まない
     "$GIT" commit -m "chore: auto-update Brewfile" -- Brewfile >>"$LOG_FILE" 2>&1 || fail "git commit"
-    "$GIT" push >>"$LOG_FILE" 2>&1 || fail "git push"
-    log "committed and pushed"
+    log "committed"
+fi
+
+# 前回 push に失敗した分も含めて送る (未 push は自分のコミットだけと確認済み)
+if [ -n "$("$GIT" rev-list origin/main..HEAD)" ]; then
+    "$GIT" push origin HEAD:main >>"$LOG_FILE" 2>&1 || fail "git push"
+    log "pushed"
 fi
 
 date +%s > "$TIMESTAMP_FILE"

@@ -29,7 +29,7 @@ EOF
 # backup a directory to external storage via rsync mirror (--delete, no excludes)
 # usage: backup [-n|--dry-run] [src] [dest_base]
 #   defaults to $BACKUP_SRC / $BACKUP_DEST_BASE (set in local.zsh)
-#   dest is dest_base/$(basename src)
+#   dest is dest_base/$(basename src); deleted/overwritten files go to dest_base/.deleted/
 function backup() {
 	local usage="Usage: backup [-n|--dry-run] [src] [dest_base]
   defaults to \$BACKUP_SRC / \$BACKUP_DEST_BASE (set in local.zsh)
@@ -67,10 +67,24 @@ function backup() {
 		return 1
 	fi
 
-	local dest="${dest_base%/}/$(basename "$src")"
+	# 絶対パスに正規化し、. / .. / / で dest が dest_base 自体になるのを防ぐ
+	src=${src:A}
+	dest_base=${dest_base:A}
+	local name=${src:t}
+	if [[ -z $name || $name == / ]]; then
+		echo "Invalid source: $src" >&2
+		return 1
+	fi
+	local dest="$dest_base/$name"
+	if [[ $dest == $src || $dest == $src/* ]]; then
+		echo "Destination is inside source: $dest" >&2
+		return 1
+	fi
 	[[ -z "$dry_run" ]] && mkdir -p "$dest"
 
-	rsync -a --delete $dry_run --info=progress2 --no-inc-recursive "${src%/}/" "$dest/" && \
+	# 削除・上書きされるファイルは dest_base/.deleted/<name>/<日時>/ に退避する
+	local trash="$dest_base/.deleted/$name/$(date '+%Y%m%d-%H%M%S')"
+	rsync -a --delete --backup --backup-dir="$trash" $dry_run --info=progress2 --no-inc-recursive "$src/" "$dest/" && \
 	echo "[$(date '+%Y-%m-%d %H:%M:%S')] backup ${dry_run:+(dry-run) }done: $src -> $dest"
 }
 

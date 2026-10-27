@@ -11,14 +11,10 @@
       "Bash(git show*)",
       "Bash(git branch*)",
       "Bash(ls*)",
-      "Bash(cat*)",
-      "Bash(echo*)",
       "Bash(which*)",
       "Bash(type*)",
       "Bash(brew list*)",
       "Bash(brew info*)",
-      "Bash(fd*)",
-      "Bash(rg*)",
       "WebSearch"
     ],
     "deny": [
@@ -26,7 +22,8 @@
       "Read(~/.gnupg/**)",
       "Bash(cat ~/.ssh/id_*)",
       "Bash(security find-generic-password*)",
-      "Bash(secret get*)"
+      "Bash(secret get*)",
+      "Bash(git *--output*)"
     ],
     "defaultMode": "auto"
   },
