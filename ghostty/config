@@ -6,7 +6,8 @@ quick-terminal-size=90%,90%
 quick-terminal-screen=macos-menu-bar
 quick-terminal-autohide=false
 theme = TokyoNight
-custom-shader = ~/ghq/github.com/masaki39/dotfiles/ghostty/shader/cursor-trail.glsl
+# Relative paths resolve against this config file's directory
+custom-shader = shader/cursor-trail.glsl
 macos-option-as-alt = true
 # macos-titlebar-style=tabs
 background-opacity=0.85

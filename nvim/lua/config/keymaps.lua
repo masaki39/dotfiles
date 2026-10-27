@@ -4,7 +4,7 @@
 
 local map = vim.keymap.set
 
--- 右クリックを無効化（Inspectポップアップを防ぐ）
+-- Disable right click (prevents the Inspect popup)
 map({ "n", "v", "i" }, "<RightMouse>", "<Nop>", {})
 
 -- Insert mode: visual line movement (wrap-aware)

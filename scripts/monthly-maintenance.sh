@@ -1,8 +1,8 @@
 #!/bin/bash
-# 月次のキャッシュ掃除と更新チェック。launchd (com.masaki.monthly-maintenance) から毎日 2:00 起動、30日間隔。
-# 失敗時は macOS 通知 + ログ (~/.local/share/monthly-maintenance.log) で知らせる。
-# brew upgrade は自動実行しない (無人更新での破損や macOS の App Management ブロックを避けるため)。
-# 更新があれば件数を通知するだけなので、手動で `brew upgrade` すること。
+# Monthly cache cleanup and update check. Launched daily at 2:00 by launchd (com.masaki.monthly-maintenance); runs every 30 days.
+# Failures are reported via a macOS notification and the log (~/.local/share/monthly-maintenance.log).
+# Does not run brew upgrade automatically (avoids breakage from unattended upgrades and macOS App Management blocks).
+# It only notifies the number of outdated packages; run `brew upgrade` manually.
 
 TIMESTAMP_FILE="$HOME/.local/share/monthly-maintenance-last-run"
 LOG_FILE="$HOME/.local/share/monthly-maintenance.log"
@@ -18,7 +18,7 @@ mkdir -p "$(dirname "$TIMESTAMP_FILE")"
 log() { echo "[$(date '+%Y-%m-%d %H:%M:%S')] $*" | tee -a "$LOG_FILE"; }
 
 notify() {
-    /usr/bin/osascript -e "display notification \"$1\" with title \"monthly-maintenance 失敗\" sound name \"Basso\"" 2>/dev/null || true
+    /usr/bin/osascript -e "display notification \"$1\" with title \"monthly-maintenance failed\" sound name \"Basso\"" 2>/dev/null || true
 }
 
 if [ -f "$TIMESTAMP_FILE" ]; then
@@ -44,8 +44,8 @@ step() {
     fi
 }
 
-# brew update は git remote (SSH) の取得に失敗しても formula/cask の API データは更新されるため、
-# 失敗はログに残すだけで通知しない
+# brew update still refreshes formula/cask API data even if fetching a git remote (SSH) fails,
+# so failures are only logged, not notified
 if "$BREW" update >>"$LOG_FILE" 2>&1; then
     log "brew update done"
 else
@@ -56,7 +56,7 @@ outdated_formula=$("$BREW" outdated --formula --quiet 2>>"$LOG_FILE" | wc -l | t
 outdated_cask=$("$BREW" outdated --cask --quiet 2>>"$LOG_FILE" | wc -l | tr -d ' ')
 log "outdated: formula $outdated_formula, cask $outdated_cask"
 if [ "$outdated_formula" -gt 0 ] || [ "$outdated_cask" -gt 0 ]; then
-    /usr/bin/osascript -e "display notification \"formula $outdated_formula / cask $outdated_cask 件。手動で brew upgrade してください\" with title \"Homebrew 更新あり\"" 2>/dev/null || true
+    /usr/bin/osascript -e "display notification \"$outdated_formula formulae / $outdated_cask casks outdated. Run brew upgrade manually.\" with title \"Homebrew updates available\"" 2>/dev/null || true
 fi
 
 step "brew cleanup"     "$BREW" cleanup --prune=all

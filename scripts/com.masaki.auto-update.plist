@@ -6,7 +6,7 @@
     <string>com.masaki.auto-update</string>
     <key>ProgramArguments</key>
     <array>
-        <string>/Users/masaki39/ghq/github.com/masaki39/dotfiles/scripts/auto-update.sh</string>
+        <string>__DOTFILES__/scripts/auto-update.sh</string>
     </array>
     <key>EnvironmentVariables</key>
     <dict>

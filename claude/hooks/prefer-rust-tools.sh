@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# PreToolUse(Bash): コマンド位置の find / grep をブロックし fd / rg を使わせる。
-# パイプ後 (`... | grep foo`) は対象外。クォート内やヒアドキュメント本文は見ない。
-# exit 2 の stderr が Claude に返る。
+# PreToolUse(Bash): block find / grep in command position and steer to fd / rg.
+# After a pipe (`... | grep foo`) is allowed. Quoted strings and heredoc bodies are ignored.
+# On exit 2, stderr is returned to Claude.
 exec python3 -c '
 import json, os, re, shlex, shutil, sys
 
@@ -10,7 +10,7 @@ try:
 except Exception:
     sys.exit(0)
 
-# ヒアドキュメント本文を落とす (<<EOF / <<-EOF / <<"EOF" / <<'"'"'EOF'"'"')
+# Strip heredoc bodies (<<EOF / <<-EOF / <<"EOF" / <<'"'"'EOF'"'"')
 lines, out, end = cmd.split("\n"), [], None
 for line in lines:
     if end is not None:
@@ -28,9 +28,9 @@ try:
     lex.whitespace = " \t"
     tokens = list(lex)
 except ValueError:
-    sys.exit(0)  # クォートの対応が取れないものは判定しない
+    sys.exit(0)  # skip commands with unbalanced quotes
 
-# コマンドの先頭になりうる位置 (パイプの後は除く)
+# Positions where a command can start (excluding after a pipe)
 starters = {";", "&&", "||", "&", "(", "\n", "{", "then", "do", "else", "elif", "!"}
 prefixes = {"sudo", "command", "time", "exec", "nohup", "env"}
 at_start = True
@@ -40,10 +40,10 @@ for tok in tokens:
             continue
         name = os.path.basename(tok)
         if name == "find" and shutil.which("fd"):
-            print("find ではなく fd を使ってください (例: fd -e md, fd -t f name dir)。", file=sys.stderr)
+            print("Use fd instead of find (e.g. fd -e md, fd -t f name dir).", file=sys.stderr)
             sys.exit(2)
         if name in ("grep", "egrep", "fgrep") and shutil.which("rg"):
-            print("grep ではなく rg を使ってください (例: rg -n pattern, rg -l pattern -g \"*.ts\")。パイプ後の grep は可。", file=sys.stderr)
+            print("Use rg instead of grep (e.g. rg -n pattern, rg -l pattern -g \"*.ts\"). grep after a pipe is fine.", file=sys.stderr)
             sys.exit(2)
     at_start = tok in starters
 '

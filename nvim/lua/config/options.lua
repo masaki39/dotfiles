@@ -2,11 +2,11 @@
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
 
--- スペルチェック設定（英語は残して日本語は除外）
+-- Spell check (keep English, exclude Japanese)
 vim.opt.spelllang = "en,cjk"
 
--- マークダウンの記号を隠さない（```や**などを全て表示）
+-- Do not conceal Markdown syntax (show ``` , ** and the like)
 vim.opt.conceallevel = 0
 
--- 行頭・行末で左右矢印キーが前後の行に移動できるようにする
+-- Let left/right arrow keys wrap to the previous/next line at line boundaries
 vim.opt.whichwrap:append("<,>,[,]")

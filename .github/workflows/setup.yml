@@ -27,7 +27,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # 実機と同じパスから実行する
+      # Run from the same path as on a real machine
       - name: Place repo at ghq path
         run: |
           mkdir -p ~/ghq/github.com/masaki39
@@ -51,7 +51,7 @@ jobs:
 
       - name: Verify zsh startup
         run: |
-          out=$(zsh -lic 'whence -p brew pnpm nli difit fzf starship yazi nvim zoxide && print SHELL_OK' 2>&1)
+          out=$(zsh -lic 'whence -p brew pnpm difit fzf starship yazi nvim zoxide && print SHELL_OK' 2>&1)
           echo "$out"
           if printf '%s\n' "$out" | grep -E 'command not found|no such file|parse error'; then exit 1; fi
           printf '%s\n' "$out" | grep -q SHELL_OK

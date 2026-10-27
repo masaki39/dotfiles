@@ -2,9 +2,9 @@
 
 set -e
 
-# DOTFILES_CI=1: CI 用。cask と LaunchAgent の登録を飛ばす
+# DOTFILES_CI=1: for CI. Skips casks and LaunchAgent registration
 DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-# 既存の実ファイル/実ディレクトリは <name>.bak.<日時> に退避してからリンクする
+# An existing real file/directory is moved to <name>.bak.<timestamp> before linking
 link() {
   if [ -e "$2" ] && [ ! -L "$2" ]; then
     mv "$2" "$2.bak.$(date +%Y%m%d%H%M%S)"
@@ -13,21 +13,22 @@ link() {
   ln -sfn "$1" "$2"
 }
 
-# pnpm などが ~/.config を読むように (.zshenv はまだ効いていない)
+# So pnpm and others read ~/.config (.zshenv is not in effect yet)
 export XDG_CONFIG_HOME="$HOME/.config"
 STATUSLINE_REPO="$HOME/ghq/github.com/masaki39/ClaudeCodeStatusLine"
+STATUSLINE_URL="https://github.com/masaki39/ClaudeCodeStatusLine"
 
 # Install Homebrew if not installed
 if ! command -v brew &>/dev/null; then
   echo "Installing Homebrew..."
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/homebrew/install/HEAD/install.sh)"
 fi
-# インストール直後はこのプロセスの PATH に brew が無いので通す
+# Right after installing, brew is not on this process's PATH yet
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Install packages
-# uv tool は brew bundle が環境変数を渡さず最新 Python で入れてしまい、依存のビルドが
-# 通らないことがあるので、Brewfile から外して後で Python を固定して入れる
+# brew bundle installs uv tools with the latest Python (it does not pass env vars), which can
+# break dependency builds, so they are filtered out here and installed later with a pinned Python
 skip='^uv '
 [ -n "${DOTFILES_CI:-}" ] && skip='^(uv|cask) '
 BREWFILE=$(mktemp)
@@ -37,15 +38,15 @@ sed -n 's/^uv "\([^"]*\)".*/\1/p' "$DOTFILES/Brewfile" | while read -r tool; do
   uv tool install --python 3.13 "$tool"
 done
 
-# pnpm グローバルパッケージ (difit, nli など)。.zprofile が効く前なのでここで通す
+# pnpm global packages (difit, etc.). .zprofile is not in effect yet, so set PATH here
 mkdir -p ~/.config
-# minimumReleaseAge (pnpm/config.yaml) をグローバルインストール前に効かせる
+# Apply minimumReleaseAge (pnpm/config.yaml) before the global install
 link "$DOTFILES/pnpm" ~/.config/pnpm
 export PNPM_HOME="$HOME/Library/pnpm"
 export PATH="$PNPM_HOME/bin:$PATH"
 xargs pnpm add -g < "$DOTFILES/pnpm/global-packages.txt"
 
-# Claude Code (ネイティブ版)
+# Claude Code (native build)
 command -v claude >/dev/null || [ -x ~/.local/bin/claude ] || curl -fsSL https://claude.ai/install.sh | bash
 
 # Create directories
@@ -68,16 +69,17 @@ link "$DOTFILES/uv" ~/.config/uv
 link "$DOTFILES/git" ~/.config/git
 link "$DOTFILES/jinrai" ~/.config/jinrai
 link "$DOTFILES/pplyz" ~/.config/pplyz
-# pnpm dlx skills -g のインストール先
+# Install target of pnpm dlx skills -g
 link "$DOTFILES/agents" ~/.agents
 link "$DOTFILES/claude/settings.json" ~/.claude/settings.json
 link "$DOTFILES/claude/CLAUDE.md" ~/.claude/CLAUDE.md
-# statusline は別リポジトリ(ClaudeCodeStatusLine fork)で保守。mascot.sh も同階層に必要
-[ -d "$STATUSLINE_REPO" ] || ghq get git@github.com:masaki39/ClaudeCodeStatusLine || echo "warn: ClaudeCodeStatusLine を取得できなかった (SSH 鍵を確認)"
+# The statusline lives in a separate repo (ClaudeCodeStatusLine fork); mascot.sh must sit next to it
+# Public repo, so clone over HTTPS (insteadOf in .gitconfig would turn it into SSH, which fails on a fresh machine without keys)
+[ -d "$STATUSLINE_REPO" ] || GIT_CONFIG_GLOBAL=/dev/null git clone "$STATUSLINE_URL" "$STATUSLINE_REPO"
 link "$STATUSLINE_REPO/statusline.sh" ~/.claude/statusline.sh
 link "$STATUSLINE_REPO/mascot.sh" ~/.claude/mascot.sh
-# ~/.claude/skills は実ディレクトリ (skills CLI もここにリンクを作る) にし、各スキルをリンクする
-[ -L ~/.claude/skills ] && rm ~/.claude/skills  # 旧形式 (ディレクトリごとのリンク) から移行
+# ~/.claude/skills is a real directory (the skills CLI also links into it); link each skill individually
+[ -L ~/.claude/skills ] && rm ~/.claude/skills  # migrate from the old layout (whole-directory link)
 mkdir -p ~/.claude/skills
 for skill in "$DOTFILES"/claude/skills/*/ "$DOTFILES"/agents/skills/*/; do
   link "${skill%/}" ~/.claude/skills/"$(basename "$skill")"
@@ -86,8 +88,8 @@ mkdir -p ~/.claude/hooks
 for hook in "$DOTFILES"/claude/hooks/*.sh; do
   link "$hook" ~/.claude/hooks/"$(basename "$hook")"
 done
-# karabiner.ts が ~/.config/karabiner/karabiner.json に直接書き込む (リンク不要)
-# Karabiner 未起動だとファイルが無く build が失敗するので最小構成を作っておく
+# karabiner.ts writes ~/.config/karabiner/karabiner.json directly (no link needed)
+# If Karabiner has never run the file is missing and the build fails, so seed a minimal one
 mkdir -p ~/.config/karabiner
 [ -s ~/.config/karabiner/karabiner.json ] ||
   echo '{"profiles":[{"name":"Default profile","selected":true,"complex_modifications":{"rules":[]}}]}' > ~/.config/karabiner/karabiner.json
@@ -107,7 +109,7 @@ fi
 # LaunchAgent for monthly maintenance (cache cleanup + outdated notification)
 chmod +x "$DOTFILES/scripts/monthly-maintenance.sh"
 PLIST2="$HOME/Library/LaunchAgents/com.masaki.monthly-maintenance.plist"
-cp "$DOTFILES/scripts/com.masaki.monthly-maintenance.plist" "$PLIST2"
+sed "s|__DOTFILES__|$DOTFILES|g" "$DOTFILES/scripts/com.masaki.monthly-maintenance.plist" > "$PLIST2"
 launchctl unload "$PLIST2" 2>/dev/null
 launchctl load "$PLIST2"
 
@@ -117,11 +119,11 @@ chmod +x "$DOTFILES/scripts/auto-update.sh"
 OLD_PLIST="$HOME/Library/LaunchAgents/com.masaki.update-brewfile.plist"
 [ -f "$OLD_PLIST" ] && launchctl unload "$OLD_PLIST" 2>/dev/null && rm -f "$OLD_PLIST"
 PLIST="$HOME/Library/LaunchAgents/com.masaki.auto-update.plist"
-cp "$DOTFILES/scripts/com.masaki.auto-update.plist" "$PLIST"
+sed "s|__DOTFILES__|$DOTFILES|g" "$DOTFILES/scripts/com.masaki.auto-update.plist" > "$PLIST"
 launchctl unload "$PLIST" 2>/dev/null
 launchctl load "$PLIST"
 
-# Menu bar shortcuts
+# Menu bar shortcuts (keys are menu item titles, so they must match the app's Japanese UI)
 defaults write com.google.Chrome NSUserKeyEquivalents '{
     "他のタブをすべて閉じる" = "@~w";
 }'

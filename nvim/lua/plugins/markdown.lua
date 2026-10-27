@@ -1,11 +1,11 @@
 return {
-  -- render-markdown.nvim を無効化（インラインレンダリング不要）
+  -- Disable render-markdown.nvim (no inline rendering needed)
   {
     "MeanderingProgrammer/render-markdown.nvim",
     enabled = false,
   },
 
-  -- markdownlint を無効化（警告不要）
+  -- Disable markdownlint (no warnings needed)
   {
     "mfussenegger/nvim-lint",
     optional = true,

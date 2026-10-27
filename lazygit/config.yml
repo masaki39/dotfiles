@@ -17,4 +17,4 @@ git:
   branchLogCmd: "git log --graph --color=always --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' {{branchName}} --"
   diffRenderers:
     - colorArg: always
-      command: delta --dark --paging=never # ここの設定を使用する場合はdeltaのインストールが必要
+      command: delta --dark --paging=never # requires delta to be installed

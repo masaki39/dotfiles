@@ -6,7 +6,7 @@
     <string>com.masaki.monthly-maintenance</string>
     <key>ProgramArguments</key>
     <array>
-        <string>/Users/masaki39/ghq/github.com/masaki39/dotfiles/scripts/monthly-maintenance.sh</string>
+        <string>__DOTFILES__/scripts/monthly-maintenance.sh</string>
     </array>
     <key>EnvironmentVariables</key>
     <dict>

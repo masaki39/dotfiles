@@ -5,10 +5,10 @@ export VISUAL='nvim'
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=100000
 SAVEHIST=100000
-setopt HIST_IGNORE_ALL_DUPS  # 履歴全体から重複を削除
-setopt HIST_IGNORE_SPACE     # スペース始まりのコマンドを記録しない
-setopt HIST_REDUCE_BLANKS    # 余分な空白を削除して記録
-setopt SHARE_HISTORY         # セッション間で履歴を共有
+setopt HIST_IGNORE_ALL_DUPS  # drop older duplicates from the whole history
+setopt HIST_IGNORE_SPACE     # do not record commands starting with a space
+setopt HIST_REDUCE_BLANKS    # trim extra blanks before recording
+setopt SHARE_HISTORY         # share history across sessions
 
 # edit-command-line (Ctrl-G)
 autoload -Uz edit-command-line
@@ -22,7 +22,7 @@ zle -N down-line-or-beginning-search
 bindkey '^[[A' up-line-or-beginning-search
 bindkey '^[[B' down-line-or-beginning-search
 
-# completion (1日1回だけフルチェック、それ以外はキャッシュ)
+# completion (full check once a day, cached otherwise)
 autoload -Uz compinit
 _zcompdump_old=(~/.zcompdump(N.mh+24))
 if (( $#_zcompdump_old )) || [[ ! -f ~/.zcompdump ]]; then compinit; else compinit -C; fi
@@ -52,10 +52,6 @@ export FZF_DEFAULT_OPTS="
   --border-label ' FZF ' --list-label ' Result ' --preview-label ' Preview '
   --color 'bg:#1a1b26,bg+:#24283b,fg:#c0caf5,fg+:#c0caf5,hl:#7aa2f7,hl+:#7dcfff,border:#7aa2f7,label:#7aa2f7,list-border:#9ece6a,list-label:#9ece6a,preview-border:#bb9af7,preview-label:#bb9af7,input-border:#7dcfff,input-label:#7dcfff,header-border:#e0af68,header-label:#e0af68,footer:#f7768e,footer-border:#f7768e,footer-label:#f7768e,pointer:#ff9e64,marker:#9ece6a,gutter:#1a1b26,prompt:#7aa2f7,query:#c0caf5,info:#c0caf5,spinner:#ff9e64'
 "
-if (( $+commands[nli] )); then
-  NLI_KEY='^K'                  # nli: Ctrl-K turns "<tool> <request>" into a command
-  eval "$(nli init zsh)"         # nli: Enter on "nli <tool> <request>" also works
-fi
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
 source "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
@@ -63,8 +59,8 @@ source "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 # load configs
 source ~/.config/zsh/aliases.zsh
 source ~/.config/zsh/functions.zsh
-[[ -f ~/.config/zsh/local.zsh ]] && source ~/.config/zsh/local.zsh  # マシン固有 (gitignore)
-source ~/.config/zsh/secrets.zsh   # API キーを Keychain から export
+[[ -f ~/.config/zsh/local.zsh ]] && source ~/.config/zsh/local.zsh  # machine-specific (gitignored)
+source ~/.config/zsh/secrets.zsh   # export API keys from the Keychain
 # ghq-fzf
 export GHQ_FZF_FUNC='gv'
 [[ -f $HOMEBREW_PREFIX/share/ghq-fzf/init.zsh ]] && source "$HOMEBREW_PREFIX/share/ghq-fzf/init.zsh"

@@ -7,7 +7,7 @@ function dvc() {
 	local config_args=()
 	if [[ ! -f ".devcontainer/devcontainer.json" && ! -f ".devcontainer.json" ]]; then
 		echo "No local devcontainer config found. Using global config."
-		config_args=("--config" "$HOME/ghq/github.com/masaki39/dotfiles/claude/.devcontainer/devcontainer.json")
+		config_args=("--config" "$DOTFILES/claude/.devcontainer/devcontainer.json")
 	fi
 	devcontainer up --workspace-folder . "${config_args[@]}" && \
 	devcontainer exec --workspace-folder . "${config_args[@]}" sh -c 'exec "${SHELL:-sh}"'
@@ -67,7 +67,7 @@ function backup() {
 		return 1
 	fi
 
-	# 絶対パスに正規化し、. / .. / / で dest が dest_base 自体になるのを防ぐ
+	# Normalize to an absolute path so that ., .., or / cannot make dest equal dest_base itself
 	src=${src:A}
 	dest_base=${dest_base:A}
 	local name=${src:t}
@@ -82,7 +82,7 @@ function backup() {
 	fi
 	[[ -z "$dry_run" ]] && mkdir -p "$dest"
 
-	# 削除・上書きされるファイルは dest_base/.deleted/<name>/<日時>/ に退避する
+	# Deleted or overwritten files are moved to dest_base/.deleted/<name>/<timestamp>/
 	local trash="$dest_base/.deleted/$name/$(date '+%Y%m%d-%H%M%S')"
 	rsync -a --delete --backup --backup-dir="$trash" $dry_run --info=progress2 --no-inc-recursive "$src/" "$dest/" && \
 	echo "[$(date '+%Y-%m-%d %H:%M:%S')] backup ${dry_run:+(dry-run) }done: $src -> $dest"

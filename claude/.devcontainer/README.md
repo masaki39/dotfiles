@@ -1,22 +1,22 @@
 # Claude Code Sandbox Devcontainer
 
-公式リポジトリからそのまま取得した Claude Code 用 devcontainer 定義。
+Claude Code devcontainer definition, taken as-is from the official repository.
 
-- **取得元**: https://github.com/anthropics/claude-code/tree/main/.devcontainer
-- **ドキュメント**: https://docs.anthropic.com/en/docs/claude-code/devcontainer
+- **Source**: https://github.com/anthropics/claude-code/tree/main/.devcontainer
+- **Docs**: https://docs.anthropic.com/en/docs/claude-code/devcontainer
 
-## ファイル構成
+## Files
 
-| ファイル | 内容 |
-|---------|------|
-| `devcontainer.json` | コンテナ設定（Node.js 20、VS Code拡張、ボリューム等） |
-| `Dockerfile` | イメージ定義（Claude Code CLI、zsh、git-delta等） |
-| `init-firewall.sh` | 起動時ファイアウォール設定（許可リスト方式） |
+| File | Contents |
+|------|----------|
+| `devcontainer.json` | Container settings (Node.js 20, VS Code extensions, volumes, etc.) |
+| `Dockerfile` | Image definition (Claude Code CLI, zsh, git-delta, etc.) |
+| `init-firewall.sh` | Firewall setup at startup (allowlist based) |
 
-## 更新方法
+## Updating
 
 ```bash
-cd ~/.devcontainer  # またはこのディレクトリ
+cd ~/.devcontainer  # or this directory
 curl -O https://raw.githubusercontent.com/anthropics/claude-code/main/.devcontainer/devcontainer.json
 curl -O https://raw.githubusercontent.com/anthropics/claude-code/main/.devcontainer/Dockerfile
 curl -O https://raw.githubusercontent.com/anthropics/claude-code/main/.devcontainer/init-firewall.sh

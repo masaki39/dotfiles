@@ -1,4 +1,4 @@
-# Homebrew (PATH / HOMEBREW_PREFIX など)
+# Homebrew (PATH, HOMEBREW_PREFIX, etc.)
 eval "$(/opt/homebrew/bin/brew shellenv zsh)"
 
 # pnpm
