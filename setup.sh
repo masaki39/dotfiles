@@ -10,6 +10,8 @@ if ! command -v brew &>/dev/null; then
   echo "Installing Homebrew..."
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/homebrew/install/HEAD/install.sh)"
 fi
+# インストール直後はこのプロセスの PATH に brew が無いので通す
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Install packages
 brew bundle --file="$DOTFILES/Brewfile"
@@ -40,19 +42,29 @@ ln -sfn "$DOTFILES/agents" ~/.agents
 ln -sf "$DOTFILES/claude/settings.json" ~/.claude/settings.json
 ln -sf "$DOTFILES/claude/CLAUDE.md" ~/.claude/CLAUDE.md
 # statusline は別リポジトリ(ClaudeCodeStatusLine fork)で保守。mascot.sh も同階層に必要
-[ -d "$STATUSLINE_REPO" ] || ghq get git@github.com:masaki39/ClaudeCodeStatusLine
+[ -d "$STATUSLINE_REPO" ] || ghq get git@github.com:masaki39/ClaudeCodeStatusLine || echo "warn: ClaudeCodeStatusLine を取得できなかった (SSH 鍵を確認)"
 ln -sf "$STATUSLINE_REPO/statusline.sh" ~/.claude/statusline.sh
 ln -sf "$STATUSLINE_REPO/mascot.sh" ~/.claude/mascot.sh
 # ~/.claude/skills は実ディレクトリ (skills CLI もここにリンクを作る) にし、各スキルをリンクする
+[ -L ~/.claude/skills ] && rm ~/.claude/skills  # 旧形式 (ディレクトリごとのリンク) から移行
 mkdir -p ~/.claude/skills
 for skill in "$DOTFILES"/claude/skills/*/ "$DOTFILES"/agents/skills/*/; do
-  ln -sfn "${skill%/}" ~/.claude/skills/
+  dst=~/.claude/skills/$(basename "$skill")
+  if [ -e "$dst" ] && [ ! -L "$dst" ]; then
+    echo "skip: $dst は実ディレクトリ"
+    continue
+  fi
+  ln -sfn "${skill%/}" "$dst"
 done
 mkdir -p ~/.claude/hooks
 for hook in "$DOTFILES"/claude/hooks/*.sh; do
   ln -sf "$hook" ~/.claude/hooks/
 done
 # karabiner.ts が ~/.config/karabiner/karabiner.json に直接書き込む (リンク不要)
+# Karabiner 未起動だとファイルが無く build が失敗するので最小構成を作っておく
+mkdir -p ~/.config/karabiner
+[ -s ~/.config/karabiner/karabiner.json ] ||
+  echo '{"profiles":[{"name":"Default profile","selected":true,"complex_modifications":{"rules":[]}}]}' > ~/.config/karabiner/karabiner.json
 (cd "$DOTFILES/karabiner" && pnpm install && pnpm build)
 
 # starship prompt preset
