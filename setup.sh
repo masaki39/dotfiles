@@ -2,7 +2,8 @@
 
 set -e
 
-DOTFILES="$HOME/ghq/github.com/masaki39/dotfiles"
+# DOTFILES_CI=1: CI 用。cask と LaunchAgent の登録を飛ばす
+DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 STATUSLINE_REPO="$HOME/ghq/github.com/masaki39/ClaudeCodeStatusLine"
 
 # Install Homebrew if not installed
@@ -14,9 +15,17 @@ fi
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Install packages
-brew bundle --file="$DOTFILES/Brewfile"
+if [ -n "${DOTFILES_CI:-}" ]; then
+  BREWFILE=$(mktemp)
+  grep -v '^cask ' "$DOTFILES/Brewfile" > "$BREWFILE"
+else
+  BREWFILE="$DOTFILES/Brewfile"
+fi
+brew bundle --file="$BREWFILE"
 
-# pnpm グローバルパッケージ (difit, nli など)
+# pnpm グローバルパッケージ (difit, nli など)。.zprofile が効く前なのでここで通す
+export PNPM_HOME="$HOME/Library/pnpm"
+export PATH="$PNPM_HOME/bin:$PATH"
 xargs pnpm add -g < "$DOTFILES/pnpm/global-packages.txt"
 
 # Claude Code (ネイティブ版)
@@ -78,6 +87,11 @@ starship preset jetpack -o ~/.config/starship.toml
 
 # Install yazi plugins
 bash "$DOTFILES/yazi/install.sh"
+
+if [ -n "${DOTFILES_CI:-}" ]; then
+  echo "✓ Setup complete! (CI: LaunchAgents skipped)"
+  exit 0
+fi
 
 # LaunchAgent for monthly maintenance (cache cleanup + outdated notification)
 chmod +x "$DOTFILES/scripts/monthly-maintenance.sh"

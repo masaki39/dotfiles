@@ -1,0 +1,57 @@
+name: setup
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - setup.sh
+      - Brewfile
+      - .zshrc
+      - .zshenv
+      - .zprofile
+      - 'zsh/**'
+      - 'pnpm/**'
+      - 'karabiner/**'
+      - 'yazi/**'
+      - 'claude/**'
+      - .github/workflows/setup.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  setup:
+    runs-on: macos-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      # 実機と同じパスから実行する
+      - name: Place repo at ghq path
+        run: |
+          mkdir -p ~/ghq/github.com/masaki39
+          ln -s "$GITHUB_WORKSPACE" ~/ghq/github.com/masaki39/dotfiles
+
+      - name: Run setup.sh
+        run: DOTFILES_CI=1 bash ~/ghq/github.com/masaki39/dotfiles/setup.sh
+
+      - name: Verify links
+        run: |
+          set -eu
+          for l in ~/.zshrc ~/.zshenv ~/.zprofile ~/.gitconfig ~/.ssh/config \
+                   ~/.config/{nvim,zsh,yazi,ghostty,lazygit,pnpm,uv,git,jinrai,pplyz} \
+                   ~/.hammerspoon ~/.agents ~/.claude/settings.json ~/.claude/CLAUDE.md \
+                   ~/.claude/hooks/prefer-rust-tools.sh ~/.claude/hooks/herdr-agent-state.sh \
+                   ~/.claude/skills/project-dashboard ~/.claude/skills/pptx; do
+            if [ -L "$l" ] && [ -e "$l" ]; then echo "ok   $l"; else echo "FAIL $l"; exit 1; fi
+          done
+          test -s ~/.config/karabiner/karabiner.json
+          test -s ~/.config/starship.toml
+
+      - name: Verify zsh startup
+        run: |
+          out=$(zsh -lic 'whence -p brew pnpm nli difit fzf starship yazi nvim zoxide && print SHELL_OK' 2>&1)
+          echo "$out"
+          if printf '%s\n' "$out" | grep -E 'command not found|no such file|parse error'; then exit 1; fi
+          printf '%s\n' "$out" | grep -q SHELL_OK
