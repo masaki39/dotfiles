@@ -25,7 +25,10 @@ alias oo='open -a Obsidian'
 expand-alias-and-accept-line() {
   local words=(${(z)BUFFER})
   if [[ -n ${aliases[$words[1]]} ]]; then
-    BUFFER="${aliases[$words[1]]}${BUFFER#${words[1]}}"
+    # 先頭の空白は残す (HIST_IGNORE_SPACE を効かせるため)
+    local lead=${BUFFER%%[^[:space:]]*}
+    local rest=${BUFFER#$lead}
+    BUFFER="${lead}${aliases[$words[1]]}${rest#${words[1]}}"
     CURSOR=$#BUFFER
   fi
   zle .accept-line

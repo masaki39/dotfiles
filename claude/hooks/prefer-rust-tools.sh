@@ -1,24 +1,49 @@
 #!/usr/bin/env bash
-# PreToolUse(Bash): コマンド先頭の find / grep をブロックし fd / rg を使わせる。
-# パイプ後 (`... | grep foo`) は対象外。exit 2 の stderr が Claude に返る。
-cmd=$(jq -r '.tool_input.command // empty')
-[ -z "$cmd" ] && exit 0
+# PreToolUse(Bash): コマンド位置の find / grep をブロックし fd / rg を使わせる。
+# パイプ後 (`... | grep foo`) は対象外。クォート内やヒアドキュメント本文は見ない。
+# exit 2 の stderr が Claude に返る。
+exec python3 -c '
+import json, os, re, shlex, shutil, sys
 
-# && || ; 改行 で区切った各セグメントの先頭語だけを見る (単独の | では区切らない)
-segments=$(printf '%s\n' "$cmd" | sed -E 's/(&&|\|\||;)/\n/g')
-while IFS= read -r seg; do
-  # 先頭の空白・( ・環境変数代入・sudo/command/time を除去
-  seg=$(printf '%s' "$seg" | sed -E 's/^[[:space:]({]+//; s/^([A-Za-z_][A-Za-z0-9_]*=[^[:space:]]*[[:space:]]+)*//; s/^(sudo|command|time)[[:space:]]+//')
-  first=${seg%%[[:space:]]*}
-  case "$first" in
-    find)
-      command -v fd >/dev/null || continue
-      echo "find ではなく fd を使ってください (例: fd -e md, fd -t f name dir)。" >&2
-      exit 2 ;;
-    grep|egrep|fgrep)
-      command -v rg >/dev/null || continue
-      echo "grep ではなく rg を使ってください (例: rg -n pattern, rg -l pattern -g '*.ts')。パイプ後の grep は可。" >&2
-      exit 2 ;;
-  esac
-done <<< "$segments"
-exit 0
+try:
+    cmd = json.load(sys.stdin).get("tool_input", {}).get("command") or ""
+except Exception:
+    sys.exit(0)
+
+# ヒアドキュメント本文を落とす (<<EOF / <<-EOF / <<"EOF" / <<'"'"'EOF'"'"')
+lines, out, end = cmd.split("\n"), [], None
+for line in lines:
+    if end is not None:
+        if line.strip() == end:
+            end = None
+        continue
+    out.append(line)
+    m = re.search(r"<<-?\s*[\"\x27]?([A-Za-z_][A-Za-z0-9_]*)[\"\x27]?", line)
+    if m:
+        end = m.group(1)
+cmd = "\n".join(out)
+
+try:
+    lex = shlex.shlex(cmd, posix=True, punctuation_chars=";&|()\n")
+    lex.whitespace = " \t"
+    tokens = list(lex)
+except ValueError:
+    sys.exit(0)  # クォートの対応が取れないものは判定しない
+
+# コマンドの先頭になりうる位置 (パイプの後は除く)
+starters = {";", "&&", "||", "&", "(", "\n", "{", "then", "do", "else", "elif", "!"}
+prefixes = {"sudo", "command", "time", "exec", "nohup", "env"}
+at_start = True
+for tok in tokens:
+    if at_start:
+        if re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*=.*", tok) or tok in prefixes:
+            continue
+        name = os.path.basename(tok)
+        if name == "find" and shutil.which("fd"):
+            print("find ではなく fd を使ってください (例: fd -e md, fd -t f name dir)。", file=sys.stderr)
+            sys.exit(2)
+        if name in ("grep", "egrep", "fgrep") and shutil.which("rg"):
+            print("grep ではなく rg を使ってください (例: rg -n pattern, rg -l pattern -g \"*.ts\")。パイプ後の grep は可。", file=sys.stderr)
+            sys.exit(2)
+    at_start = tok in starters
+'

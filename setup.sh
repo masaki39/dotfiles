@@ -4,6 +4,15 @@ set -e
 
 # DOTFILES_CI=1: CI 用。cask と LaunchAgent の登録を飛ばす
 DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# 既存の実ファイル/実ディレクトリは <name>.bak.<日時> に退避してからリンクする
+link() {
+  if [ -e "$2" ] && [ ! -L "$2" ]; then
+    mv "$2" "$2.bak.$(date +%Y%m%d%H%M%S)"
+    echo "backed up: $2"
+  fi
+  ln -sfn "$1" "$2"
+}
+
 # pnpm などが ~/.config を読むように (.zshenv はまだ効いていない)
 export XDG_CONFIG_HOME="$HOME/.config"
 STATUSLINE_REPO="$HOME/ghq/github.com/masaki39/ClaudeCodeStatusLine"
@@ -29,7 +38,7 @@ UV_PYTHON=3.13 brew bundle --file="$BREWFILE"
 # pnpm グローバルパッケージ (difit, nli など)。.zprofile が効く前なのでここで通す
 mkdir -p ~/.config
 # minimumReleaseAge (pnpm/config.yaml) をグローバルインストール前に効かせる
-ln -sfn "$DOTFILES/pnpm" ~/.config/pnpm
+link "$DOTFILES/pnpm" ~/.config/pnpm
 export PNPM_HOME="$HOME/Library/pnpm"
 export PATH="$PNPM_HOME/bin:$PATH"
 xargs pnpm add -g < "$DOTFILES/pnpm/global-packages.txt"
@@ -42,43 +51,38 @@ mkdir -p ~/.config ~/.ssh ~/.claude
 chmod 700 ~/.ssh
 
 # Symbolic links (force overwrite)
-ln -sf "$DOTFILES/.gitconfig" ~/.gitconfig
-ln -sf "$DOTFILES/.zshrc" ~/.zshrc
-ln -sf "$DOTFILES/.zshenv" ~/.zshenv
-ln -sf "$DOTFILES/.zprofile" ~/.zprofile
-ln -sf "$DOTFILES/ssh/config" ~/.ssh/config
-ln -sfn "$DOTFILES/yazi" ~/.config/yazi
-ln -sfn "$DOTFILES/ghostty" ~/.config/ghostty
-ln -sfn "$DOTFILES/nvim" ~/.config/nvim
-ln -sfn "$DOTFILES/hammerspoon" ~/.hammerspoon
-ln -sfn "$DOTFILES/zsh" ~/.config/zsh
-ln -sfn "$DOTFILES/lazygit" ~/.config/lazygit
-ln -sfn "$DOTFILES/uv" ~/.config/uv
-ln -sfn "$DOTFILES/git" ~/.config/git
-ln -sfn "$DOTFILES/jinrai" ~/.config/jinrai
-ln -sfn "$DOTFILES/pplyz" ~/.config/pplyz
+link "$DOTFILES/.gitconfig" ~/.gitconfig
+link "$DOTFILES/.zshrc" ~/.zshrc
+link "$DOTFILES/.zshenv" ~/.zshenv
+link "$DOTFILES/.zprofile" ~/.zprofile
+link "$DOTFILES/ssh/config" ~/.ssh/config
+link "$DOTFILES/yazi" ~/.config/yazi
+link "$DOTFILES/ghostty" ~/.config/ghostty
+link "$DOTFILES/nvim" ~/.config/nvim
+link "$DOTFILES/hammerspoon" ~/.hammerspoon
+link "$DOTFILES/zsh" ~/.config/zsh
+link "$DOTFILES/lazygit" ~/.config/lazygit
+link "$DOTFILES/uv" ~/.config/uv
+link "$DOTFILES/git" ~/.config/git
+link "$DOTFILES/jinrai" ~/.config/jinrai
+link "$DOTFILES/pplyz" ~/.config/pplyz
 # pnpm dlx skills -g のインストール先
-ln -sfn "$DOTFILES/agents" ~/.agents
-ln -sf "$DOTFILES/claude/settings.json" ~/.claude/settings.json
-ln -sf "$DOTFILES/claude/CLAUDE.md" ~/.claude/CLAUDE.md
+link "$DOTFILES/agents" ~/.agents
+link "$DOTFILES/claude/settings.json" ~/.claude/settings.json
+link "$DOTFILES/claude/CLAUDE.md" ~/.claude/CLAUDE.md
 # statusline は別リポジトリ(ClaudeCodeStatusLine fork)で保守。mascot.sh も同階層に必要
 [ -d "$STATUSLINE_REPO" ] || ghq get git@github.com:masaki39/ClaudeCodeStatusLine || echo "warn: ClaudeCodeStatusLine を取得できなかった (SSH 鍵を確認)"
-ln -sf "$STATUSLINE_REPO/statusline.sh" ~/.claude/statusline.sh
-ln -sf "$STATUSLINE_REPO/mascot.sh" ~/.claude/mascot.sh
+link "$STATUSLINE_REPO/statusline.sh" ~/.claude/statusline.sh
+link "$STATUSLINE_REPO/mascot.sh" ~/.claude/mascot.sh
 # ~/.claude/skills は実ディレクトリ (skills CLI もここにリンクを作る) にし、各スキルをリンクする
 [ -L ~/.claude/skills ] && rm ~/.claude/skills  # 旧形式 (ディレクトリごとのリンク) から移行
 mkdir -p ~/.claude/skills
 for skill in "$DOTFILES"/claude/skills/*/ "$DOTFILES"/agents/skills/*/; do
-  dst=~/.claude/skills/$(basename "$skill")
-  if [ -e "$dst" ] && [ ! -L "$dst" ]; then
-    echo "skip: $dst は実ディレクトリ"
-    continue
-  fi
-  ln -sfn "${skill%/}" "$dst"
+  link "${skill%/}" ~/.claude/skills/"$(basename "$skill")"
 done
 mkdir -p ~/.claude/hooks
 for hook in "$DOTFILES"/claude/hooks/*.sh; do
-  ln -sf "$hook" ~/.claude/hooks/
+  link "$hook" ~/.claude/hooks/"$(basename "$hook")"
 done
 # karabiner.ts が ~/.config/karabiner/karabiner.json に直接書き込む (リンク不要)
 # Karabiner 未起動だとファイルが無く build が失敗するので最小構成を作っておく
