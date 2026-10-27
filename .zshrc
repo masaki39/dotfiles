@@ -1,15 +1,3 @@
-# PATH
-export BREW_PREFIX="/opt/homebrew"
-export PATH="$BREW_PREFIX/bin:$PATH"
-
-# pnpm
-export PNPM_HOME="/Users/masaki39/Library/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME/bin:"*) ;;
-  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
-esac
-# pnpm end
-
 export EDITOR='nvim'
 export VISUAL='nvim'
 
@@ -57,7 +45,7 @@ NLI_KEY='^K'                    # nli: Ctrl-K turns "<tool> <request>" into a co
 eval "$(nli init zsh)"           # nli: Enter on "nli <tool> <request>" also works
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
-source "$BREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+source "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
 # load configs
 source ~/.config/zsh/aliases.zsh
@@ -66,7 +54,7 @@ source ~/.config/zsh/functions.zsh
 source ~/.config/zsh/secrets.zsh   # API キーを Keychain から export
 # ghq-fzf
 export GHQ_FZF_FUNC='gv'
-source /opt/homebrew/share/ghq-fzf/init.zsh
+source "$HOMEBREW_PREFIX/share/ghq-fzf/init.zsh"
 
 # zsh-syntax-highlighting (must be last)
-source "$BREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+source "$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"

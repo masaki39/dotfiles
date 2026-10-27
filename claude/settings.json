@@ -22,7 +22,13 @@
       "WebSearch",
       "WebFetch"
     ],
-    "deny": [],
+    "deny": [
+      "Read(~/.ssh/id_*)",
+      "Read(~/.gnupg/**)",
+      "Bash(cat ~/.ssh/id_*)",
+      "Bash(security find-generic-password*)",
+      "Bash(secret get*)"
+    ],
     "defaultMode": "auto"
   },
   "hooks": {

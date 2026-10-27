@@ -13,6 +13,8 @@ This will:
 - Create symbolic links
 - Install yazi plugins
 
+Raycast の設定 (`raycast/Raycast.rayconfig`) はリンクできないので、Raycast の Settings → Advanced → Import から手動で取り込む。
+
 ## Secrets
 
 API キーは平文ファイルではなく macOS Keychain に置く (`zsh/secrets.zsh`)。
