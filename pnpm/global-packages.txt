@@ -1,2 +1,2 @@
 difit
-natural-language-interface
+https://github.com/masaki39/natural-language-interface/releases/latest/download/natural-language-interface.tgz
