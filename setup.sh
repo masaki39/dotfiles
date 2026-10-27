@@ -21,7 +21,8 @@ if [ -n "${DOTFILES_CI:-}" ]; then
 else
   BREWFILE="$DOTFILES/Brewfile"
 fi
-brew bundle --file="$BREWFILE"
+# uv tool (pplyz) は最新 Python だと依存のビルドが通らないことがあるので固定する
+UV_PYTHON=3.13 brew bundle --file="$BREWFILE"
 
 # pnpm グローバルパッケージ (difit, nli など)。.zprofile が効く前なのでここで通す
 export PNPM_HOME="$HOME/Library/pnpm"
