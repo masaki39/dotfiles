@@ -9,3 +9,5 @@
 !.devcontainer/
 !.devcontainer/*
 !CLAUDE.md
+!hooks/
+!hooks/**

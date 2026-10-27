@@ -17,7 +17,8 @@
       "Bash(type*)",
       "Bash(brew list*)",
       "Bash(brew info*)",
-      "Bash(find*)",
+      "Bash(fd*)",
+      "Bash(rg*)",
       "WebSearch",
       "WebFetch"
     ],
@@ -39,6 +40,18 @@
             "command": "[ -f \"$CLAUDE_PROJECT_DIR/dashboard/status.toml\" ] && cd \"$CLAUDE_PROJECT_DIR\" && uv run --no-project --python '>=3.11' ~/.claude/skills/project-dashboard/scripts/build_dashboard.py --summary 2>/dev/null; exit 0",
             "timeout": 30,
             "statusMessage": "プロジェクトダッシュボードを読み込み中..."
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ~/.claude/hooks/prefer-rust-tools.sh",
+            "timeout": 5
           }
         ]
       }

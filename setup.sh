@@ -38,6 +38,8 @@ ln -sf "$DOTFILES/claude/CLAUDE.md" ~/.claude/CLAUDE.md
 ln -sf "$STATUSLINE_REPO/statusline.sh" ~/.claude/statusline.sh
 ln -sf "$STATUSLINE_REPO/mascot.sh" ~/.claude/mascot.sh
 ln -sf "$DOTFILES/claude/skills" ~/.claude/skills
+mkdir -p ~/.claude/hooks
+ln -sf "$DOTFILES/claude/hooks/prefer-rust-tools.sh" ~/.claude/hooks/prefer-rust-tools.sh
 mkdir -p ~/.config/karabiner
 ln -sf "$DOTFILES/karabiner/karabiner.json" ~/.config/karabiner/karabiner.json
 if [ ! -s "$DOTFILES/karabiner/karabiner.json" ]; then
