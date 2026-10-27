@@ -1,7 +1,5 @@
 # dotfiles
 
-My macOS setup: zsh, Neovim (LazyVim), Ghostty, yazi, Hammerspoon, Karabiner, and Claude Code.
-
 ## Setup
 
 ```zsh
@@ -9,8 +7,6 @@ xcode-select --install
 git clone https://github.com/masaki39/dotfiles ~/ghq/github.com/masaki39/dotfiles
 bash ~/ghq/github.com/masaki39/dotfiles/setup.sh
 ```
-
-`setup.sh` installs Homebrew packages, links configs, and registers LaunchAgents for monthly maintenance.
 
 Then:
 
