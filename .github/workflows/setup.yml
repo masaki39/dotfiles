@@ -43,7 +43,7 @@ jobs:
                    ~/.config/{nvim,zsh,yazi,ghostty,lazygit,pnpm,uv,git,jinrai,pplyz} \
                    ~/.hammerspoon ~/.agents ~/.claude/settings.json ~/.claude/CLAUDE.md \
                    ~/.claude/hooks/prefer-rust-tools.sh ~/.claude/hooks/herdr-agent-state.sh \
-                   ~/.claude/skills/project-dashboard ~/.claude/skills/pptx; do
+                   ~/.claude/skills/dashboard ~/.claude/skills/pptx; do
             if [ -L "$l" ] && [ -e "$l" ]; then echo "ok   $l"; else echo "FAIL $l"; exit 1; fi
           done
           test -s ~/.config/karabiner/karabiner.json

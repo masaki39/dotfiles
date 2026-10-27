@@ -35,7 +35,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "[ -f \"$CLAUDE_PROJECT_DIR/dashboard/status.toml\" ] && uv run --no-config --no-project --python '>=3.11' ~/.claude/skills/project-dashboard/scripts/build_dashboard.py --summary 2>/dev/null; exit 0",
+            "command": "[ -f \"$CLAUDE_PROJECT_DIR/dashboard/status.toml\" ] && uv run --no-config --no-project --python '>=3.11' ~/.claude/skills/dashboard/scripts/build_dashboard.py --summary 2>/dev/null; exit 0",
             "timeout": 30,
             "statusMessage": "プロジェクトダッシュボードを読み込み中..."
           }
