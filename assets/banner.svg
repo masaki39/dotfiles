@@ -1,0 +1,132 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640" role="img" aria-labelledby="t d">
+  <title id="t">dotfiles</title>
+  <desc id="d">An agent-reproducible macOS (Apple Silicon) dev environment: setup.sh is idempotent, secrets live in the macOS Keychain, and it configures Ghostty, zsh + starship, Neovim, yazi, lazygit, Hammerspoon, Karabiner and Claude Code.</desc>
+  <style>
+    .bg { fill: #f6f8fa; }
+    .fg { fill: #1f2328; }
+    .muted { fill: #59636e; }
+    .accent { fill: #0969da; }
+    .accent-s { stroke: #0969da; }
+    .tile { fill: #ddf4ff; }
+    .chip { fill: #ffffff; stroke: #d0d7de; }
+    .chip-t { fill: #1f2328; }
+    .glow { fill: #0969da; opacity: .06; }
+    .frame { stroke: #d0d7de; }
+    /* The terminal stays dark in both themes */
+    .term { fill: #0f141b; }
+    .bar { fill: #1b222c; }
+    .tt { fill: #e6edf3; }
+    .tm { fill: #8b949e; }
+    .tp { fill: #58a6ff; }
+    .ok { fill: #3fb950; }
+    .sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+    .mono { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; }
+
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #0d1117; }
+      .fg { fill: #f0f6fc; }
+      .muted { fill: #9198a1; }
+      .accent { fill: #4493f8; }
+      .accent-s { stroke: #4493f8; }
+      .tile { fill: #12263f; }
+      .chip { fill: #151b23; stroke: #3d444d; }
+      .chip-t { fill: #e6edf3; }
+      .glow { fill: #4493f8; opacity: .10; }
+      .frame { stroke: #3d444d; }
+      .term { fill: #010409; }
+      .bar { fill: #151b23; }
+    }
+
+    /* Plays once and stays on the final frame; without CSS animation everything is simply visible */
+    .type { animation: type .9s steps(13, end) .3s both; }
+    .line { animation: rise .35s ease-out both; }
+    .l1 { animation-delay: 1.4s; }
+    .l2 { animation-delay: 1.8s; }
+    .l3 { animation-delay: 2.2s; }
+    .l4 { animation-delay: 2.6s; }
+    .l5 { animation-delay: 3.0s; }
+    .l6 { animation-delay: 3.4s; }
+    .l7 { animation-delay: 3.9s; }
+    @keyframes type { from { transform: translateX(0); opacity: 1; } 99% { opacity: 1; } to { transform: translateX(160px); opacity: 0; } }
+    @keyframes rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+    @media (prefers-reduced-motion: reduce) {
+      .type, .line { animation: none; }
+    }
+  </style>
+  <defs>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000" flood-opacity=".22"/>
+    </filter>
+    <clipPath id="screen"><rect x="640" y="132" width="568" height="364"/></clipPath>
+  </defs>
+
+  <rect class="bg" width="1280" height="640"/>
+  <circle class="glow" cx="930" cy="290" r="330"/>
+
+  <!-- Title + tagline -->
+  <text class="mono muted" x="72" y="118" font-size="22">masaki39 /</text>
+  <text class="sans fg" x="68" y="196" font-size="84" font-weight="800" letter-spacing="-2">dotfiles</text>
+  <text class="sans muted" x="72" y="242" font-size="22">Reproducible macOS setup for Apple Silicon</text>
+
+  <!-- Features -->
+  <g class="sans">
+    <g transform="translate(72 296)">
+      <rect class="tile" width="48" height="48" rx="12"/>
+      <path class="accent" d="M24 10 L27.5 20.5 L38 24 L27.5 27.5 L24 38 L20.5 27.5 L10 24 L20.5 20.5 Z"/>
+      <text class="fg" x="68" y="20" font-size="22" font-weight="700">Agent-reproducible</text>
+      <text class="muted" x="68" y="46" font-size="17">Give the repo URL to an agent → AGENTS.md</text>
+    </g>
+    <g transform="translate(72 380)">
+      <rect class="tile" width="48" height="48" rx="12"/>
+      <path class="accent-s" d="M17 22 V18 a7 7 0 0 1 14 0 V22" fill="none" stroke-width="3.2" stroke-linecap="round"/>
+      <rect class="accent" x="13" y="21" width="22" height="17" rx="4"/>
+      <text class="fg" x="68" y="20" font-size="22" font-weight="700">Secrets in the Keychain</text>
+      <text class="muted" x="68" y="46" font-size="17"><tspan class="mono">secret set KEY</tspan> → macOS Keychain</text>
+    </g>
+    <g transform="translate(72 464)">
+      <rect class="tile" width="48" height="48" rx="12"/>
+      <path class="accent-s" d="M34 18 A11 11 0 1 0 35 28" fill="none" stroke-width="3.2" stroke-linecap="round"/>
+      <path class="accent" d="M29 12 L37 13 L35 21 Z"/>
+      <text class="fg" x="68" y="20" font-size="22" font-weight="700">Idempotent setup</text>
+      <text class="muted" x="68" y="46" font-size="17">Re-run <tspan class="mono">setup.sh</tspan> anytime; files backed up</text>
+    </g>
+  </g>
+
+  <!-- Terminal -->
+  <rect class="term" filter="url(#shadow)" x="640" y="96" width="568" height="400" rx="14"/>
+  <rect class="term" x="640" y="96" width="568" height="400" rx="14"/>
+  <path class="bar" d="M654 96 H1194 a14 14 0 0 1 14 14 V132 H640 V110 a14 14 0 0 1 14 -14 Z"/>
+  <rect class="frame" x="640.5" y="96.5" width="567" height="399" rx="13.5" fill="none"/>
+  <circle cx="664" cy="114" r="6.5" fill="#ff5f57"/>
+  <circle cx="686" cy="114" r="6.5" fill="#febc2e"/>
+  <circle cx="708" cy="114" r="6.5" fill="#28c840"/>
+  <text class="sans tm" x="924" y="119" font-size="14" text-anchor="middle">zsh — ~/dotfiles</text>
+
+  <g class="mono" font-size="19" clip-path="url(#screen)">
+    <text x="664" y="178"><tspan class="tp">~/dotfiles</tspan><tspan class="ok"> ❯ </tspan><tspan class="tt">bash setup.sh</tspan></text>
+    <rect class="term type" opacity="0" x="814" y="160" width="160" height="26"/>
+
+    <text class="line l1" x="664" y="220"><tspan class="ok">✓</tspan><tspan class="tt"> Homebrew bundle</tspan><tspan class="tm" x="922">Brewfile</tspan></text>
+    <text class="line l2" x="664" y="256"><tspan class="ok">✓</tspan><tspan class="tt"> Claude Code + pnpm</tspan><tspan class="tm" x="922">globals</tspan></text>
+    <text class="line l3" x="664" y="292"><tspan class="ok">✓</tspan><tspan class="tt"> Link configs</tspan><tspan class="tm" x="922">zsh nvim yazi …</tspan></text>
+    <text class="line l4" x="664" y="328"><tspan class="ok">✓</tspan><tspan class="tt"> Karabiner rules</tspan><tspan class="tm" x="922">karabiner.ts</tspan></text>
+    <text class="line l5" x="664" y="364"><tspan class="ok">✓</tspan><tspan class="tt"> LaunchAgents</tspan><tspan class="tm" x="922">monthly update</tspan></text>
+    <text class="line l6" x="664" y="400"><tspan class="ok">✓</tspan><tspan class="tt"> Verify</tspan><tspan class="ok" x="922">SHELL_OK</tspan></text>
+    <g class="line l7">
+      <text x="664" y="450"><tspan class="tp">~/dotfiles</tspan><tspan class="ok"> ❯ </tspan></text>
+      <rect x="814" y="434" width="11" height="22" fill="#e6edf3" opacity=".85"/>
+    </g>
+  </g>
+
+  <!-- Tool stack -->
+  <g class="mono" font-size="16" text-anchor="middle">
+    <g transform="translate(148 548)"><rect class="chip" x=".5" y=".5" width="95" height="35" rx="17.5"/><text class="chip-t" x="48" y="23">Ghostty</text></g>
+    <g transform="translate(257 548)"><rect class="chip" x=".5" y=".5" width="161" height="35" rx="17.5"/><text class="chip-t" x="81" y="23">zsh + starship</text></g>
+    <g transform="translate(432 548)"><rect class="chip" x=".5" y=".5" width="85" height="35" rx="17.5"/><text class="chip-t" x="43" y="23">Neovim</text></g>
+    <g transform="translate(531 548)"><rect class="chip" x=".5" y=".5" width="65" height="35" rx="17.5"/><text class="chip-t" x="33" y="23">yazi</text></g>
+    <g transform="translate(610 548)"><rect class="chip" x=".5" y=".5" width="95" height="35" rx="17.5"/><text class="chip-t" x="48" y="23">lazygit</text></g>
+    <g transform="translate(719 548)"><rect class="chip" x=".5" y=".5" width="133" height="35" rx="17.5"/><text class="chip-t" x="67" y="23">Hammerspoon</text></g>
+    <g transform="translate(866 548)"><rect class="chip" x=".5" y=".5" width="113" height="35" rx="17.5"/><text class="chip-t" x="57" y="23">Karabiner</text></g>
+    <g transform="translate(993 548)"><rect class="chip" x=".5" y=".5" width="133" height="35" rx="17.5"/><text class="chip-t" x="67" y="23">Claude Code</text></g>
+  </g>
+</svg>

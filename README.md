@@ -1,4 +1,15 @@
+<p align="center">
+  <img src="assets/banner.svg" alt="dotfiles: an agent-reproducible macOS (Apple Silicon) setup with Keychain-backed secrets, configuring Ghostty, zsh + starship, Neovim, yazi, lazygit, Hammerspoon, Karabiner and Claude Code" width="100%">
+</p>
+
 # dotfiles
+
+## Highlights
+
+- **Agent-reproducible**: hand the repo URL to a coding agent and it follows [AGENTS.md](AGENTS.md) to rebuild the environment on a new Apple Silicon Mac.
+- **Idempotent setup**: `setup.sh` can be re-run anytime; existing files are backed up before being replaced by links.
+- **Secrets in the Keychain**: the `secret` command stores API keys in the macOS Keychain, never in files.
+- **Tool stack**: Ghostty, zsh + starship, Neovim, yazi, lazygit, Hammerspoon, Karabiner (karabiner.ts) and Claude Code.
 
 ## Setup
 
