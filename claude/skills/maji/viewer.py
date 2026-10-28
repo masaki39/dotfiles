@@ -12,7 +12,7 @@ The commander reports its state as workspace metadata (`--source maji`):
 State comes from `herdr api snapshot`; refreshes are triggered by
 `events.subscribe` on the herdr socket, falling back to 1s polling.
 
-Usage: uv run --script viewer.py [--workspace ID] [--once]
+Usage: uv run --script viewer.py [--workspace ID] [--once] [--demo]
 """
 
 from __future__ import annotations
@@ -57,7 +57,7 @@ SUBSCRIPTIONS = [
     "pane.exited", "pane.agent_detected",
 ]
 
-BOX_W = 17  # outer width of a node box
+BOX_W = 15  # outer width of a node box
 GAP = 3  # width of the "──▸" connector
 FULL_W = 1 + 4 * BOX_W + 3 * GAP  # columns needed by the diagram layout
 COALESCE_S = 0.3  # max delay between the first event of a burst and the refresh
@@ -135,6 +135,20 @@ def build_state(workspace_id: str) -> State:
             agent.title = info.get("terminal_title_stripped", "")
         state.agents.append(agent)
     return state
+
+
+def demo_state() -> State:
+    """Dummy state for previewing the layout without herdr (--demo)."""
+    ws = "demo"
+    return State(
+        ws, label="sample", phase="review", loop=1, mode="demo",
+        agents=[
+            Agent("investigators", f"{ws}:p1", "done", "claude"),
+            Agent("investigators", f"{ws}:p2", "done", "claude"),
+            Agent("worker", f"{ws}:p3", "idle", "claude"),
+            Agent("reviewer", f"{ws}:p4", "working", "claude"),
+        ],
+    )
 
 
 # ---------- rendering ----------
@@ -251,10 +265,10 @@ def node_lines(phase: str, state: State, height: int, t: int | None) -> list[Tex
         border, title, title_style = GRID, phase.upper(), STEEL
     tl, h, tr, v, bl, br = BORDERS[kind]
     inner = BOX_W - 2
-    body = [Text(f" {title} ".center(inner), style=title_style)]
+    body = [Text(title.center(inner), style=title_style)]
     for agent in agents_in(phase, state):
         line = Text(" ")
-        line.append(f"{short_id(agent.pane_id, state.workspace_id):<4}", style=f"bold {FG}")
+        line.append(f"{short_id(agent.pane_id, state.workspace_id):<3}", style=f"bold {FG}")
         line.append_text(status_text(agent.status, t))
         line.truncate(inner)
         line.pad_right(inner - line.cell_len)
@@ -515,7 +529,7 @@ def watch(workspace_id: str, publish, stop: threading.Event) -> None:
             stop.wait(1)
 
 
-def run_tui(workspace_id: str) -> None:
+def run_tui(workspace_id: str, demo: bool = False) -> None:
     from textual import events
     from textual.app import App, ComposeResult
     from textual.geometry import Region
@@ -562,9 +576,12 @@ def run_tui(workspace_id: str) -> None:
 
         def on_mount(self) -> None:
             self.title = "maji"
-            threading.Thread(
-                target=watch, args=(workspace_id, self.publish, self._watch_stop), daemon=True
-            ).start()
+            if demo:
+                self._latest = demo_state()
+            else:
+                threading.Thread(
+                    target=watch, args=(workspace_id, self.publish, self._watch_stop), daemon=True
+                ).start()
             self.set_interval(1 / FPS, self.tick)
 
         def tick(self) -> None:
@@ -597,7 +614,14 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--workspace", default=os.environ.get("HERDR_WORKSPACE_ID"))
     parser.add_argument("--once", action="store_true", help="print the current state as plain text and exit")
+    parser.add_argument("--demo", action="store_true", help="show dummy sample data instead of the live state")
     args = parser.parse_args()
+    if args.demo and args.once:
+        print(render(demo_state(), shutil.get_terminal_size((FULL_W + 1, 24)).columns).plain.rstrip())
+        sys.exit(0)
+    if args.demo:
+        run_tui("demo", demo=True)
+        return
     if not args.workspace:
         sys.exit("no workspace: pass --workspace or run inside herdr")
     if args.once:
