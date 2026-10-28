@@ -26,3 +26,6 @@ description: herdrで調査・作業・レビューのエージェントを別�
 - 作業エージェントは1体。並列にするのは調査とレビューだけ
 - 選ばれた確認レベルを超えてユーザーに確認しない。方針を変える判断が必要なときだけ例外
 - herdrの操作は `herdr --skill` を読んでから。配下は別タブ(`herdr tab create`)に起動する
+- 状態報告: 節目ごとに `herdr workspace report-metadata $HERDR_WORKSPACE_ID --source maji --token phase=<p> --token loop=<NG回数> --token worker=<pane> --token reviewer=<pane> --token investigators=<pane>,<pane> --ttl-ms 86400000`
+  (phase: investigate / decide / work / review / verify / report / done。値は80文字まで。終了時は `--clear-token` で消す)
+- ビューア: `herdr pane split --current --direction down --no-focus` → `herdr pane run <pane> "uv run --script ~/.claude/skills/maji/viewer.py"` (`--once` でテキスト出力)
