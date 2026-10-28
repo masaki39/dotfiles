@@ -26,5 +26,5 @@ description: herdrで調査・作業・レビューのエージェントを別�
 - 作業エージェントは1体。並列にするのは調査とレビューだけ
 - 選ばれた確認レベルを超えてユーザーに確認しない。方針を変える判断が必要なときだけ例外
 - herdrの操作は `herdr --skill` を読んでから。配下は別タブ(`herdr tab create`)に起動する
-- 節目ごとに `herdr workspace report-metadata --source maji` で phase(investigate/decide/work/review/verify/report/done)・loop(NG回数)・worker・reviewer・investigators(pane,…) を報告し、終了時に消す
+- 節目ごとに `herdr workspace report-metadata --source maji` で phase(investigate/decide/work/review/verify/report/done)・loop(NG回数)・worker・reviewer(pane,…)・investigators(pane,…) を報告し、終了時に消す
 - 開始時に自タブを分割して `uv run --script ~/.claude/skills/maji/viewer.py` を起動

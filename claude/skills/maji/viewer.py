@@ -7,7 +7,7 @@
 
 The commander reports its state as workspace metadata (`--source maji`):
   phase=<investigate|decide|work|review|verify|report|done>  loop=<NG count>
-  worker=<pane>  reviewer=<pane>  investigators=<pane>,<pane>,...
+  worker=<pane>  reviewer=<pane>,<pane>,...  investigators=<pane>,<pane>,...
 
 State comes from `herdr api snapshot`; refreshes are triggered by
 `events.subscribe` on the herdr socket, falling back to 1s polling.
@@ -123,8 +123,8 @@ def build_state(workspace_id: str) -> State:
 
     panes = {p["pane_id"]: p for p in snap.get("panes", [])}
     agents = {a["pane_id"]: a for a in snap.get("agents", [])}
-    roles = [("investigators", p) for p in tokens.get("investigators", "").split(",") if p.strip()]
-    roles += [(r, tokens[r]) for r in ("worker", "reviewer") if tokens.get(r)]
+    roles = [(r, p) for r in ("investigators", "worker", "reviewer")
+             for p in tokens.get(r, "").split(",") if p.strip()]
     for role, pane in roles:
         pid = full_pane_id(pane.strip(), workspace_id)
         agent = Agent(role, pid)
@@ -147,6 +147,7 @@ def demo_state() -> State:
             Agent("investigators", f"{ws}:p2", "done", "claude"),
             Agent("worker", f"{ws}:p3", "idle", "claude"),
             Agent("reviewer", f"{ws}:p4", "working", "claude"),
+            Agent("reviewer", f"{ws}:p5", "done", "claude"),
         ],
     )
 
