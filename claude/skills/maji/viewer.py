@@ -3,7 +3,7 @@
 # requires-python = ">=3.11"
 # dependencies = ["textual"]
 # ///
-"""Live viewer for the maji flow state of a herdr workspace.
+"""Live board of the maji runs across all herdr workspaces.
 
 The commander reports its state as workspace metadata (`--source maji`):
   phase=<investigate|decide|work|review|verify|report|done>  loop=<NG count>
@@ -12,7 +12,10 @@ The commander reports its state as workspace metadata (`--source maji`):
 State comes from `herdr api snapshot`; refreshes are triggered by
 `events.subscribe` on the herdr socket, falling back to 1s polling.
 
-Usage: uv run --script viewer.py [--workspace ID] [--once] [--demo]
+The board lives in the fixed `maji` workspace; `--ensure` creates it and starts
+the viewer there unless one is already running.
+
+Usage: uv run --script viewer.py [--ensure] [--workspace ID] [--once] [--demo]
 """
 
 from __future__ import annotations
@@ -33,6 +36,8 @@ from rich.text import Text
 
 PHASES = ["investigate", "decide", "work", "review", "verify", "report", "done"]
 ROLE_PHASE = {"investigators": "investigate", "worker": "work", "reviewer": "review"}
+HOME_WORKSPACE = "maji"  # label of the fixed workspace hosting the board
+ALL_WORKSPACES = "all"  # workspace id of the placeholder shown when no run is active
 # Palette (truecolor): cyan = live flow, teal = completed, magenta/amber = NG loop and alerts.
 CYAN, CYAN_MID, CYAN_DIM = "#00e5ff", "#0a9fbd", "#0b4f61"
 TEAL, TEAL_DIM = "#2be0b0", "#1a7a63"
@@ -101,18 +106,26 @@ def full_pane_id(pane: str, workspace_id: str) -> str:
     return pane if ":" in pane else f"{workspace_id}:{pane}"
 
 
-def build_state(workspace_id: str) -> State:
-    state = State(workspace_id)
+def build_states(workspace_id: str | None) -> list[State]:
+    """States of one workspace, or of every workspace with maji metadata when None."""
     try:
         snap = fetch_snapshot()
     except Exception as e:  # herdr not running, timeout, bad JSON
-        state.error = f"snapshot failed: {e}"
-        return state
-    ws = next((w for w in snap.get("workspaces", []) if w.get("workspace_id") == workspace_id), None)
+        return [State(workspace_id or ALL_WORKSPACES, error=f"snapshot failed: {e}")]
+    workspaces = snap.get("workspaces", [])
+    if workspace_id is None:
+        states = [workspace_state(w, snap) for w in workspaces
+                  if any(k in (w.get("tokens") or {}) for k in ("phase", *ROLE_PHASE))]
+        return states or [State(ALL_WORKSPACES)]
+    ws = next((w for w in workspaces if w.get("workspace_id") == workspace_id), None)
     if ws is None:
-        state.error = f"workspace {workspace_id} not found"
-        return state
-    state.label = ws.get("label", "")
+        return [State(workspace_id, error=f"workspace {workspace_id} not found")]
+    return [workspace_state(ws, snap)]
+
+
+def workspace_state(ws: dict, snap: dict) -> State:
+    workspace_id = ws["workspace_id"]
+    state = State(workspace_id, label=ws.get("label", ""))
     tokens = ws.get("tokens") or {}
     phase = tokens.get("phase")
     state.phase = phase if phase in PHASES else (phase or None)
@@ -137,19 +150,25 @@ def build_state(workspace_id: str) -> State:
     return state
 
 
-def demo_state() -> State:
-    """Dummy state for previewing the layout without herdr (--demo)."""
+def demo_states() -> list[State]:
+    """Dummy states for previewing the layout without herdr (--demo)."""
     ws = "demo"
-    return State(
-        ws, label="sample", phase="review", loop=1, mode="demo",
-        agents=[
-            Agent("investigators", f"{ws}:p1", "done", "claude"),
-            Agent("investigators", f"{ws}:p2", "done", "claude"),
-            Agent("worker", f"{ws}:p3", "idle", "claude"),
-            Agent("reviewer", f"{ws}:p4", "working", "claude"),
-            Agent("reviewer", f"{ws}:p5", "done", "claude"),
-        ],
-    )
+    return [
+        State(
+            ws, label="sample", phase="review", loop=1, mode="demo",
+            agents=[
+                Agent("investigators", f"{ws}:p1", "done", "sample-scout-1"),
+                Agent("investigators", f"{ws}:p2", "done", "sample-scout-2"),
+                Agent("worker", f"{ws}:p3", "idle", "sample-worker"),
+                Agent("reviewer", f"{ws}:p4", "working", "sample-review-1"),
+                Agent("reviewer", f"{ws}:p5", "done", "sample-review-2"),
+            ],
+        ),
+        State(
+            "demo2", label="other", phase="work", mode="demo",
+            agents=[Agent("worker", "demo2:p1", "blocked", "other-worker")],
+        ),
+    ]
 
 
 # ---------- rendering ----------
@@ -353,9 +372,9 @@ def scan_bar(width: int, t: int | None) -> Text:
 
 def hud_line(state: State, t: int | None, title: str, label: bool, words: bool, clock: bool, link: bool) -> Text:
     hud = Text.assemble((title, f"bold {INK} on {CYAN}"))
-    hud.append(f"  {state.workspace_id}", style=f"bold {FG}")
+    hud.append(f"  {state.label or state.workspace_id}", style=f"bold {FG}")
     if label and state.label:
-        hud.append(f" {state.label}", style=STEEL)
+        hud.append(f" {state.workspace_id}", style=STEEL)
     hud.append("  PHASE " if words else "  ", style=STEEL)
     hud.append((state.phase or "-").upper(), style=f"bold {CYAN}")
     hud.append("  LOOP " if words else "  ↺", style=STEEL)
@@ -426,15 +445,17 @@ def agent_table(state: State, t: int | None) -> list[Text]:
     return lines
 
 
-def render_lines(state: State, width: int = FULL_W + 1, t: int | None = None) -> list[Text]:
+def render_lines(state: State, width: int = FULL_W + 1, t: int | None = None, compact: bool = False) -> list[Text]:
     """Render the state; falls back to a compact list when width < FULL_W."""
-    compact = width < FULL_W + 1
+    compact = compact or width < FULL_W + 1
     lines = header_lines(state, width, t)
     if state.warning:
         lines.append(Text(f" ⚠ {state.warning}", style=f"bold {AMBER}"))
 
     if state.error:
         lines.append(Text(f" ✕ {state.error}", style=f"bold {MAGENTA}"))
+    elif state.workspace_id == ALL_WORKSPACES:
+        lines.append(Text(" ◌ No active maji runs.", style=FG))
     else:
         if not state.has_metadata:
             line = Text.assemble((" ◌ NO SIGNAL ", f"bold {AMBER}"))
@@ -457,8 +478,35 @@ def render_lines(state: State, width: int = FULL_W + 1, t: int | None = None) ->
     return lines
 
 
-def render(state: State, width: int = FULL_W + 1, t: int | None = None) -> Text:
-    return Text("\n").join(render_lines(state, width, t))
+def summary_line(state: State, width: int, t: int | None) -> Text:
+    """A single line for one run: the HUD followed by its agents."""
+    line = header_lines(state, width, t)[0]
+    for agent in state.agents:
+        line.append("  ")
+        line.append_text(agent_cell(agent, state.workspace_id, t))
+    line.truncate(max(width - 1, 1))
+    return line
+
+
+def render_board(states: list[State], width: int = FULL_W + 1, height: int | None = None,
+                 t: int | None = None) -> list[Text]:
+    """Stack the runs, moving to denser layouts until they fit in `height`."""
+    layouts = [
+        lambda s: render_lines(s, width, t),
+        lambda s: render_lines(s, width, t, compact=True),
+        lambda s: [summary_line(s, width, t)],
+    ]
+    for layout in layouts:
+        lines = []
+        for i, state in enumerate(states):
+            lines += ([Text()] if i else []) + layout(state)
+        if height is None or len(lines) <= height:
+            break
+    return lines
+
+
+def render(states: list[State], width: int = FULL_W + 1) -> Text:
+    return Text("\n").join(render_board(states, width))
 
 
 # ---------- live updates ----------
@@ -491,8 +539,8 @@ def subscribe() -> socket.socket:
     return sock
 
 
-def watch(workspace_id: str, publish, stop: threading.Event) -> None:
-    """Publish a fresh State on every herdr event (or every 1s when polling)."""
+def watch(workspace_id: str | None, publish, stop: threading.Event) -> None:
+    """Publish fresh states on every herdr event (or every 1s when polling)."""
     sock = None
     warning = None
     while not stop.is_set():
@@ -503,10 +551,11 @@ def watch(workspace_id: str, publish, stop: threading.Event) -> None:
                     warning = None
                 except Exception as e:
                     sock, warning = None, f"events unavailable ({e}); polling"
-            state = build_state(workspace_id)
-            state.mode = "events" if sock else "polling"
-            state.warning = warning
-            publish(state)
+            states = build_states(workspace_id)
+            for state in states:
+                state.mode = "events" if sock else "polling"
+            states[0].warning = warning
+            publish(states)
             if sock is None:
                 stop.wait(1)
                 continue
@@ -530,7 +579,7 @@ def watch(workspace_id: str, publish, stop: threading.Event) -> None:
             stop.wait(1)
 
 
-def run_tui(workspace_id: str, demo: bool = False) -> None:
+def run_tui(workspace_id: str | None, demo: bool = False) -> None:
     from textual import events
     from textual.app import App, ComposeResult
     from textual.geometry import Region
@@ -568,9 +617,9 @@ def run_tui(workspace_id: str, demo: bool = False) -> None:
         def __init__(self) -> None:
             super().__init__()
             self._watch_stop = threading.Event()
-            self._latest: State | None = None
+            self._latest: list[State] | None = None
             self._frame = 0
-            self._width = 0
+            self._board_size = (0, 0)
 
         def compose(self) -> ComposeResult:
             yield Flow()
@@ -578,7 +627,7 @@ def run_tui(workspace_id: str, demo: bool = False) -> None:
         def on_mount(self) -> None:
             self.title = "maji"
             if demo:
-                self._latest = demo_state()
+                self._latest = demo_states()
             else:
                 threading.Thread(
                     target=watch, args=(workspace_id, self.publish, self._watch_stop), daemon=True
@@ -589,21 +638,22 @@ def run_tui(workspace_id: str, demo: bool = False) -> None:
             self._frame += 1
             self.show()
 
-        def publish(self, state: State) -> None:
+        def publish(self, states: list[State]) -> None:
             try:
-                self.call_from_thread(self.show, state)
+                self.call_from_thread(self.show, states)
             except Exception:
                 self._watch_stop.set()  # app is shutting down
 
-        def show(self, state: State | None = None, width: int | None = None) -> None:
-            self._latest = state or self._latest
-            self._width = width or self._width or self.size.width
+        def show(self, states: list[State] | None = None, size: tuple[int, int] | None = None) -> None:
+            self._latest = states or self._latest
+            self._board_size = size or (self._board_size if any(self._board_size) else tuple(self.size))
             if self._latest:
-                self.query_one(Flow).show(render_lines(self._latest, self._width, self._frame))
+                width, height = self._board_size
+                self.query_one(Flow).show(render_board(self._latest, width, height, self._frame))
 
         def on_resize(self, event: events.Resize) -> None:
             # self.size is not updated yet while handling Resize; use the event's size.
-            self.show(width=event.size.width)
+            self.show(size=tuple(event.size))
 
         def on_unmount(self) -> None:
             self._watch_stop.set()
@@ -611,25 +661,57 @@ def run_tui(workspace_id: str, demo: bool = False) -> None:
     MajiViewer().run()
 
 
+def herdr(*args: str) -> dict:
+    out = subprocess.run(["herdr", *args], capture_output=True, text=True, timeout=10, check=True).stdout
+    return json.loads(out)["result"] if out.strip() else {}  # `pane run` prints nothing
+
+
+def ensure_viewer() -> None:
+    """Start the board in the fixed workspace unless it is already running there."""
+    workspaces = herdr("workspace", "list")["workspaces"]
+    ws = next((w for w in workspaces if w.get("label") == HOME_WORKSPACE), None)
+    if ws is None:
+        created = herdr("workspace", "create", "--label", HOME_WORKSPACE, "--cwd", str(Path.home()), "--no-focus")
+        pane = created["root_pane"]["pane_id"]
+    else:
+        pane = None
+        panes = herdr("pane", "list", "--workspace", ws["workspace_id"])["panes"]
+        for p in panes:
+            info = herdr("pane", "process-info", "--pane", p["pane_id"])["process_info"]
+            procs = info["foreground_processes"]
+            if any("maji/viewer.py" in proc["cmdline"] for proc in procs):
+                print(f"viewer already running in {p['pane_id']}")
+                return
+            if all(proc["pid"] == info["shell_pid"] for proc in procs):
+                pane = pane or p["pane_id"]
+        if pane is None:  # every pane is busy: leave them alone
+            pane = herdr("pane", "split", panes[0]["pane_id"], "--direction", "right", "--no-focus")["pane"]["pane_id"]
+    herdr("pane", "run", pane, f"uv run --script {Path(__file__).resolve()}")
+    print(f"viewer started in {pane}")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("--workspace", default=os.environ.get("HERDR_WORKSPACE_ID"))
+    parser.add_argument("--workspace", help="show only this workspace instead of all maji runs")
+    parser.add_argument("--ensure", action="store_true", help=f"start the viewer in the {HOME_WORKSPACE} workspace and exit")
     parser.add_argument("--once", action="store_true", help="print the current state as plain text and exit")
     parser.add_argument("--demo", action="store_true", help="show dummy sample data instead of the live state")
     args = parser.parse_args()
+    if args.ensure:
+        ensure_viewer()
+        return
     if args.demo and args.once:
-        print(render(demo_state(), shutil.get_terminal_size((FULL_W + 1, 24)).columns).plain.rstrip())
+        print(render(demo_states(), shutil.get_terminal_size((FULL_W + 1, 24)).columns).plain.rstrip())
         sys.exit(0)
     if args.demo:
-        run_tui("demo", demo=True)
+        run_tui(None, demo=True)
         return
-    if not args.workspace:
-        sys.exit("no workspace: pass --workspace or run inside herdr")
     if args.once:
-        state = build_state(args.workspace)
-        state.mode = "once"
-        print(render(state, shutil.get_terminal_size((FULL_W + 1, 24)).columns).plain.rstrip())
-        sys.exit(1 if state.error else 0)
+        states = build_states(args.workspace)
+        for state in states:
+            state.mode = "once"
+        print(render(states, shutil.get_terminal_size((FULL_W + 1, 24)).columns).plain.rstrip())
+        sys.exit(1 if any(s.error for s in states) else 0)
     run_tui(args.workspace)
 
 
