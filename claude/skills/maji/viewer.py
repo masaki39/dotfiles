@@ -39,18 +39,18 @@ ROLE_PHASE = {"investigators": "investigate", "worker": "work", "reviewer": "rev
 HOME_WORKSPACE = "maji"  # label of the fixed workspace hosting the board
 ALL_WORKSPACES = "all"  # workspace id of the placeholder shown when no run is active
 # Palette (truecolor): cyan = live flow, teal = completed, magenta/amber = NG loop and alerts.
-CYAN, CYAN_MID, CYAN_DIM = "#00e5ff", "#0a9fbd", "#0b4f61"
-TEAL, TEAL_DIM = "#2be0b0", "#1a7a63"
-MAGENTA, MAGENTA_DIM = "#ff3fd8", "#6e2463"
-AMBER, AMBER_DIM = "#ffb020", "#6b4a12"
-FG, STEEL, GRID, INK, BG = "#c8d6e5", "#5b6b80", "#26323f", "#03121a", "#060a12"
-PULSE = [CYAN_DIM, "#0c7590", CYAN_MID, "#05c3e0", CYAN]  # breathing levels, dim -> bright
-PULSE_DONE = [TEAL_DIM, "#1f9a7c", "#25bd96", TEAL]
+CYAN, CYAN_MID, CYAN_DIM = "#00e5ff", "#22b8d6", "#2a8ca6"
+TEAL, TEAL_DIM = "#2be0b0", "#2fae8e"
+MAGENTA, MAGENTA_DIM = "#ff3fd8", "#b85aa8"
+AMBER, AMBER_DIM = "#ffb020", "#b5842a"
+FG, STEEL, GRID, INK = "#dfe8f2", "#a3b6cb", "#64798f", "#03121a"
+PULSE = [CYAN_DIM, "#26a2be", CYAN_MID, "#12cfeb", CYAN]  # breathing levels, dim -> bright
+PULSE_DONE = [TEAL_DIM, "#2ebf9c", "#2dd0a6", TEAL]
 STATUS_STYLE = {
     "working": f"bold {CYAN}",
     "blocked": f"bold {AMBER}",
     "done": TEAL,
-    "idle": "#7f9bb8",
+    "idle": "#b0c6dc",
     "unknown": STEEL,
     "gone": MAGENTA_DIM,
 }
@@ -611,11 +611,11 @@ def run_tui(workspace_id: str | None, demo: bool = False) -> None:
             return strip.adjust_cell_length(self.size.width, self.rich_style)
 
     class MajiViewer(App):
-        CSS = f"Screen {{ background: {BG}; }} #flow {{ height: 1fr; color: {FG}; }}"
+        CSS = f"Screen {{ background: ansi_default; }} #flow {{ height: 1fr; color: {FG}; background: ansi_default; }}"
         BINDINGS = [("q", "quit", "Quit")]
 
         def __init__(self) -> None:
-            super().__init__()
+            super().__init__(ansi_color=True)  # keep the terminal's default (transparent) background
             self._watch_stop = threading.Event()
             self._latest: list[State] | None = None
             self._frame = 0
