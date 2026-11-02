@@ -26,7 +26,7 @@ end tell
 EOF
 }
 
-# backup a directory to external storage via rsync mirror (--delete, no excludes)
+# backup a directory to external storage via rsync mirror (--delete, excludes only ._* sidecars)
 # usage: backup [-n|--dry-run] [src] [dest_base]
 #   defaults to $BACKUP_SRC / $BACKUP_DEST_BASE (set in local.zsh)
 #   dest is dest_base/$(basename src); deleted/overwritten files go to dest_base/.deleted/
@@ -80,12 +80,41 @@ function backup() {
 		echo "Destination is inside source: $dest" >&2
 		return 1
 	fi
+	# Mirroring into a parent of src would --delete src itself
+	if [[ $src == $dest/* ]]; then
+		echo "Source is inside destination: $src" >&2
+		return 1
+	fi
 	[[ -z "$dry_run" ]] && mkdir -p "$dest"
 
 	# Deleted or overwritten files are moved to dest_base/.deleted/<name>/<timestamp>/
 	local trash="$dest_base/.deleted/$name/$(date '+%Y%m%d-%H%M%S')"
-	rsync -a --delete --backup --backup-dir="$trash" $dry_run --info=progress2 --no-inc-recursive "$src/" "$dest/" && \
-	echo "[$(date '+%Y-%m-%d %H:%M:%S')] backup ${dry_run:+(dry-run) }done: $src -> $dest"
+	# exFAT lists names as NFD and creates ._* sidecars, so --delete would treat both as extras
+	# and move them to .deleted on every run. Protect the NFD spelling of each source name and
+	# exclude the sidecars. Do not use --iconv (it corrupts emoji) or --delete-after (it drops
+	# the NFD files from the mirror).
+	local rules
+	rules=$(mktemp -t backup-filter.XXXXXX) || return 1
+	if ! (cd "$src" && find . -mindepth 1 -print0 | perl -CSDA -MUnicode::Normalize -0 -ne '
+		chomp;
+		next unless m{^\./(.*/)?([^/]+)$}s;
+		my ($dir, $base) = ($1 // "", $2);
+		my $nfd = NFD($base);
+		next if $nfd eq $base;
+		my $path = "/$dir$nfd";
+		$path =~ s/([\[\]*?\\])/\\$1/g;
+		print "P $path\n";
+	') > "$rules"; then
+		rm -f "$rules"
+		echo "Failed to build filter rules" >&2
+		return 1
+	fi
+
+	rsync -a --delete --exclude='._*' --filter="merge $rules" --backup --backup-dir="$trash" $dry_run --info=progress2 --no-inc-recursive "$src/" "$dest/"
+	local rc=$?
+	rm -f "$rules"
+	(( rc == 0 )) && echo "[$(date '+%Y-%m-%d %H:%M:%S')] backup ${dry_run:+(dry-run) }done: $src -> $dest"
+	return $rc
 }
 
 # yazi
