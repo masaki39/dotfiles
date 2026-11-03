@@ -72,6 +72,8 @@ brew "ripgrep"
 brew "rsync"
 # 7-Zip is a file archiver with a high compression ratio
 brew "sevenzip"
+# Static analysis and lint tool, for (ba)sh scripts
+brew "shellcheck"
 # Cross-shell prompt for astronauts
 brew "starship"
 # Extremely fast Python package installer and resolver, written in Rust
