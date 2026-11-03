@@ -2,6 +2,8 @@
 
 set -eo pipefail
 
+[ "$(uname -sm)" = "Darwin arm64" ] || { echo "setup.sh requires macOS on Apple Silicon (Darwin arm64)" >&2; exit 1; }
+
 # DOTFILES_CI=1: for CI. Skips casks and LaunchAgent registration
 DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # An existing real file/directory is moved to <name>.bak.<timestamp> before linking
@@ -88,8 +90,8 @@ link "$DOTFILES/agents" ~/.agents
 link "$DOTFILES/claude/settings.json" ~/.claude/settings.json
 link "$DOTFILES/claude/CLAUDE.md" ~/.claude/CLAUDE.md
 # The statusline lives in a separate repo (ClaudeCodeStatusLine fork); mascot.sh must sit next to it
-# Public repo, so clone over HTTPS (insteadOf in .gitconfig would turn it into SSH, which fails on a fresh machine without keys)
-[ -d "$STATUSLINE_REPO" ] || GIT_CONFIG_GLOBAL=/dev/null git clone "$STATUSLINE_URL" "$STATUSLINE_REPO"
+# Public repo, cloned over HTTPS (.gitconfig only rewrites pushes to SSH, so no key is needed)
+[ -d "$STATUSLINE_REPO" ] || git clone "$STATUSLINE_URL" "$STATUSLINE_REPO"
 link "$STATUSLINE_REPO/statusline.sh" ~/.claude/statusline.sh
 link "$STATUSLINE_REPO/mascot.sh" ~/.claude/mascot.sh
 # ~/.claude/skills is a real directory (the skills CLI also links into it); link each skill individually

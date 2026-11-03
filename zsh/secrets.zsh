@@ -184,6 +184,17 @@ _secret_ls() {
 	done
 }
 
+# Explain why key $1 could not be read: locked keychain, key not stored, or something else.
+_secret_read_err() {
+	if ! security show-keychain-info "$_SECRET_KC" >/dev/null 2>&1; then
+		print -u2 "secret: cannot read $1: keychain is locked (secret unlock)"
+	elif ! (( ${${(f)"$(_secret_stored)"}[(Ie)$1]} )); then
+		print -u2 "secret: cannot read $1: $1 is not stored (secret set $1)"
+	else
+		print -u2 "secret: cannot read $1 (keychain read error)"
+	fi
+}
+
 # Run cmd in a subshell with the given global keys exported. Nothing leaks into the caller.
 _secret_run() {
 	local -a keys
@@ -195,7 +206,7 @@ _secret_run() {
 		local k v
 		for k in $keys; do
 			v="$(_secret_get $k)" && [[ -n $v ]] ||
-				{ print -u2 "secret: cannot read $k (secret set $k)"; exit 1 }
+				{ _secret_read_err $k; exit 1 }
 			export $k="$v"
 		done
 		"$@"
@@ -218,7 +229,7 @@ _secret_load() {
 	_secret_ready || return
 	_secret_proj_keys $1 || return
 	for k in $reply; do
-		v="$(_secret_get $k)" || { print -u2 "secret: cannot read $k"; return 1 }
+		v="$(_secret_get $k)" || { _secret_read_err $k; return 1 }
 		export ${k#$1/}="$v"
 	done
 }

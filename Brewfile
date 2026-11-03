@@ -14,6 +14,8 @@ brew "colima"
 brew "convmv"
 # Command-line csv viewer
 brew "csvlens"
+# Open-source, cross-platform JavaScript runtime environment
+brew "node"
 # Interactive Commitizen CLI that generate standardized commit messages
 brew "czg"
 # Reference implementation for the Development Containers specification

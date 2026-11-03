@@ -1,11 +1,2 @@
-*
-!.gitignore
-!settings.json
-!statusline.sh
-!skills/
-!skills/**
-!.devcontainer/
-!.devcontainer/*
-!CLAUDE.md
-!hooks/
-!hooks/**
+# Runtime files Claude Code writes next to the linked settings
+settings.json.lock

@@ -14,7 +14,7 @@
 [diff]
 	algorithm = histogram
 [url "git@github.com:"]
-	insteadOf = https://github.com/
+	pushInsteadOf = https://github.com/
 [ghq]
 	user = masaki39
 [core]

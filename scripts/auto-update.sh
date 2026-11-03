@@ -1,7 +1,8 @@
 #!/bin/bash
 # Monthly: refresh the Brewfile and commit & push it if it changed.
 # Agent skills are not auto-updated because their contents are reviewed first (run `pnpm dlx skills update -g` manually).
-# Launched daily at 2:00 by launchd (com.masaki.auto-update); does real work every 30 days.
+# Launched daily at 3:00 by launchd (com.masaki.auto-update); does real work every 30 days.
+# Staggered from monthly-maintenance (2:00) and serialized with it by a shared lockf lock, so brew never runs concurrently.
 # Failures are reported via a macOS notification and the log (~/.local/share/auto-update.log).
 # Checks and commits are limited to the Brewfile (the working tree is always dirty
 # because Claude Code writes back to claude/settings.json at runtime).
@@ -10,11 +11,20 @@ DOTFILES_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 TIMESTAMP_FILE="$HOME/.local/share/auto-update-last-run"
 LOG_FILE="$HOME/.local/share/auto-update.log"
 INTERVAL_DAYS=30
+STALE_DAYS=45
 
 BREW=/opt/homebrew/bin/brew
 GIT=/opt/homebrew/bin/git
 
 mkdir -p "$(dirname "$TIMESTAMP_FILE")"
+
+# Serialize with the other brew job (auto-update / monthly-maintenance): both can start together
+# (RunAtLoad at login or setup.sh reload, or missed calendar runs fired on wake), so re-exec this
+# script once under a shared lock; the second job waits until the first one finishes.
+if [ -z "${BREW_JOBS_LOCKED:-}" ]; then
+    export BREW_JOBS_LOCKED=1
+    exec /usr/bin/lockf -k "$HOME/.local/share/brew-jobs.lock" /bin/bash "$0" "$@"
+fi
 
 log() { echo "[$(date '+%Y-%m-%d %H:%M:%S')] $*" | tee -a "$LOG_FILE"; }
 
@@ -35,6 +45,23 @@ if [ -f "$TIMESTAMP_FILE" ]; then
     if [ "$(( (now - last_run) / 86400 ))" -lt "$INTERVAL_DAYS" ]; then
         exit 0
     fi
+fi
+
+# Pushing needs the SSH key (a manual step after setup). While SSH does not work, skip quietly:
+# no notification and no timestamp, so the next run tries again.
+# ssh -T exits 1 even on success, so check both the exit code and the greeting.
+ssh_out=$(/usr/bin/ssh -o BatchMode=yes -o ConnectTimeout=10 -T git@github.com 2>&1)
+ssh_rc=$?
+# Once it has succeeded before (timestamp exists), a failure lasting past STALE_DAYS is notified.
+if [ "$ssh_rc" -ne 1 ] || ! printf '%s\n' "$ssh_out" | grep -q "successfully authenticated"; then
+    if [ -f "$TIMESTAMP_FILE" ]; then
+        age_days=$(( ($(date +%s) - $(cat "$TIMESTAMP_FILE")) / 86400 ))
+        if [ "$age_days" -gt "$STALE_DAYS" ]; then
+            fail "GitHub SSH authentication failing (ssh exit $ssh_rc); Brewfile not refreshed for $age_days days"
+        fi
+    fi
+    log "skipped: GitHub SSH authentication is not working (ssh exit $ssh_rc)"
+    exit 0
 fi
 
 log "Starting auto-update"

@@ -1,25 +1,13 @@
 name: setup
 
 on:
+  # Every push to main (no paths filter, so every linked dir is covered) plus a monthly run
+  # to catch upstream breakage (runner image, Homebrew, renamed casks)
   push:
     branches: [main]
-    paths:
-      - setup.sh
-      - Brewfile
-      - .zshrc
-      - .zshenv
-      - .zprofile
-      - .gitconfig
-      - 'zsh/**'
-      - 'pnpm/**'
-      - 'karabiner/**'
-      - 'yazi/**'
-      - 'claude/**'
-      - 'scripts/**'
-      - 'starship/**'
-      - .github/workflows/setup.yml
-      - .github/dependabot.yml
   workflow_dispatch:
+  schedule:
+    - cron: '0 3 1 * *'
 
 permissions:
   contents: read
@@ -65,14 +53,41 @@ jobs:
                    ~/.config/starship.toml \
                    ~/.hammerspoon ~/.agents ~/.claude/settings.json ~/.claude/CLAUDE.md \
                    ~/.claude/hooks/prefer-rust-tools.sh ~/.claude/hooks/herdr-agent-state.sh \
-                   ~/.claude/skills/dashboard ~/.claude/skills/pptx; do
+                   ~/.claude/skills/dashboard ~/.claude/skills/pptx \
+                   ~/.claude/statusline.sh ~/.claude/mascot.sh; do
             if [ -L "$l" ] && [ -e "$l" ]; then echo "ok   $l"; else echo "FAIL $l"; exit 1; fi
           done
           test -s ~/.config/karabiner/karabiner.json
+          # Every plugin pinned in yazi/package.toml must be installed (`use = "owner/repo[:name]"` -> <name>.yazi)
+          for p in $(sed -n 's/^use = "\(.*\)"$/\1/p' yazi/package.toml); do
+            name=${p##*[/:]}
+            if [ -d ~/.config/yazi/plugins/"$name".yazi ]; then echo "ok   yazi plugin $name"; else echo "FAIL yazi plugin $name"; exit 1; fi
+          done
+
+      # LaunchAgents are skipped in CI, so lint the plists as setup.sh renders them
+      - name: Verify LaunchAgent plists
+        run: |
+          set -eu
+          for f in scripts/*.plist; do
+            out="$RUNNER_TEMP/$(basename "$f")"
+            sed "s|__DOTFILES__|$HOME/ghq/github.com/masaki39/dotfiles|g" "$f" > "$out"
+            plutil -lint "$out"
+            if grep -n __DOTFILES__ "$out"; then echo "FAIL unsubstituted __DOTFILES__ in $f"; exit 1; fi
+          done
 
       - name: Verify zsh startup
         run: |
-          out=$(zsh -lic 'whence -p brew pnpm difit fzf starship yazi nvim zoxide && print SHELL_OK' 2>&1)
+          out=$(zsh -lic 'whence -p brew pnpm difit fzf starship yazi nvim zoxide claude uv pplyz && print SHELL_OK' 2>&1)
           echo "$out"
           if printf '%s\n' "$out" | grep -E 'command not found|no such file|parse error'; then exit 1; fi
           printf '%s\n' "$out" | grep -q SHELL_OK
+
+      # The first start installs plugins (progress lines on stderr), so it is only checked for errors;
+      # the second start must print nothing at all
+      - name: Verify nvim startup
+        run: |
+          out=$(nvim --headless +qa 2>&1)
+          echo "$out"
+          if printf '%s\n' "$out" | grep -Ei 'error|E[0-9]+:'; then exit 1; fi
+          out=$(nvim --headless +qa 2>&1)
+          if [ -n "$out" ]; then echo "$out"; exit 1; fi

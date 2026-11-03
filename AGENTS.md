@@ -26,7 +26,7 @@ this URL (`https://github.com/masaki39/dotfiles`), it reproduces the environment
      installer. If one fails, ask the user to run `brew install --cask <name>` for it, then re-run.
 4. **Verify** (same checks as the Verify steps in `.github/workflows/setup.yml`)
    ```sh
-   zsh -lic 'whence -p brew pnpm difit fzf starship yazi nvim zoxide && print SHELL_OK'
+   zsh -lic 'whence -p brew pnpm difit fzf starship yazi nvim zoxide claude uv pplyz && print SHELL_OK'
    ```
    It passes if `SHELL_OK` is printed and no `command not found` appears.
 
@@ -34,9 +34,14 @@ this URL (`https://github.com/masaki39/dotfiles`), it reproduces the environment
 
 An agent cannot finish these. When done, hand the user this list.
 
-- [ ] SSH key: `ssh-keygen -t ed25519` → `gh auth login -p ssh` (browser auth).
-      `.gitconfig` rewrites `https://github.com/` to SSH, so pushing and fetching private repos fail until this is done
+- [ ] SSH key: `ssh-keygen -t ed25519` → `gh auth login -p ssh` (browser auth) → `gh auth setup-git`.
+      `.gitconfig` fetches over HTTPS and rewrites only pushes to `https://github.com/` to SSH (`pushInsteadOf`),
+      so pushing fails until the SSH key is registered, and fetching private repos over HTTPS needs the gh
+      credential helper (`gh auth setup-git`; `gh auth login` offers it only for the HTTPS protocol).
+      The daily auto-update job skips quietly until SSH authentication to GitHub works
 - [ ] Accessibility permission: Hammerspoon, Karabiner-Elements, Homerow, Ghostty
+- [ ] Karabiner-Elements: approve the driver extension (System Settings → General → Login Items & Extensions →
+      Driver Extensions) and grant Input Monitoring to `karabiner_grabber` and `karabiner_observer`
 - [ ] Add Google Japanese Input as an input source
 - [ ] Secrets: run `secret init` (choose a keychain password), then register keys marked `!` in `secret ls` with `secret set <KEY>` (the user types the values; agents never guess or generate them)
 - [ ] Machine-specific settings: `cp zsh/local.zsh.example zsh/local.zsh` and fill it in (only if needed)

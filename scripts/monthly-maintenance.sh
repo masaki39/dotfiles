@@ -1,5 +1,6 @@
 #!/bin/bash
 # Monthly cache cleanup and update check. Launched daily at 2:00 by launchd (com.masaki.monthly-maintenance); runs every 30 days.
+# Staggered from auto-update (3:00) and serialized with it by a shared lockf lock, so brew never runs concurrently.
 # Failures are reported via a macOS notification and the log (~/.local/share/monthly-maintenance.log).
 # Does not run brew upgrade automatically (avoids breakage from unattended upgrades and macOS App Management blocks).
 # It only notifies the number of outdated packages; run `brew upgrade` manually.
@@ -14,6 +15,14 @@ PNPM=/opt/homebrew/bin/pnpm
 UV=/opt/homebrew/bin/uv
 
 mkdir -p "$(dirname "$TIMESTAMP_FILE")"
+
+# Serialize with the other brew job (auto-update / monthly-maintenance): both can start together
+# (RunAtLoad at login or setup.sh reload, or missed calendar runs fired on wake), so re-exec this
+# script once under a shared lock; the second job waits until the first one finishes.
+if [ -z "${BREW_JOBS_LOCKED:-}" ]; then
+    export BREW_JOBS_LOCKED=1
+    exec /usr/bin/lockf -k "$HOME/.local/share/brew-jobs.lock" /bin/bash "$0" "$@"
+fi
 
 log() { echo "[$(date '+%Y-%m-%d %H:%M:%S')] $*" | tee -a "$LOG_FILE"; }
 
@@ -44,7 +53,7 @@ step() {
     fi
 }
 
-# brew update still refreshes formula/cask API data even if fetching a git remote (SSH) fails,
+# brew update still refreshes formula/cask API data even if fetching a tap's git remote fails,
 # so failures are only logged, not notified
 if "$BREW" update >>"$LOG_FILE" 2>&1; then
     log "brew update done"
