@@ -4,6 +4,7 @@
     "dockerfile": "Dockerfile",
     "args": {
       "TZ": "${localEnv:TZ:America/Los_Angeles}",
+      // Unpinned on purpose: first-party package, and Claude Code self-updates
       "CLAUDE_CODE_VERSION": "latest",
       "GIT_DELTA_VERSION": "0.19.2",
       "ZSH_IN_DOCKER_VERSION": "1.2.0"

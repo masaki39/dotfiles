@@ -9,23 +9,40 @@ on:
       - .zshrc
       - .zshenv
       - .zprofile
+      - .gitconfig
       - 'zsh/**'
       - 'pnpm/**'
       - 'karabiner/**'
       - 'yazi/**'
       - 'claude/**'
+      - 'scripts/**'
+      - 'starship/**'
       - .github/workflows/setup.yml
+      - .github/dependabot.yml
   workflow_dispatch:
 
 permissions:
   contents: read
 
 jobs:
+  shellcheck:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      # Bash/sh scripts only (zsh is out of scope). claude/hooks/herdr-agent-state.sh is managed by herdr
+      - name: Run shellcheck
+        run: |
+          shellcheck --version
+          shellcheck setup.sh scripts/*.sh yazi/install.sh \
+            claude/hooks/prefer-rust-tools.sh claude/.devcontainer/init-firewall.sh
+
   setup:
     runs-on: macos-latest
     timeout-minutes: 60
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       # Run from the same path as on a real machine
       - name: Place repo at ghq path
@@ -36,18 +53,22 @@ jobs:
       - name: Run setup.sh
         run: DOTFILES_CI=1 bash ~/ghq/github.com/masaki39/dotfiles/setup.sh
 
+      # setup.sh must be idempotent: a second run on a set-up machine has to succeed too
+      - name: Run setup.sh again (idempotency)
+        run: DOTFILES_CI=1 bash ~/ghq/github.com/masaki39/dotfiles/setup.sh
+
       - name: Verify links
         run: |
           set -eu
           for l in ~/.zshrc ~/.zshenv ~/.zprofile ~/.gitconfig ~/.ssh/config \
                    ~/.config/{nvim,zsh,yazi,ghostty,lazygit,pnpm,uv,git,jinrai,pplyz} \
+                   ~/.config/starship.toml \
                    ~/.hammerspoon ~/.agents ~/.claude/settings.json ~/.claude/CLAUDE.md \
                    ~/.claude/hooks/prefer-rust-tools.sh ~/.claude/hooks/herdr-agent-state.sh \
                    ~/.claude/skills/dashboard ~/.claude/skills/pptx; do
             if [ -L "$l" ] && [ -e "$l" ]; then echo "ok   $l"; else echo "FAIL $l"; exit 1; fi
           done
           test -s ~/.config/karabiner/karabiner.json
-          test -s ~/.config/starship.toml
 
       - name: Verify zsh startup
         run: |

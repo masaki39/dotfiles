@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+set -eo pipefail
 
 # DOTFILES_CI=1: for CI. Skips casks and LaunchAgent registration
 DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -11,6 +11,19 @@ link() {
     echo "backed up: $2"
   fi
   ln -sfn "$1" "$2"
+}
+# (Re)load a LaunchAgent. bootout fails when it is not loaded yet (first run), which is fine.
+# bootout finishes asynchronously, so retry bootstrap briefly while the old job is torn down.
+reload_agent() {
+  local domain i
+  domain="gui/$(id -u)"
+  launchctl bootout "$domain" "$1" 2>/dev/null || true
+  for i in 1 2 3 4 5; do
+    launchctl bootstrap "$domain" "$1" 2>/dev/null && return 0
+    echo "launchctl bootstrap failed for $1 (attempt $i), retrying..." >&2
+    sleep 1
+  done
+  launchctl bootstrap "$domain" "$1"
 }
 
 # So pnpm and others read ~/.config (.zshenv is not in effect yet)
@@ -46,7 +59,7 @@ export PNPM_HOME="$HOME/Library/pnpm"
 export PATH="$PNPM_HOME/bin:$PATH"
 xargs pnpm add -g < "$DOTFILES/pnpm/global-packages.txt"
 
-# Claude Code (native build)
+# Claude Code (native build). Unpinned on purpose: first-party installer, and Claude Code self-updates
 command -v claude >/dev/null || [ -x ~/.local/bin/claude ] || curl -fsSL https://claude.ai/install.sh | bash
 
 # Create directories
@@ -69,6 +82,7 @@ link "$DOTFILES/uv" ~/.config/uv
 link "$DOTFILES/git" ~/.config/git
 link "$DOTFILES/jinrai" ~/.config/jinrai
 link "$DOTFILES/pplyz" ~/.config/pplyz
+link "$DOTFILES/starship/starship.toml" ~/.config/starship.toml
 # Install target of pnpm dlx skills -g
 link "$DOTFILES/agents" ~/.agents
 link "$DOTFILES/claude/settings.json" ~/.claude/settings.json
@@ -95,9 +109,6 @@ mkdir -p ~/.config/karabiner
   echo '{"profiles":[{"name":"Default profile","selected":true,"complex_modifications":{"rules":[]}}]}' > ~/.config/karabiner/karabiner.json
 (cd "$DOTFILES/karabiner" && pnpm install && pnpm build)
 
-# starship prompt preset
-starship preset jetpack -o ~/.config/starship.toml
-
 # Install yazi plugins
 bash "$DOTFILES/yazi/install.sh"
 
@@ -106,22 +117,25 @@ if [ -n "${DOTFILES_CI:-}" ]; then
   exit 0
 fi
 
+mkdir -p ~/Library/LaunchAgents
+
 # LaunchAgent for monthly maintenance (cache cleanup + outdated notification)
 chmod +x "$DOTFILES/scripts/monthly-maintenance.sh"
 PLIST2="$HOME/Library/LaunchAgents/com.masaki.monthly-maintenance.plist"
 sed "s|__DOTFILES__|$DOTFILES|g" "$DOTFILES/scripts/com.masaki.monthly-maintenance.plist" > "$PLIST2"
-launchctl unload "$PLIST2" 2>/dev/null
-launchctl load "$PLIST2"
+reload_agent "$PLIST2"
 
 # LaunchAgent for monthly auto-update (Brewfile)
 chmod +x "$DOTFILES/scripts/auto-update.sh"
 # migrate old label
 OLD_PLIST="$HOME/Library/LaunchAgents/com.masaki.update-brewfile.plist"
-[ -f "$OLD_PLIST" ] && launchctl unload "$OLD_PLIST" 2>/dev/null && rm -f "$OLD_PLIST"
+if [ -f "$OLD_PLIST" ]; then
+  launchctl bootout "gui/$(id -u)" "$OLD_PLIST" 2>/dev/null || true
+  rm -f "$OLD_PLIST"
+fi
 PLIST="$HOME/Library/LaunchAgents/com.masaki.auto-update.plist"
 sed "s|__DOTFILES__|$DOTFILES|g" "$DOTFILES/scripts/com.masaki.auto-update.plist" > "$PLIST"
-launchctl unload "$PLIST" 2>/dev/null
-launchctl load "$PLIST"
+reload_agent "$PLIST"
 
 # Menu bar shortcuts (keys are menu item titles, so they must match the app's Japanese UI)
 defaults write com.google.Chrome NSUserKeyEquivalents '{

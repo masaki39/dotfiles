@@ -10,7 +10,7 @@
 #
 #   secret init        create the keychain (once per machine)
 #   secret set <KEY>   add or update (interactive on a TTY, stdin otherwise)
-#   secret get <KEY>   print one value (also: secret <KEY>)
+#   secret get <KEY>   print one value
 #   secret rm  <KEY>   delete (<PROJ>/ deletes a project)
 #   secret ls [PROJ]   list key names (never values); with PROJ, list that project's keys
 #   secret run <KEY...> -- <cmd...>   run cmd with those keys exported
@@ -45,8 +45,7 @@ secret() {
 	lock)   _secret_ready && security lock-keychain "$_SECRET_KC" ;;
 	unlock) _secret_ready && security unlock-keychain "$_SECRET_KC" ;;
 	help|-h|--help) _secret_help ;;
-	'')     _secret_help >&2; return 2 ;;
-	*)      _secret_get "$cmd" ;;
+	*)      _secret_help >&2; return 2 ;;
 	esac
 }
 
@@ -56,7 +55,7 @@ _secret_help() {
   init         create the keychain (asks for a new password; use one you do not use elsewhere)
   set  <KEY>   add or update
                  reads a TTY interactively, otherwise stdin (printf %s \"\$v\" | secret set KEY)
-  get  <KEY>   print one value (also: secret <KEY>)
+  get  <KEY>   print one value
   rm   <KEY>   delete
   rm   <PROJ>/ delete all keys of that project
   ls [PROJ]    list key names (never values)

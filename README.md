@@ -42,3 +42,9 @@ secret set projA/OPENAI_API_KEY       # project-scoped key
 secret exec projA -- uv run main.py   # run with projA's keys
 secret lock                           # lock now
 ```
+
+There is no `secret <KEY>` shorthand: an unknown subcommand prints usage and exits with status 2.
+`claude/settings.json` denies Claude Code the common read paths (`secret get/run/exec/load`, the
+`_secret_*` helpers and `security`). These rules are best-effort, not a guarantee: a nested shell, for
+example, can bypass them. The real protection is that keys are never exported globally and the keychain
+locks after 5 minutes idle and on sleep.

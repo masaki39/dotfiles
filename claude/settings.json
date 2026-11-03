@@ -23,6 +23,13 @@
       "Bash(cat ~/.ssh/id_*)",
       "Bash(security find-generic-password*)",
       "Bash(secret get*)",
+      "Bash(secret run*)",
+      "Bash(secret exec*)",
+      "Bash(secret load*)",
+      "Bash(security *)",
+      "Bash(_secret_*)",
+      "Bash(/usr/bin/security*)",
+      "Bash(command security*)",
       "Bash(git *--output*)"
     ],
     "defaultMode": "auto"
