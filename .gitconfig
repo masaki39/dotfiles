@@ -15,6 +15,13 @@
 	algorithm = histogram
 [url "git@github.com:"]
 	pushInsteadOf = https://github.com/
+# HTTPS fetches of private repos use gh's token (after `gh auth login`); gh is found on PATH
+[credential "https://github.com"]
+	helper =
+	helper = !gh auth git-credential
+[credential "https://gist.github.com"]
+	helper =
+	helper = !gh auth git-credential
 [ghq]
 	user = masaki39
 [core]

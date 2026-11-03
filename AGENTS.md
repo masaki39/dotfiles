@@ -24,20 +24,20 @@ this URL (`https://github.com/masaki39/dotfiles`), it reproduces the environment
    - Existing real files are moved to `<name>.bak.<timestamp>` before being replaced by links.
    - Some casks (Karabiner, Google Japanese Input, Microsoft Office, etc.) ask for sudo through a pkg
      installer. If one fails, ask the user to run `brew install --cask <name>` for it, then re-run.
-4. **Verify** (same checks as the Verify steps in `.github/workflows/setup.yml`)
+4. **Verify** (the same script CI runs; it changes no config or links)
    ```sh
-   zsh -lic 'whence -p brew pnpm difit fzf starship yazi nvim zoxide claude uv pplyz && print SHELL_OK'
+   bash ~/ghq/github.com/masaki39/dotfiles/scripts/verify.sh
    ```
-   It passes if `SHELL_OK` is printed and no `command not found` appears.
+   It passes if it exits 0. Each check prints `ok` or `FAIL`.
 
 ## Manual steps for the user
 
 An agent cannot finish these. When done, hand the user this list.
 
-- [ ] SSH key: `ssh-keygen -t ed25519` → `gh auth login -p ssh` (browser auth) → `gh auth setup-git`.
+- [ ] SSH key: `ssh-keygen -t ed25519` → `gh auth login -p ssh` (browser auth); nothing else is needed.
       `.gitconfig` fetches over HTTPS and rewrites only pushes to `https://github.com/` to SSH (`pushInsteadOf`),
-      so pushing fails until the SSH key is registered, and fetching private repos over HTTPS needs the gh
-      credential helper (`gh auth setup-git`; `gh auth login` offers it only for the HTTPS protocol).
+      so pushing fails until the SSH key is registered. HTTPS fetches of private repos go through the gh
+      credential helper committed in `.gitconfig`, which works once `gh auth login` is done.
       The daily auto-update job skips quietly until SSH authentication to GitHub works
 - [ ] Accessibility permission: Hammerspoon, Karabiner-Elements, Homerow, Ghostty
 - [ ] Karabiner-Elements: approve the driver extension (System Settings → General → Login Items & Extensions →
@@ -58,7 +58,7 @@ An agent cannot finish these. When done, hand the user this list.
 
 ## When changing things
 
-- When adding a new config directory, add it to both the `link` calls in `setup.sh` and the CI "Verify links" step.
+- When adding a new config directory, add it to both the `link` calls in `setup.sh` and the link checks in `scripts/verify.sh` (CI runs it).
 - `scripts/auto-update.sh` runs `brew bundle dump` monthly and auto-commits the `Brewfile`.
 - Claude Code writes back to `claude/settings.json` at runtime, so the working tree may be dirty.
 - Write comments, docs, and messages in English.

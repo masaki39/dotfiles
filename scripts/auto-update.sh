@@ -18,15 +18,23 @@ GIT=/opt/homebrew/bin/git
 
 mkdir -p "$(dirname "$TIMESTAMP_FILE")"
 
+log() { echo "[$(date '+%Y-%m-%d %H:%M:%S')] $*" | tee -a "$LOG_FILE"; }
+
 # Serialize with the other brew job (auto-update / monthly-maintenance): both can start together
-# (RunAtLoad at login or setup.sh reload, or missed calendar runs fired on wake), so re-exec this
-# script once under a shared lock; the second job waits until the first one finishes.
+# (RunAtLoad at login or setup.sh reload, or missed calendar runs fired on wake), so run this
+# script once more under a shared lock; the second job waits until the first one finishes.
+# Not exec'd, so a lock timeout (lockf exits 75, e.g. the other job hangs) can be detected:
+# it is only logged, and the next daily run retries.
 if [ -z "${BREW_JOBS_LOCKED:-}" ]; then
     export BREW_JOBS_LOCKED=1
-    exec /usr/bin/lockf -k "$HOME/.local/share/brew-jobs.lock" /bin/bash "$0" "$@"
+    lock_rc=0
+    /usr/bin/lockf -k -t 3600 "$HOME/.local/share/brew-jobs.lock" /bin/bash "$0" "$@" || lock_rc=$?
+    if [ "$lock_rc" -eq 75 ]; then
+        log "skipped: timed out waiting for the brew job lock (another brew job is still running)"
+        exit 0
+    fi
+    exit "$lock_rc"
 fi
-
-log() { echo "[$(date '+%Y-%m-%d %H:%M:%S')] $*" | tee -a "$LOG_FILE"; }
 
 notify() {
     /usr/bin/osascript -e "display notification \"$1\" with title \"auto-update failed\" sound name \"Basso\"" 2>/dev/null || true
