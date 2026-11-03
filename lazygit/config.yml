@@ -1,11 +1,12 @@
 # https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md
 
+# czg needs CZ_OPENAI_API_KEY, which is never exported globally; the wrapper in secrets.zsh passes it.
 customCommands:
-  - command: czg ai
+  - command: zsh -c 'source ~/.config/zsh/secrets.zsh && czg ai'
     context: files
     key: c
     output: terminal
-  - command: czg
+  - command: zsh -c 'source ~/.config/zsh/secrets.zsh && czg'
     context: files
     key: C
     output: terminal

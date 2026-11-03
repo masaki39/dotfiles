@@ -27,13 +27,18 @@ Then do the manual steps listed in [AGENTS.md](AGENTS.md#manual-steps-for-the-us
 
 ## Secrets
 
-API keys live in the macOS Keychain, not in files. Keys listed in `_SECRET_KEYS` (`zsh/secrets.zsh`) are exported on shell startup.
+API keys live in a dedicated macOS keychain, not in files. Nothing is exported at shell startup: a key
+reaches only the command that needs it, and the keychain locks after 5 minutes idle and on sleep.
+Commands listed in `_SECRET_WRAP` (`zsh/secrets.zsh`) get their keys automatically (e.g. `czg`).
 
 ```zsh
+secret init                           # once per machine: create the keychain
 secret set MY_API_KEY                 # add or update (prompts, or reads stdin)
 secret get MY_API_KEY                 # print one value
 secret rm MY_API_KEY                  # delete
 secret ls                             # list key names
-secret set projA/OPENAI_API_KEY       # project-scoped key (not auto-exported)
+secret run MY_API_KEY -- some-cmd     # run with that key exported
+secret set projA/OPENAI_API_KEY       # project-scoped key
 secret exec projA -- uv run main.py   # run with projA's keys
+secret lock                           # lock now
 ```

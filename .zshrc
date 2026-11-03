@@ -60,7 +60,7 @@ source "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 source ~/.config/zsh/aliases.zsh
 source ~/.config/zsh/functions.zsh
 [[ -f ~/.config/zsh/local.zsh ]] && source ~/.config/zsh/local.zsh  # machine-specific (gitignored)
-source ~/.config/zsh/secrets.zsh   # export API keys from the Keychain
+source ~/.config/zsh/secrets.zsh   # secret command and per-command key wrappers
 # ghq-fzf
 export GHQ_FZF_FUNC='gv'
 [[ -f $HOMEBREW_PREFIX/share/ghq-fzf/init.zsh ]] && source "$HOMEBREW_PREFIX/share/ghq-fzf/init.zsh"

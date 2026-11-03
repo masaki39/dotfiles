@@ -38,7 +38,7 @@ An agent cannot finish these. When done, hand the user this list.
       `.gitconfig` rewrites `https://github.com/` to SSH, so pushing and fetching private repos fail until this is done
 - [ ] Accessibility permission: Hammerspoon, Karabiner-Elements, Homerow, Ghostty
 - [ ] Add Google Japanese Input as an input source
-- [ ] Secrets: register keys marked `!` in `secret ls` with `secret set <KEY>` (the user types the values; agents never guess or generate them)
+- [ ] Secrets: run `secret init` (choose a keychain password), then register keys marked `!` in `secret ls` with `secret set <KEY>` (the user types the values; agents never guess or generate them)
 - [ ] Machine-specific settings: `cp zsh/local.zsh.example zsh/local.zsh` and fill it in (only if needed)
 - [ ] Raycast: Settings → Advanced → Import `raycast/Raycast.rayconfig`
 
@@ -47,7 +47,8 @@ An agent cannot finish these. When done, hand the user this list.
 - Never hard-code the repository location. Shell code uses `$DOTFILES` (`.zshenv` derives it from its own
   link target); scripts derive it from their own location. LaunchAgent plists contain `__DOTFILES__`,
   which `setup.sh` substitutes when installing them.
-- Secrets live in the macOS Keychain (`zsh/secrets.zsh`). Never write them to files or commit them.
+- Secrets live in a dedicated macOS keychain (`zsh/secrets.zsh`). Never write them to files or commit them,
+  and never export them globally; pass them per command (`_SECRET_WRAP`, `secret run`, `secret exec`).
 - Non-secret machine-specific values go in `zsh/local.zsh` (gitignored). This is a public repository, so never commit real paths.
 
 ## When changing things
