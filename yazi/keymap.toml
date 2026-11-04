@@ -115,7 +115,3 @@ on = ["o", "w"]
 run = "plugin ghostty-split window"
 desc = "Open terminal new window"
 
-[[mgr.prepend_keymap]]
-on = ["o", "a"]
-run = "plugin airdrop"
-desc = "Open AirDrop"
