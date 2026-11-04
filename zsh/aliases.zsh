@@ -19,7 +19,6 @@ alias he='herdr'
 alias hes='herdr server stop'
 alias hel='herdr session list'
 alias maji='uv run --script "$DOTFILES/claude/skills/maji/viewer.py"'
-alias skills='pnpm dlx skills'
 alias oo='open -a Obsidian'
 
 # expand alias on enter (must be after plugins)
