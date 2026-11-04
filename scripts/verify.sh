@@ -13,7 +13,7 @@ ok()   { echo "ok   $*"; }
 fail() { echo "FAIL $*"; failures=$((failures + 1)); }
 
 # $1 = link source, $2 = link path (same argument order as setup.sh's link).
-# Resolved paths are compared, so equivalent links (e.g. the skills CLI's ~/.agents/skills/<name>) pass.
+# Resolved paths are compared, so equivalent links pass.
 check_link() {
   if [ -L "$2" ] && [ -e "$2" ] && [ "$(realpath "$2")" = "$(realpath "$1")" ]; then
     ok "$2"
@@ -40,12 +40,11 @@ check_link "$DOTFILES/git" ~/.config/git
 check_link "$DOTFILES/jinrai" ~/.config/jinrai
 check_link "$DOTFILES/pplyz" ~/.config/pplyz
 check_link "$DOTFILES/starship/starship.toml" ~/.config/starship.toml
-check_link "$DOTFILES/agents" ~/.agents
 check_link "$DOTFILES/claude/settings.json" ~/.claude/settings.json
 check_link "$DOTFILES/claude/CLAUDE.md" ~/.claude/CLAUDE.md
 check_link "$STATUSLINE_REPO/statusline.sh" ~/.claude/statusline.sh
 check_link "$STATUSLINE_REPO/mascot.sh" ~/.claude/mascot.sh
-for skill in "$DOTFILES"/claude/skills/*/ "$DOTFILES"/agents/skills/*/; do
+for skill in "$DOTFILES"/claude/skills/*/; do
   check_link "${skill%/}" ~/.claude/skills/"$(basename "$skill")"
 done
 for hook in "$DOTFILES"/claude/hooks/*.sh; do

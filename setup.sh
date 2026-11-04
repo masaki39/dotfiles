@@ -85,8 +85,6 @@ link "$DOTFILES/git" ~/.config/git
 link "$DOTFILES/jinrai" ~/.config/jinrai
 link "$DOTFILES/pplyz" ~/.config/pplyz
 link "$DOTFILES/starship/starship.toml" ~/.config/starship.toml
-# Install target of pnpm dlx skills -g
-link "$DOTFILES/agents" ~/.agents
 link "$DOTFILES/claude/settings.json" ~/.claude/settings.json
 link "$DOTFILES/claude/CLAUDE.md" ~/.claude/CLAUDE.md
 # The statusline lives in a separate repo (ClaudeCodeStatusLine fork); mascot.sh must sit next to it
@@ -94,10 +92,10 @@ link "$DOTFILES/claude/CLAUDE.md" ~/.claude/CLAUDE.md
 [ -d "$STATUSLINE_REPO" ] || git clone "$STATUSLINE_URL" "$STATUSLINE_REPO"
 link "$STATUSLINE_REPO/statusline.sh" ~/.claude/statusline.sh
 link "$STATUSLINE_REPO/mascot.sh" ~/.claude/mascot.sh
-# ~/.claude/skills is a real directory (the skills CLI also links into it); link each skill individually
+# ~/.claude/skills is a real directory; link each skill individually
 [ -L ~/.claude/skills ] && rm ~/.claude/skills  # migrate from the old layout (whole-directory link)
 mkdir -p ~/.claude/skills
-for skill in "$DOTFILES"/claude/skills/*/ "$DOTFILES"/agents/skills/*/; do
+for skill in "$DOTFILES"/claude/skills/*/; do
   link "${skill%/}" ~/.claude/skills/"$(basename "$skill")"
 done
 mkdir -p ~/.claude/hooks
