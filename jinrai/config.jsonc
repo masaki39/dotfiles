@@ -210,34 +210,14 @@
     "combo": {
       "character": {
         // Show a character image based on the action count.
-        "enabled": false
+        "enabled": true
       },
       "text": {
         // Show the streak count as COMBO text.
-        "enabled": false
+        "enabled": true
       }
     }
   },
-  "profiles": [
-    {
-      // Enable the COMBO effect only when the desk monitor is connected.
-      "displays": [
-        "desk"
-      ],
-      "overrides": {
-        "jinraiMode": {
-          "combo": {
-            "character": {
-              "enabled": true
-            },
-            "text": {
-              "enabled": true
-            }
-          }
-        }
-      }
-    }
-  ],
   // App launcher (opened with "n" from Window Hints)
   "applicationHints": {
     "apps": [
