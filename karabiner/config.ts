@@ -8,13 +8,6 @@ import {
 
 writeToProfile('Default profile', [
 
-  rule('Emacs Keybindings').manipulators([
-    map('h', 'control').to('delete_or_backspace'),
-    map('p', 'control').to('up_arrow'),
-    map('n', 'control').to('down_arrow'),
-    map('f', 'control').to('right_arrow'),
-  ]),
-
   rule('Tab Navigation').manipulators([
     map('h', ['command', 'option']).to('left_arrow', ['command', 'option']),
     map('l', ['command', 'option']).to('right_arrow', ['command', 'option']),
