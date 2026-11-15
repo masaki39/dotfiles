@@ -87,10 +87,6 @@
       "applicationHints": {
         "key": "n",
         "jinraiMode": true
-      },
-      "windowLayouts": {
-        "key": ",",
-        "jinraiMode": true
       }
     }
   },
@@ -122,6 +118,43 @@
             "ctrl"
           ],
           "key": "return"
+        }
+      },
+      // Corners: y u / n m (same letters as Area Hints)
+      "quarterTopLeft": {
+        "hotkey": {
+          "modifiers": [
+            "option",
+            "ctrl"
+          ],
+          "key": "y"
+        }
+      },
+      "quarterTopRight": {
+        "hotkey": {
+          "modifiers": [
+            "option",
+            "ctrl"
+          ],
+          "key": "u"
+        }
+      },
+      "quarterBottomLeft": {
+        "hotkey": {
+          "modifiers": [
+            "option",
+            "ctrl"
+          ],
+          "key": "n"
+        }
+      },
+      "quarterBottomRight": {
+        "hotkey": {
+          "modifiers": [
+            "option",
+            "ctrl"
+          ],
+          "key": "m"
         }
       },
       "cycleLeft": {
@@ -157,38 +190,104 @@
     "desk": "A5F30F68-1D7E-41AE-97C8-2ACAE66D0AFF"
   },
   "areaHints": {
-    // Default settings (used for unregistered displays)
+    // Key scheme: [display][size][position]
+    //   display:  none = main, s = sub (MacBook while two displays are connected)
+    //   size:     none = 1/2, 3 = 1/3, 4 = 1/4, 6 = 1/6, e = 2/3, r = 3/4
+    //   position: h l = left right, k j = top bottom (sixth tiles), y u n m = corners (all right index finger),
+    //             i = horizontal center, c = fixed-size center
+    // Full-width rows and centered areas are left out: their labels share the center
+    // column and stack past the screen height.
+    // Used for the external display and any unregistered display
     "defaultScreen": {
-      "freeArea": "f",
+      // Whole / free / fixed size
       "full": "a",
+      "freeArea": "f",
+      "1600x1000Center": "c",
+      // Halves: h l = edges, i = horizontal center
       "halfLeft": "h",
       "halfRight": "l",
       "halfHorizontalCenter": "i",
-      "quarterTopLeft": "u",
-      "quarterTopRight": "o",
-      "quarterBottomLeft": "m",
-      "quarterBottomRight": ".",
-      "sixthTopLeft": "6u",
-      "sixthTopRight": "6o",
-      "sixthBottomLeft": "6m",
-      "sixthBottomRight": "6.",
-      "twoThirdsLeft": "2h",
-      "twoThirdsHorizontalCenter": "2i",
-      "twoThirdsRight": "2l",
+      // Corners (1/2 x 1/2): y u / n m
+      "quarterTopLeft": "y",
+      "quarterTopRight": "u",
+      "quarterBottomLeft": "n",
+      "quarterBottomRight": "m",
+      // Thirds (3)
       "thirdLeft": "3h",
       "thirdHorizontalCenter": "3i",
       "thirdRight": "3l",
+      // Quarter columns (4): uppercase = one step inward
       "quarterLeft": "4h",
-      "quarterRight": "4l"
+      "quarterHorizontalLeftCenter": "4H",
+      "quarterHorizontalRightCenter": "4L",
+      "quarterRight": "4l",
+      // Sixths (6): h/l = narrow columns, y k u / n j m = tiles
+      "sixthLeft": "6h",
+      "sixthRight": "6l",
+      "sixthTopLeft": "6y",
+      "sixthTopCenter": "6k",
+      "sixthTopRight": "6u",
+      "sixthBottomLeft": "6n",
+      "sixthBottomCenter": "6j",
+      "sixthBottomRight": "6m",
+      // Two thirds (e = key below 3)
+      "twoThirdsLeft": "eh",
+      "twoThirdsHorizontalCenter": "ei",
+      "twoThirdsRight": "el",
+      // Three quarters (r = key below 4)
+      "threeQuartersLeft": "rh",
+      "threeQuartersHorizontalCenter": "ri",
+      "threeQuartersRight": "rl",
     },
-    // Built-in display
     "screens": {
       "macbook": {
-        // With two displays, only move-and-maximize
+        // Two displays: same keys with the "s" prefix (alone it falls back to defaultScreen)
         "2": {
-          "full": "s",
+          // Whole / free / fixed size
+          "full": "sa",
+          "freeArea": "sf",
+          "1600x1000Center": "sc",
+          // Halves: h l = edges, i = horizontal center
+          "halfLeft": "sh",
+          "halfRight": "sl",
+          "halfHorizontalCenter": "si",
+          // Corners (1/2 x 1/2): y u / n m
+          "quarterTopLeft": "sy",
+          "quarterTopRight": "su",
+          "quarterBottomLeft": "sn",
+          "quarterBottomRight": "sm",
+          // Thirds (3)
+          "thirdLeft": "s3h",
+          "thirdHorizontalCenter": "s3i",
+          "thirdRight": "s3l",
+          // Quarter columns (4): uppercase = one step inward
+          "quarterLeft": "s4h",
+          "quarterHorizontalLeftCenter": "s4H",
+          "quarterHorizontalRightCenter": "s4L",
+          "quarterRight": "s4l",
+          // Sixths (6): h/l = narrow columns, y k u / n j m = tiles
+          "sixthLeft": "s6h",
+          "sixthRight": "s6l",
+          "sixthTopLeft": "s6y",
+          "sixthTopCenter": "s6k",
+          "sixthTopRight": "s6u",
+          "sixthBottomLeft": "s6n",
+          "sixthBottomCenter": "s6j",
+          "sixthBottomRight": "s6m",
+          // Two thirds (e = key below 3)
+          "twoThirdsLeft": "seh",
+          "twoThirdsHorizontalCenter": "sei",
+          "twoThirdsRight": "sel",
+          // Three quarters (r = key below 4)
+          "threeQuartersLeft": "srh",
+          "threeQuartersHorizontalCenter": "sri",
+          "threeQuartersRight": "srl",
         },
       },
+    },
+    // Press before an area key to move without resizing
+    "keepSize": {
+      "key": "g"
     },
     "actions": {
       "closeWindow": "x",
@@ -231,71 +330,9 @@
       }
     ]
   },
+  // Only the maximize-all layout, bound directly (no picker menu)
   "windowLayouts": {
-    "hotkey": {
-      "modifiers": [
-        "ctrl",
-        "alt"
-      ],
-      "key": "m"
-    },
     "layouts": [
-      {
-        "name": "base",
-        "hotkey": {
-          "modifiers": [
-            "ctrl",
-            "alt"
-          ],
-          "key": "q"
-        },
-        "windows": [
-          {
-            "bundleID": "md.obsidian",
-            "screen": "desk",
-            "area": "halfLeft",
-            "focus": true
-          },
-          {
-            "bundleID": "com.google.Chrome",
-            "screen": "desk",
-            "area": "halfRight"
-          },
-          {
-            "bundleID": "com.mitchellh.ghostty",
-            "screen": "macbook",
-            "area": "full"
-          }
-        ],
-      },
-      {
-        "name": "dev",
-        "hotkey": {
-          "modifiers": [
-            "ctrl",
-            "alt"
-          ],
-          "key": "s"
-        },
-        "windows": [
-          {
-            "bundleID": "com.mitchellh.ghostty",
-            "screen": "desk",
-            "area": "halfHorizontalCenter",
-            "focus": true
-          },
-          {
-            "bundleID": "md.obsidian",
-            "screen": "desk",
-            "area": "quarterLeft"
-          },
-          {
-            "bundleID": "com.google.Chrome",
-            "screen": "desk",
-            "area": "quarterRight"
-          }
-        ],
-      },
       {
         "name": "maximizeAll",
         "hotkey": {
