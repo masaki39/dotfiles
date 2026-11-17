@@ -8,8 +8,10 @@ quick-terminal-autohide=false
 theme = TokyoNight
 # Relative paths resolve against this config file's directory
 custom-shader = shader/cursor-trail.glsl
+custom-shader = shader/tft.glsl
+custom-shader = shader/gears-and-belts.glsl
 macos-option-as-alt = true
-# macos-titlebar-style=tabs
+macos-titlebar-style=tabs
 background-opacity=0.85
 maximize = true
 unfocused-split-opacity = 0.5
