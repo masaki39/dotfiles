@@ -1,22 +1,25 @@
 # https://ghostty.org/docs/config/reference
-keybind = global:alt+space=toggle_quick_terminal
+# general
+macos-option-as-alt = true
+maximize = true
+# quick-terminal
 quick-terminal-position=center
 quick-terminal-animation-duration=0
 quick-terminal-size=90%,90%
 quick-terminal-screen=macos-menu-bar
 quick-terminal-autohide=false
+# appearance
 theme = TokyoNight
-# Relative paths resolve against this config file's directory
-custom-shader = shader/cursor-trail.glsl
-custom-shader = shader/gears-and-belts.glsl
-macos-option-as-alt = true
+split-divider-color = #7aa2f7
 macos-titlebar-style=tabs
 background-opacity=0.85
-maximize = true
 unfocused-split-opacity = 0.5
-# unfocused-split-fill = #a9b1d6
-split-divider-color = #7aa2f7
-# confirm-close-surface=false
+macos-icon = xray
+# custom-shader(Relative paths resolve against this config file's directory)
+custom-shader = shader/cursor-trail.glsl
+custom-shader = shader/gears-and-belts.glsl
+# keybind
+keybind = global:alt+space=toggle_quick_terminal
 keybind = alt+right=unbind
 keybind = alt+left=unbind
 keybind = super+alt+w=close_tab:other
