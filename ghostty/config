@@ -14,7 +14,7 @@ split-divider-color = #7aa2f7
 macos-titlebar-style=tabs
 background-opacity=0.85
 unfocused-split-opacity = 0.5
-macos-icon = xray
+macos-icon = retro
 # custom-shader(Relative paths resolve against this config file's directory)
 custom-shader = shader/cursor-trail.glsl
 custom-shader = shader/gears-and-belts.glsl
