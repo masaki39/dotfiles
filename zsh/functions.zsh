@@ -125,3 +125,6 @@ function y() {
 	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
 	rm -f -- "$tmp"
 }
+
+# kenv wrappers: give a command its keys from the kenv keychain (https://github.com/masaki39/kenv)
+czg() { kenv run CZ_OPENAI_API_KEY -- czg "$@" }

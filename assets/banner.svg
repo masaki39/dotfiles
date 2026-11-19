@@ -81,7 +81,7 @@
       <path class="accent-s" d="M17 22 V18 a7 7 0 0 1 14 0 V22" fill="none" stroke-width="3.2" stroke-linecap="round"/>
       <rect class="accent" x="13" y="21" width="22" height="17" rx="4"/>
       <text class="fg" x="68" y="20" font-size="22" font-weight="700">Secrets in the Keychain</text>
-      <text class="muted" x="68" y="46" font-size="17"><tspan class="mono">secret set KEY</tspan> → macOS Keychain</text>
+      <text class="muted" x="68" y="46" font-size="17"><tspan class="mono">kenv set KEY</tspan> → macOS Keychain</text>
     </g>
     <g transform="translate(72 464)">
       <rect class="tile" width="48" height="48" rx="12"/>

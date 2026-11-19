@@ -94,6 +94,8 @@ brew "masaki39/tap/csl"
 brew "masaki39/tap/ghq-fzf", trusted: true
 # Render a local HTML file to PNG with WebKit (helper for quicklook.yazi)
 brew "masaki39/tap/html2png", trusted: true
+# Keep secrets in a dedicated, auto-locking macOS keychain and pass them per command
+brew "masaki39/tap/kenv"
 # Typewriter effect CLI - type text char by char or display fortune messages
 brew "masaki39/tap/typewriter"
 # Memory training application
