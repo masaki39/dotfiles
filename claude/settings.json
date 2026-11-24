@@ -90,5 +90,6 @@
   "skipDangerousModePermissionPrompt": true,
   "agentPushNotifEnabled": true,
   "skipAutoPermissionPrompt": true,
-  "switchModelsOnFlag": false
+  "switchModelsOnFlag": false,
+  "promptSuggestionEnabled": false
 }
