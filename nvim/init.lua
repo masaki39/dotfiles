@@ -61,6 +61,14 @@ autocmd("FileType", {
   command = "setlocal spell",
 })
 
+-- CSV: align columns in place while editing
+vim.pack.add({ "https://github.com/hat0uma/csvview.nvim" }, { confirm = false })
+require("csvview").setup()
+autocmd("FileType", {
+  pattern = { "csv", "tsv" },
+  command = "CsvViewEnable",
+})
+
 -- Theme
 vim.pack.add({ "https://github.com/folke/tokyonight.nvim" }, { confirm = false })
 require("tokyonight").setup({ style = "moon", transparent = true })
