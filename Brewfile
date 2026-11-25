@@ -44,8 +44,6 @@ brew "imagemagick"
 brew "jq"
 # Simple terminal UI for git commands
 brew "lazygit"
-# Tool for linting and static analysis of Lua code
-brew "luacheck"
 # Easily convert Marp Markdown files into static HTML/CSS, PDF, PPT and images
 brew "marp-cli"
 # Ambitious Vim-fork focused on extensibility and agility

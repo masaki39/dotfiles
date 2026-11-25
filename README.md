@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/banner.svg" alt="dotfiles: an agent-reproducible macOS (Apple Silicon) setup with Keychain-backed secrets, configuring Ghostty, zsh + starship, Neovim, yazi, lazygit, Hammerspoon, Karabiner and Claude Code" width="100%">
+  <img src="assets/banner.svg" alt="dotfiles: an agent-reproducible macOS (Apple Silicon) setup with Keychain-backed secrets" width="100%">
 </p>
 
 # dotfiles
