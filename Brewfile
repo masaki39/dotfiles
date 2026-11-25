@@ -10,8 +10,6 @@ brew "clipboard"
 brew "colima"
 # Filename encoding conversion tool
 brew "convmv"
-# Command-line csv viewer
-brew "csvlens"
 # Open-source, cross-platform JavaScript runtime environment
 brew "node"
 # Interactive Commitizen CLI that generate standardized commit messages
