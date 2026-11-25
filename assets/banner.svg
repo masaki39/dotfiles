@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640" role="img" aria-labelledby="t d">
   <title id="t">dotfiles</title>
-  <desc id="d">An agent-reproducible macOS (Apple Silicon) dev environment: setup.sh is idempotent, secrets live in the macOS Keychain, and it configures Ghostty, zsh + starship, Neovim, yazi, lazygit, Hammerspoon, Karabiner and Claude Code.</desc>
+  <desc id="d">An agent-reproducible macOS (Apple Silicon) dev environment: setup.sh is idempotent, secrets live in the macOS Keychain, and every tool is configured from this repository.</desc>
   <style>
     .bg { fill: #f6f8fa; }
     .fg { fill: #1f2328; }
@@ -107,10 +107,10 @@
     <rect class="term type" opacity="0" x="814" y="160" width="160" height="26"/>
 
     <text class="line l1" x="664" y="220"><tspan class="ok">✓</tspan><tspan class="tt"> Homebrew bundle</tspan><tspan class="tm" x="922">Brewfile</tspan></text>
-    <text class="line l2" x="664" y="256"><tspan class="ok">✓</tspan><tspan class="tt"> Claude Code + pnpm</tspan><tspan class="tm" x="922">globals</tspan></text>
-    <text class="line l3" x="664" y="292"><tspan class="ok">✓</tspan><tspan class="tt"> Link configs</tspan><tspan class="tm" x="922">zsh nvim yazi …</tspan></text>
-    <text class="line l4" x="664" y="328"><tspan class="ok">✓</tspan><tspan class="tt"> Karabiner rules</tspan><tspan class="tm" x="922">karabiner.ts</tspan></text>
-    <text class="line l5" x="664" y="364"><tspan class="ok">✓</tspan><tspan class="tt"> Yazi plugins</tspan><tspan class="tm" x="922">package.toml</tspan></text>
+    <text class="line l2" x="664" y="256"><tspan class="ok">✓</tspan><tspan class="tt"> Global packages</tspan><tspan class="tm" x="922">pnpm</tspan></text>
+    <text class="line l3" x="664" y="292"><tspan class="ok">✓</tspan><tspan class="tt"> Link configs</tspan><tspan class="tm" x="922">~/.config</tspan></text>
+    <text class="line l4" x="664" y="328"><tspan class="ok">✓</tspan><tspan class="tt"> Build configs</tspan><tspan class="tm" x="922">generated</tspan></text>
+    <text class="line l5" x="664" y="364"><tspan class="ok">✓</tspan><tspan class="tt"> Install plugins</tspan><tspan class="tm" x="922">pinned</tspan></text>
     <text class="line l6" x="664" y="400"><tspan class="ok">✓</tspan><tspan class="tt"> Verify</tspan><tspan class="ok" x="922">SHELL_OK</tspan></text>
     <g class="line l7">
       <text x="664" y="450"><tspan class="tp">~/dotfiles</tspan><tspan class="ok"> ❯ </tspan></text>
@@ -120,13 +120,12 @@
 
   <!-- Tool stack -->
   <g class="mono" font-size="16" text-anchor="middle">
-    <g transform="translate(148 548)"><rect class="chip" x=".5" y=".5" width="95" height="35" rx="17.5"/><text class="chip-t" x="48" y="23">Ghostty</text></g>
-    <g transform="translate(257 548)"><rect class="chip" x=".5" y=".5" width="161" height="35" rx="17.5"/><text class="chip-t" x="81" y="23">zsh + starship</text></g>
-    <g transform="translate(432 548)"><rect class="chip" x=".5" y=".5" width="85" height="35" rx="17.5"/><text class="chip-t" x="43" y="23">Neovim</text></g>
-    <g transform="translate(531 548)"><rect class="chip" x=".5" y=".5" width="65" height="35" rx="17.5"/><text class="chip-t" x="33" y="23">yazi</text></g>
-    <g transform="translate(610 548)"><rect class="chip" x=".5" y=".5" width="95" height="35" rx="17.5"/><text class="chip-t" x="48" y="23">lazygit</text></g>
-    <g transform="translate(719 548)"><rect class="chip" x=".5" y=".5" width="133" height="35" rx="17.5"/><text class="chip-t" x="67" y="23">Hammerspoon</text></g>
-    <g transform="translate(866 548)"><rect class="chip" x=".5" y=".5" width="113" height="35" rx="17.5"/><text class="chip-t" x="57" y="23">Karabiner</text></g>
-    <g transform="translate(993 548)"><rect class="chip" x=".5" y=".5" width="133" height="35" rx="17.5"/><text class="chip-t" x="67" y="23">Claude Code</text></g>
+    <g transform="translate(186 548)"><rect class="chip" x=".5" y=".5" width="110" height="35" rx="17.5"/><text class="chip-t" x="55.5" y="23">Terminal</text></g>
+    <g transform="translate(311 548)"><rect class="chip" x=".5" y=".5" width="81" height="35" rx="17.5"/><text class="chip-t" x="41" y="23">Shell</text></g>
+    <g transform="translate(407 548)"><rect class="chip" x=".5" y=".5" width="91" height="35" rx="17.5"/><text class="chip-t" x="46" y="23">Editor</text></g>
+    <g transform="translate(513 548)"><rect class="chip" x=".5" y=".5" width="148" height="35" rx="17.5"/><text class="chip-t" x="74.5" y="23">File manager</text></g>
+    <g transform="translate(676 548)"><rect class="chip" x=".5" y=".5" width="167" height="35" rx="17.5"/><text class="chip-t" x="84" y="23">Window manager</text></g>
+    <g transform="translate(858 548)"><rect class="chip" x=".5" y=".5" width="110" height="35" rx="17.5"/><text class="chip-t" x="55.5" y="23">Keyboard</text></g>
+    <g transform="translate(983 548)"><rect class="chip" x=".5" y=".5" width="110" height="35" rx="17.5"/><text class="chip-t" x="55.5" y="23">AI agent</text></g>
   </g>
 </svg>

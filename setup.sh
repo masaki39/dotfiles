@@ -69,7 +69,6 @@ link "$DOTFILES/claude/CLAUDE.md" ~/.claude/CLAUDE.md
 link "$STATUSLINE_REPO/statusline.sh" ~/.claude/statusline.sh
 link "$STATUSLINE_REPO/mascot.sh" ~/.claude/mascot.sh
 # ~/.claude/skills is a real directory; link each skill individually
-[ -L ~/.claude/skills ] && rm ~/.claude/skills  # migrate from the old layout (whole-directory link)
 mkdir -p ~/.claude/skills
 for skill in "$DOTFILES"/claude/skills/*/; do
   link "${skill%/}" ~/.claude/skills/"$(basename "$skill")"
@@ -77,19 +76,6 @@ done
 mkdir -p ~/.claude/hooks
 for hook in "$DOTFILES"/claude/hooks/*.sh; do
   link "$hook" ~/.claude/hooks/"$(basename "$hook")"
-done
-# Migration: drop links left dangling by removed skills/hooks/configs
-for l in ~/.claude/skills/* ~/.claude/hooks/* ~/.config/pplyz; do
-  if [ -L "$l" ] && [ ! -e "$l" ]; then rm "$l"; fi
-done
-# Migration: unload the removed LaunchAgents (monthly jobs are now the manual brewup function)
-for label in com.masaki.auto-update com.masaki.monthly-maintenance com.masaki.update-brewfile; do
-  plist="$HOME/Library/LaunchAgents/$label.plist"
-  if [ -f "$plist" ]; then
-    launchctl bootout "gui/$(id -u)" "$plist" 2>/dev/null || true
-    rm -f "$plist"
-    echo "removed LaunchAgent: $label"
-  fi
 done
 # karabiner.ts writes ~/.config/karabiner/karabiner.json directly (no link needed)
 # If Karabiner has never run the file is missing and the build fails, so seed a minimal one

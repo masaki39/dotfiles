@@ -16,24 +16,9 @@ on = "q"
 run = "plugin confirm-quit"
 
 [[mgr.prepend_keymap]]
-on = ["s", "s"]
-run = 'search --via=fd --args="--no-hidden"'
-desc = "Search"
-
-[[mgr.prepend_keymap]]
-on = ["s", "d"]
-run = 'search --via=fd --args="-t d --no-hidden"'
-desc = "Search directories"
-
-[[mgr.prepend_keymap]]
-on = ["s", "f"]
-run = 'search --via=fd --args="-t f --no-hidden"'
-desc = "Search files"
-
-[[mgr.prepend_keymap]]
-on = ["s", "z"]
+on = "e"
 run = "plugin fd-fzf preview"
-desc = "Jump to directory"
+desc = "Jump to a directory via fd + fzf"
 
 [[mgr.prepend_keymap]]
 on = ["g", "D"]
@@ -42,16 +27,16 @@ desc = "Copy to Downloads"
 
 [[mgr.prepend_keymap]]
 on = ["g", "e"]
-run = 'shell -- ya emit cd "/Volumes"'
+run = "cd /Volumes"
 desc = "Go to Volumes"
 
 [[mgr.prepend_keymap]]
 on = ["g", "p"]
-run = 'shell -- ya emit cd "~/pCloud Drive"'
+run = 'cd "~/pCloud Drive"'
 desc = "Go to pCloud"
 
 [[mgr.prepend_keymap]]
-on = ["g", "g"]
+on = ["g", "l"]
 run = "shell 'lazygit' --block"
 desc = "Lazygit"
 
@@ -64,11 +49,6 @@ desc = "Git Root"
 on = ["g", "v"]
 run = "plugin ghq"
 desc = "Go ghq repo"
-
-[[mgr.prepend_keymap]]
-on = ["g", "f"]
-run = "shell 'lazygit -f %h' --block"
-desc = "Lazygit file history"
 
 [[mgr.prepend_keymap]]
 on = ["c", "r"]
@@ -104,14 +84,3 @@ desc = "Open terminal split right"
 on = ["o", "j"]
 run = "plugin ghostty-split down"
 desc = "Open terminal split down"
-
-[[mgr.prepend_keymap]]
-on = ["o", "t"]
-run = "plugin ghostty-split tab"
-desc = "Open terminal new tab"
-
-[[mgr.prepend_keymap]]
-on = ["o", "w"]
-run = "plugin ghostty-split window"
-desc = "Open terminal new window"
-
