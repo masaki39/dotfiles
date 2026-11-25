@@ -45,8 +45,7 @@
     .l3 { animation-delay: 2.2s; }
     .l4 { animation-delay: 2.6s; }
     .l5 { animation-delay: 3.0s; }
-    .l6 { animation-delay: 3.4s; }
-    .l7 { animation-delay: 3.9s; }
+    .l6 { animation-delay: 3.5s; }
     @keyframes type { from { transform: translateX(0); opacity: 1; } 99% { opacity: 1; } to { transform: translateX(160px); opacity: 0; } }
     @keyframes rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
     @media (prefers-reduced-motion: reduce) {
@@ -107,14 +106,13 @@
     <rect class="term type" opacity="0" x="814" y="160" width="160" height="26"/>
 
     <text class="line l1" x="664" y="220"><tspan class="ok">✓</tspan><tspan class="tt"> Homebrew bundle</tspan><tspan class="tm" x="922">Brewfile</tspan></text>
-    <text class="line l2" x="664" y="256"><tspan class="ok">✓</tspan><tspan class="tt"> Global packages</tspan><tspan class="tm" x="922">pnpm</tspan></text>
-    <text class="line l3" x="664" y="292"><tspan class="ok">✓</tspan><tspan class="tt"> Link configs</tspan><tspan class="tm" x="922">~/.config</tspan></text>
-    <text class="line l4" x="664" y="328"><tspan class="ok">✓</tspan><tspan class="tt"> Build configs</tspan><tspan class="tm" x="922">generated</tspan></text>
-    <text class="line l5" x="664" y="364"><tspan class="ok">✓</tspan><tspan class="tt"> Install plugins</tspan><tspan class="tm" x="922">pinned</tspan></text>
-    <text class="line l6" x="664" y="400"><tspan class="ok">✓</tspan><tspan class="tt"> Verify</tspan><tspan class="ok" x="922">SHELL_OK</tspan></text>
-    <g class="line l7">
-      <text x="664" y="450"><tspan class="tp">~/dotfiles</tspan><tspan class="ok"> ❯ </tspan></text>
-      <rect x="814" y="434" width="11" height="22" fill="#e6edf3" opacity=".85"/>
+    <text class="line l2" x="664" y="256"><tspan class="ok">✓</tspan><tspan class="tt"> Link configs</tspan><tspan class="tm" x="922">~/.config</tspan></text>
+    <text class="line l3" x="664" y="292"><tspan class="ok">✓</tspan><tspan class="tt"> Build configs</tspan><tspan class="tm" x="922">generated</tspan></text>
+    <text class="line l4" x="664" y="328"><tspan class="ok">✓</tspan><tspan class="tt"> Install plugins</tspan><tspan class="tm" x="922">pinned</tspan></text>
+    <text class="line l5" x="664" y="364"><tspan class="ok">✓</tspan><tspan class="tt"> Verify</tspan><tspan class="ok" x="922">SHELL_OK</tspan></text>
+    <g class="line l6">
+      <text x="664" y="414"><tspan class="tp">~/dotfiles</tspan><tspan class="ok"> ❯ </tspan></text>
+      <rect x="814" y="398" width="11" height="22" fill="#e6edf3" opacity=".85"/>
     </g>
   </g>
 
