@@ -30,13 +30,9 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 # Install packages
 brew bundle --file="$DOTFILES/Brewfile"
 
-# pnpm global packages (difit, etc.). .zprofile is not in effect yet, so set PATH here
+# Apply minimumReleaseAge (pnpm/config.yaml) before any pnpm install below
 mkdir -p ~/.config
-# Apply minimumReleaseAge (pnpm/config.yaml) before the global install
 link "$DOTFILES/pnpm" ~/.config/pnpm
-export PNPM_HOME="$HOME/Library/pnpm"
-export PATH="$PNPM_HOME/bin:$PATH"
-xargs pnpm add -g < "$DOTFILES/pnpm/global-packages.txt"
 
 # Claude Code (native build). Unpinned on purpose: first-party installer, and Claude Code self-updates
 command -v claude >/dev/null || [ -x ~/.local/bin/claude ] || curl -fsSL https://claude.ai/install.sh | bash
