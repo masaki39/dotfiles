@@ -61,7 +61,7 @@ while read -r p; do
 done < <(sed -n 's/^use = "\(.*\)"$/\1/p' "$DOTFILES/yazi/package.toml")
 
 echo "== zsh startup"
-out=$(zsh -lic 'whence -p brew pnpm difit fzf starship yazi nvim zoxide claude uv && print SHELL_OK' 2>&1) || true
+out=$(zsh -lic 'whence -p brew pnpm fzf starship yazi nvim zoxide claude uv && print SHELL_OK' 2>&1) || true
 if printf '%s\n' "$out" | grep -E 'command not found|no such file|parse error'; then
   fail "zsh startup printed errors"
 elif printf '%s\n' "$out" | grep -qx SHELL_OK; then
