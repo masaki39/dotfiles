@@ -16,24 +16,14 @@ on = "q"
 run = "plugin confirm-quit"
 
 [[mgr.prepend_keymap]]
-on = ["s", "s"]
+on = "s"
 run = 'search --via=fd --args="--no-hidden"'
-desc = "Search"
+desc = "Search files by name via fd (no hidden)"
 
 [[mgr.prepend_keymap]]
-on = ["s", "d"]
-run = 'search --via=fd --args="-t d --no-hidden"'
-desc = "Search directories"
-
-[[mgr.prepend_keymap]]
-on = ["s", "f"]
-run = 'search --via=fd --args="-t f --no-hidden"'
-desc = "Search files"
-
-[[mgr.prepend_keymap]]
-on = ["s", "z"]
+on = "e"
 run = "plugin fd-fzf preview"
-desc = "Jump to directory"
+desc = "Jump to a directory via fd + fzf"
 
 [[mgr.prepend_keymap]]
 on = ["g", "D"]
