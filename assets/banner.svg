@@ -110,7 +110,7 @@
     <text class="line l2" x="664" y="256"><tspan class="ok">✓</tspan><tspan class="tt"> Claude Code + pnpm</tspan><tspan class="tm" x="922">globals</tspan></text>
     <text class="line l3" x="664" y="292"><tspan class="ok">✓</tspan><tspan class="tt"> Link configs</tspan><tspan class="tm" x="922">zsh nvim yazi …</tspan></text>
     <text class="line l4" x="664" y="328"><tspan class="ok">✓</tspan><tspan class="tt"> Karabiner rules</tspan><tspan class="tm" x="922">karabiner.ts</tspan></text>
-    <text class="line l5" x="664" y="364"><tspan class="ok">✓</tspan><tspan class="tt"> LaunchAgents</tspan><tspan class="tm" x="922">monthly update</tspan></text>
+    <text class="line l5" x="664" y="364"><tspan class="ok">✓</tspan><tspan class="tt"> Yazi plugins</tspan><tspan class="tm" x="922">package.toml</tspan></text>
     <text class="line l6" x="664" y="400"><tspan class="ok">✓</tspan><tspan class="tt"> Verify</tspan><tspan class="ok" x="922">SHELL_OK</tspan></text>
     <g class="line l7">
       <text x="664" y="450"><tspan class="tp">~/dotfiles</tspan><tspan class="ok"> ❯ </tspan></text>

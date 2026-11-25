@@ -1,16 +1,15 @@
-# devcontainer
+# devcontainer (uses the project's own config)
 function dvc() {
+	if [[ ! -f ".devcontainer/devcontainer.json" && ! -f ".devcontainer.json" ]]; then
+		echo "No devcontainer config found in $PWD." >&2
+		return 1
+	fi
 	if ! colima status >/dev/null 2>&1; then
 		echo "Colima is not running. Starting..."
 		colima start
 	fi
-	local config_args=()
-	if [[ ! -f ".devcontainer/devcontainer.json" && ! -f ".devcontainer.json" ]]; then
-		echo "No local devcontainer config found. Using global config."
-		config_args=("--config" "$DOTFILES/claude/.devcontainer/devcontainer.json")
-	fi
-	devcontainer up --workspace-folder . "${config_args[@]}" && \
-	devcontainer exec --workspace-folder . "${config_args[@]}" sh -c 'exec "${SHELL:-sh}"'
+	devcontainer up --workspace-folder . && \
+	devcontainer exec --workspace-folder . sh -c 'exec "${SHELL:-sh}"'
 }
 
 # dev layout
@@ -19,7 +18,7 @@ function dv() {
 tell application "Ghostty"
   set mainTerm to focused terminal of selected tab of front window
   set subTerm to split mainTerm direction right
-  input text "herdr\n" to mainTerm
+  input text "claude\n" to mainTerm
   input text "y\n" to subTerm
   tell subTerm to focus
 end tell
@@ -128,3 +127,31 @@ function y() {
 
 # kenv wrappers: give a command its keys from the kenv keychain (https://github.com/masaki39/kenv)
 czg() { kenv run CZ_OPENAI_API_KEY -- czg "$@" }
+
+# Monthly maintenance, run by hand: refresh the Brewfile, show outdated packages, clean caches.
+# Review and commit the Brewfile diff yourself; upgrades stay manual (`brew upgrade`).
+# uv tools are left out of the dump (setup.sh's brew bundle would install them with the latest Python).
+function brewup() {
+	if ! git -C "$DOTFILES" diff --quiet -- Brewfile || ! git -C "$DOTFILES" diff --cached --quiet -- Brewfile; then
+		echo "brewup: Brewfile has uncommitted changes; commit or stash them first" >&2
+		return 1
+	fi
+	local failed=()
+	# A failing tap fetch does not stop the dump, so update failures are only reported
+	brew update || failed+=("brew update")
+	if brew bundle dump --force --no-uv --file="$DOTFILES/Brewfile"; then
+		# Show the changed entries themselves: a dropped line may be a lookup failure, not a removal
+		git -C "$DOTFILES" --no-pager diff -U0 -- Brewfile | grep -E '^[-+](tap|brew|cask|uv|mas|vscode) '
+	else
+		failed+=("brew bundle dump")
+	fi
+	brew outdated
+	brew cleanup --prune=all || failed+=("brew cleanup")
+	npm cache clean --force || failed+=("npm cache clean")
+	uv cache clean || failed+=("uv cache clean")
+	pnpm store prune || failed+=("pnpm store prune")
+	if (( $#failed )); then
+		echo "brewup: failed: ${(j:, :)failed}" >&2
+		return 1
+	fi
+}

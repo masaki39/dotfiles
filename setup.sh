@@ -4,7 +4,6 @@ set -eo pipefail
 
 [ "$(uname -sm)" = "Darwin arm64" ] || { echo "setup.sh requires macOS on Apple Silicon (Darwin arm64)" >&2; exit 1; }
 
-# DOTFILES_CI=1: for CI. Skips casks and LaunchAgent registration
 DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # An existing real file/directory is moved to <name>.bak.<timestamp> before linking
 link() {
@@ -13,19 +12,6 @@ link() {
     echo "backed up: $2"
   fi
   ln -sfn "$1" "$2"
-}
-# (Re)load a LaunchAgent. bootout fails when it is not loaded yet (first run), which is fine.
-# bootout finishes asynchronously, so retry bootstrap briefly while the old job is torn down.
-reload_agent() {
-  local domain i
-  domain="gui/$(id -u)"
-  launchctl bootout "$domain" "$1" 2>/dev/null || true
-  for i in 1 2 3 4 5; do
-    launchctl bootstrap "$domain" "$1" 2>/dev/null && return 0
-    echo "launchctl bootstrap failed for $1 (attempt $i), retrying..." >&2
-    sleep 1
-  done
-  launchctl bootstrap "$domain" "$1"
 }
 
 # So pnpm and others read ~/.config (.zshenv is not in effect yet)
@@ -42,16 +28,7 @@ fi
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Install packages
-# brew bundle installs uv tools with the latest Python (it does not pass env vars), which can
-# break dependency builds, so they are filtered out here and installed later with a pinned Python
-skip='^uv '
-[ -n "${DOTFILES_CI:-}" ] && skip='^(uv|cask) '
-BREWFILE=$(mktemp)
-grep -Ev "$skip" "$DOTFILES/Brewfile" > "$BREWFILE"
-brew bundle --file="$BREWFILE"
-sed -n 's/^uv "\([^"]*\)".*/\1/p' "$DOTFILES/Brewfile" | while read -r tool; do
-  uv tool install --python 3.13 "$tool"
-done
+brew bundle --file="$DOTFILES/Brewfile"
 
 # pnpm global packages (difit, etc.). .zprofile is not in effect yet, so set PATH here
 mkdir -p ~/.config
@@ -83,7 +60,6 @@ link "$DOTFILES/lazygit" ~/.config/lazygit
 link "$DOTFILES/uv" ~/.config/uv
 link "$DOTFILES/git" ~/.config/git
 link "$DOTFILES/jinrai" ~/.config/jinrai
-link "$DOTFILES/pplyz" ~/.config/pplyz
 link "$DOTFILES/starship/starship.toml" ~/.config/starship.toml
 link "$DOTFILES/claude/settings.json" ~/.claude/settings.json
 link "$DOTFILES/claude/CLAUDE.md" ~/.claude/CLAUDE.md
@@ -102,6 +78,19 @@ mkdir -p ~/.claude/hooks
 for hook in "$DOTFILES"/claude/hooks/*.sh; do
   link "$hook" ~/.claude/hooks/"$(basename "$hook")"
 done
+# Migration: drop links left dangling by removed skills/hooks/configs
+for l in ~/.claude/skills/* ~/.claude/hooks/* ~/.config/pplyz; do
+  if [ -L "$l" ] && [ ! -e "$l" ]; then rm "$l"; fi
+done
+# Migration: unload the removed LaunchAgents (monthly jobs are now the manual brewup function)
+for label in com.masaki.auto-update com.masaki.monthly-maintenance com.masaki.update-brewfile; do
+  plist="$HOME/Library/LaunchAgents/$label.plist"
+  if [ -f "$plist" ]; then
+    launchctl bootout "gui/$(id -u)" "$plist" 2>/dev/null || true
+    rm -f "$plist"
+    echo "removed LaunchAgent: $label"
+  fi
+done
 # karabiner.ts writes ~/.config/karabiner/karabiner.json directly (no link needed)
 # If Karabiner has never run the file is missing and the build fails, so seed a minimal one
 mkdir -p ~/.config/karabiner
@@ -111,31 +100,6 @@ mkdir -p ~/.config/karabiner
 
 # Install yazi plugins
 bash "$DOTFILES/yazi/install.sh"
-
-if [ -n "${DOTFILES_CI:-}" ]; then
-  echo "✓ Setup complete! (CI: LaunchAgents skipped)"
-  exit 0
-fi
-
-mkdir -p ~/Library/LaunchAgents
-
-# LaunchAgent for monthly maintenance (cache cleanup + outdated notification)
-chmod +x "$DOTFILES/scripts/monthly-maintenance.sh"
-PLIST2="$HOME/Library/LaunchAgents/com.masaki.monthly-maintenance.plist"
-sed "s|__DOTFILES__|$DOTFILES|g" "$DOTFILES/scripts/com.masaki.monthly-maintenance.plist" > "$PLIST2"
-reload_agent "$PLIST2"
-
-# LaunchAgent for monthly auto-update (Brewfile)
-chmod +x "$DOTFILES/scripts/auto-update.sh"
-# migrate old label
-OLD_PLIST="$HOME/Library/LaunchAgents/com.masaki.update-brewfile.plist"
-if [ -f "$OLD_PLIST" ]; then
-  launchctl bootout "gui/$(id -u)" "$OLD_PLIST" 2>/dev/null || true
-  rm -f "$OLD_PLIST"
-fi
-PLIST="$HOME/Library/LaunchAgents/com.masaki.auto-update.plist"
-sed "s|__DOTFILES__|$DOTFILES|g" "$DOTFILES/scripts/com.masaki.auto-update.plist" > "$PLIST"
-reload_agent "$PLIST"
 
 # Menu bar shortcuts (keys are menu item titles, so they must match the app's Japanese UI)
 defaults write com.google.Chrome NSUserKeyEquivalents '{

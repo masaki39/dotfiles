@@ -6,8 +6,6 @@ brew "bat"
 brew "btop"
 # Cut, copy, and paste anything, anywhere, all from the terminal
 brew "clipboard"
-# Dependency manager for Cocoa projects
-brew "cocoapods"
 # Container runtimes on MacOS (and Linux) with minimal setup
 brew "colima"
 # Filename encoding conversion tool
@@ -28,8 +26,6 @@ brew "eza"
 brew "fd"
 # Play, record, convert, and stream select audio and video codecs
 brew "ffmpeg"
-# Infamous electronic fortune-cookie generator
-brew "fortune"
 # Command-line fuzzy finder written in Go
 brew "fzf"
 # GitHub command-line tool
@@ -42,8 +38,6 @@ brew "ghq"
 brew "git"
 # Syntax-highlighting pager for git and diff output
 brew "git-delta"
-# Agent multiplexer that lives in your terminal
-brew "herdr"
 # Tools and libraries to manipulate images in select formats
 brew "imagemagick"
 # Lightweight and flexible command-line JSON processor
@@ -56,8 +50,6 @@ brew "luacheck"
 brew "marp-cli"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
-# Create, run, and share large language models (LLMs)
-brew "ollama", restart_service: :changed
 # Swiss-army knife of markup format conversion
 brew "pandoc"
 # Fast, disk space efficient package manager
@@ -86,8 +78,6 @@ brew "zoxide"
 brew "zsh-autosuggestions"
 # Fish shell like syntax highlighting for zsh
 brew "zsh-syntax-highlighting"
-# macOS CLI for AirDrop
-brew "masaki39/tap/airdrop-cli", trusted: true
 # Interactive Zotero CSL style selector with clipboard integration
 brew "masaki39/tap/csl"
 # Interactive ghq repository picker with fzf
@@ -95,17 +85,11 @@ brew "masaki39/tap/ghq-fzf", trusted: true
 # Render a local HTML file to PNG with WebKit (helper for quicklook.yazi)
 brew "masaki39/tap/html2png", trusted: true
 # Keep secrets in a dedicated, auto-locking macOS keychain and pass them per command
-brew "masaki39/tap/kenv"
-# Typewriter effect CLI - type text char by char or display fortune messages
-brew "masaki39/tap/typewriter"
+brew "masaki39/tap/kenv", trusted: true
 # Memory training application
 cask "anki"
-# Browser for SQLite databases
-cask "db-browser-for-sqlite"
-# Open-source image processing package
-cask "fiji"
-# UI toolkit for building applications for mobile, web and desktop
-cask "flutter"
+# Anthropic's official Claude AI desktop app
+cask "claude"
 # Terminal emulator that uses platform-native UI and GPU acceleration
 cask "ghostty"
 # Web browser
@@ -122,8 +106,6 @@ cask "homerow"
 cask "tadashi-aikawa/tap/jinrai", trusted: true
 # Keyboard customiser
 cask "karabiner-elements"
-# Free cross-platform office suite, fresh version
-cask "libreoffice"
 # Spreadsheet software
 cask "microsoft-excel"
 # Presentation software
@@ -136,10 +118,7 @@ cask "obsidian"
 cask "raycast"
 # ScanSnap Scanner software
 cask "scansnap-home"
-# Medical image processing and visualization system
-cask "slicer"
 # Command-line interface for Vercel
 cask "vercel"
 # Collect, organise, cite, and share research sources
 cask "zotero"
-uv "pplyz"
