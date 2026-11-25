@@ -18,7 +18,7 @@ function dv() {
 tell application "Ghostty"
   set mainTerm to focused terminal of selected tab of front window
   set subTerm to split mainTerm direction right
-  input text "herdr\n" to mainTerm
+  input text "claude\n" to mainTerm
   input text "y\n" to subTerm
   tell subTerm to focus
 end tell

@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
-      # Bash/sh scripts only (zsh is out of scope). claude/hooks/herdr-agent-state.sh is managed by herdr
+      # Bash/sh scripts only (zsh is out of scope)
       - name: Run shellcheck
         run: |
           shellcheck --version
