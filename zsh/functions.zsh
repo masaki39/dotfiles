@@ -130,13 +130,28 @@ czg() { kenv run CZ_OPENAI_API_KEY -- czg "$@" }
 
 # Monthly maintenance, run by hand: refresh the Brewfile, show outdated packages, clean caches.
 # Review and commit the Brewfile diff yourself; upgrades stay manual (`brew upgrade`).
+# uv tools are left out of the dump (setup.sh's brew bundle would install them with the latest Python).
 function brewup() {
-	brew update &&
-	brew bundle dump --force --file="$DOTFILES/Brewfile" &&
-	git -C "$DOTFILES" --no-pager diff --stat -- Brewfile
+	if ! git -C "$DOTFILES" diff --quiet -- Brewfile || ! git -C "$DOTFILES" diff --cached --quiet -- Brewfile; then
+		echo "brewup: Brewfile has uncommitted changes; commit or stash them first" >&2
+		return 1
+	fi
+	local failed=()
+	# A failing tap fetch does not stop the dump, so update failures are only reported
+	brew update || failed+=("brew update")
+	if brew bundle dump --force --no-uv --file="$DOTFILES/Brewfile"; then
+		# Show the changed entries themselves: a dropped line may be a lookup failure, not a removal
+		git -C "$DOTFILES" --no-pager diff -U0 -- Brewfile | grep -E '^[-+](tap|brew|cask|uv|mas|vscode) '
+	else
+		failed+=("brew bundle dump")
+	fi
 	brew outdated
-	brew cleanup --prune=all
-	npm cache clean --force
-	uv cache clean
-	pnpm store prune
+	brew cleanup --prune=all || failed+=("brew cleanup")
+	npm cache clean --force || failed+=("npm cache clean")
+	uv cache clean || failed+=("uv cache clean")
+	pnpm store prune || failed+=("pnpm store prune")
+	if (( $#failed )); then
+		echo "brewup: failed: ${(j:, :)failed}" >&2
+		return 1
+	fi
 }
