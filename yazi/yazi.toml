@@ -12,7 +12,7 @@ csvlens = [{ run = 'csvlens %s', block = true, for = "unix" }]
 
 [open]
 prepend_rules = [
-  { mime = "text/csv", use = "csvlens" },
+  { mime = "text/csv", use = ["edit", "csvlens"] },
 ]
 
 [plugin]
