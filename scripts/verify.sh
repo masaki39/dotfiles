@@ -1,5 +1,5 @@
 #!/bin/bash
-# Verify a set-up machine (used by CI and by AGENTS.md). It does not change any config or links,
+# Verify a set-up machine (used by AGENTS.md). It does not change any config or links,
 # but the first nvim start may install plugins and zsh may write its own state files.
 # Prints ok/FAIL per check and exits non-zero if any check failed.
 # When adding a link to setup.sh, add it to the link checks below too.
@@ -38,7 +38,6 @@ check_link "$DOTFILES/lazygit" ~/.config/lazygit
 check_link "$DOTFILES/uv" ~/.config/uv
 check_link "$DOTFILES/git" ~/.config/git
 check_link "$DOTFILES/jinrai" ~/.config/jinrai
-check_link "$DOTFILES/pplyz" ~/.config/pplyz
 check_link "$DOTFILES/starship/starship.toml" ~/.config/starship.toml
 check_link "$DOTFILES/claude/settings.json" ~/.claude/settings.json
 check_link "$DOTFILES/claude/CLAUDE.md" ~/.claude/CLAUDE.md
@@ -61,24 +60,8 @@ while read -r p; do
   if [ -d ~/.config/yazi/plugins/"$name".yazi ]; then ok "yazi plugin $name"; else fail "yazi plugin $name"; fi
 done < <(sed -n 's/^use = "\(.*\)"$/\1/p' "$DOTFILES/yazi/package.toml")
 
-echo "== LaunchAgent plists"
-# Checked from the repo templates as setup.sh renders them, so this also works in CI (agents not installed)
-tmp=$(mktemp -d)
-trap 'rm -rf "$tmp"' EXIT
-for f in "$DOTFILES"/scripts/*.plist; do
-  out="$tmp/$(basename "$f")"
-  sed "s|__DOTFILES__|$DOTFILES|g" "$f" > "$out"
-  if ! plutil -lint -s "$out"; then
-    fail "plist lint: $(basename "$f")"
-  elif grep -q __DOTFILES__ "$out"; then
-    fail "unsubstituted __DOTFILES__ in $(basename "$f")"
-  else
-    ok "plist $(basename "$f")"
-  fi
-done
-
 echo "== zsh startup"
-out=$(zsh -lic 'whence -p brew pnpm difit fzf starship yazi nvim zoxide claude uv pplyz && print SHELL_OK' 2>&1) || true
+out=$(zsh -lic 'whence -p brew pnpm difit fzf starship yazi nvim zoxide claude uv && print SHELL_OK' 2>&1) || true
 if printf '%s\n' "$out" | grep -E 'command not found|no such file|parse error'; then
   fail "zsh startup printed errors"
 elif printf '%s\n' "$out" | grep -qx SHELL_OK; then

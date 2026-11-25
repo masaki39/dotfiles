@@ -142,4 +142,3 @@ cask "slicer"
 cask "vercel"
 # Collect, organise, cite, and share research sources
 cask "zotero"
-uv "pplyz"

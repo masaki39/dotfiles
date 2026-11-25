@@ -1,16 +1,15 @@
-# devcontainer
+# devcontainer (uses the project's own config)
 function dvc() {
+	if [[ ! -f ".devcontainer/devcontainer.json" && ! -f ".devcontainer.json" ]]; then
+		echo "No devcontainer config found in $PWD." >&2
+		return 1
+	fi
 	if ! colima status >/dev/null 2>&1; then
 		echo "Colima is not running. Starting..."
 		colima start
 	fi
-	local config_args=()
-	if [[ ! -f ".devcontainer/devcontainer.json" && ! -f ".devcontainer.json" ]]; then
-		echo "No local devcontainer config found. Using global config."
-		config_args=("--config" "$DOTFILES/claude/.devcontainer/devcontainer.json")
-	fi
-	devcontainer up --workspace-folder . "${config_args[@]}" && \
-	devcontainer exec --workspace-folder . "${config_args[@]}" sh -c 'exec "${SHELL:-sh}"'
+	devcontainer up --workspace-folder . && \
+	devcontainer exec --workspace-folder . sh -c 'exec "${SHELL:-sh}"'
 }
 
 # dev layout
@@ -128,3 +127,16 @@ function y() {
 
 # kenv wrappers: give a command its keys from the kenv keychain (https://github.com/masaki39/kenv)
 czg() { kenv run CZ_OPENAI_API_KEY -- czg "$@" }
+
+# Monthly maintenance, run by hand: refresh the Brewfile, show outdated packages, clean caches.
+# Review and commit the Brewfile diff yourself; upgrades stay manual (`brew upgrade`).
+function brewup() {
+	brew update &&
+	brew bundle dump --force --file="$DOTFILES/Brewfile" &&
+	git -C "$DOTFILES" --no-pager diff --stat -- Brewfile
+	brew outdated
+	brew cleanup --prune=all
+	npm cache clean --force
+	uv cache clean
+	pnpm store prune
+}
