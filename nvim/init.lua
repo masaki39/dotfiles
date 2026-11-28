@@ -61,6 +61,13 @@ autocmd("FileType", {
   command = "setlocal spell",
 })
 
+-- Briefly highlight yanked text
+autocmd("TextYankPost", {
+  callback = function()
+    vim.hl.on_yank()
+  end,
+})
+
 -- CSV: align columns in place while editing
 vim.pack.add({ "https://github.com/hat0uma/csvview.nvim" }, { confirm = false })
 require("csvview").setup()
