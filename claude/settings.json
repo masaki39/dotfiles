@@ -57,16 +57,24 @@
     "command": "~/.claude/statusline.sh"
   },
   "enabledPlugins": {
-    "claude-md-management@claude-plugins-official": false
+    "claude-md-management@claude-plugins-official": false,
+    "obsidian@obsidian-skills": true
   },
-  "extraKnownMarketplaces": {},
+  "extraKnownMarketplaces": {
+    "obsidian-skills": {
+      "source": {
+        "source": "github",
+        "repo": "obsidianmd/obsidian-skills"
+      }
+    }
+  },
   "outputStyle": "Concise",
   "effortLevel": "high",
+  "promptSuggestionEnabled": false,
   "tui": "fullscreen",
   "autoMemoryEnabled": false,
   "skipDangerousModePermissionPrompt": true,
-  "agentPushNotifEnabled": true,
-  "skipAutoPermissionPrompt": true,
   "switchModelsOnFlag": false,
-  "promptSuggestionEnabled": false
+  "agentPushNotifEnabled": true,
+  "skipAutoPermissionPrompt": true
 }
